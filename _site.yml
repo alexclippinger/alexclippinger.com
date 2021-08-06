@@ -9,4 +9,6 @@ navbar:
       href: index.html
     - text: "About Me"
       href: about.html
+    - text: "CV/Resume"
+      href: CV.html
 output: distill::distill_article
