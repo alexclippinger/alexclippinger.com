@@ -1,0 +1,12 @@
+name: "alexclippinger.github.io"
+title: "My Website"
+description: |
+  My Website
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Portfolio"
+      href: index.html
+    - text: "About Me"
+      href: about.html
+output: distill::distill_article
