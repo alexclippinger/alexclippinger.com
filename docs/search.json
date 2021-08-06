@@ -6,7 +6,7 @@
       "description": "Some additional details about the website",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-08-06T11:10:45-07:00"
+      "last_modified": "2021-08-06T14:46:09-07:00"
     },
     {
       "path": "CV.html",
@@ -14,15 +14,14 @@
       "description": "CV/Resume",
       "author": [],
       "contents": "\r\n\r\n\r\nggplot(data = diamonds, aes(x = carat, y = price)) + \r\n  geom_point(aes(color = clarity))\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-08-06T11:13:40-07:00"
+      "last_modified": "2021-08-06T14:46:16-07:00"
     },
     {
       "path": "index.html",
       "title": "Alex Clippinger",
-      "description": "Welcome to the website. I hope you enjoy it!\n",
       "author": [],
-      "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-08-06T11:10:52-07:00"
+      "contents": "\r\n\r\n          \r\n          \r\n          My Website\r\n          \r\n          \r\n          Portfolio\r\n          About Me\r\n          CV/Resume\r\n          ☰\r\n          \r\n          \r\n      \r\n        \r\n          \r\n            Alex Clippinger\r\n          \r\n          \r\n            \r\n              I am an environmental data science student living in Santa Barbara.\r\n            \r\n            \r\n              I am an environmental data science student living in Santa Barbara.\r\n            \r\n          \r\n\r\n          \r\n            \r\n              \r\n                  \r\n                    \r\n                      LinkedIn\r\n                    \r\n                  \r\n                \r\n                                \r\n                  \r\n                    \r\n                      GitHub\r\n                    \r\n                  \r\n                \r\n                                \r\n                  \r\n                    \r\n                      Email\r\n                    \r\n                  \r\n                \r\n                              \r\n          \r\n\r\n          \r\n            \r\n              \r\n                                \r\n                  \r\n                    LinkedIn\r\n                  \r\n                \r\n                                \r\n                  \r\n                    GitHub\r\n                  \r\n                \r\n                                \r\n                  \r\n                    Email\r\n                  \r\n                \r\n                              \r\n            \r\n          \r\n        \r\n      \r\n    \r\n\r\n    \r\n    \r\n    ",
+      "last_modified": "2021-08-06T14:46:16-07:00"
     }
   ],
   "collections": []

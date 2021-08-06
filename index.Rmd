@@ -1,18 +1,16 @@
 ---
 title: "Alex Clippinger"
-description: |
-  Welcome to the website. I hope you enjoy it!
+image: "alex.jfif"
+links:
+  - label: LinkedIn
+    url: "https://www.linkedin.com/in/alex-clippinger"
+  - label: GitHub
+    url: "https://github.com/alexclippinger"
+  - label: Email
+    url: "mailto:alexclippinger@ucsb.edu"
+output:
+  postcards::jolla
 site: distill::distill_website
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-
-# Learn more about creating websites with Distill at:
-# https://rstudio.github.io/distill/website.html
-
-# Learn more about publishing to GitHub Pages at:
-# https://rstudio.github.io/distill/publish_website.html#github-pages
-
-```
-
+ 
+I am an environmental data science student living in Santa Barbara.
