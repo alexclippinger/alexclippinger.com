@@ -1,0 +1,24 @@
+---
+title: "Third Post"
+description: |
+  My third post.
+author:
+  - name: Alex Clippinger
+    url: {}
+date: 08-10-2021
+output:
+  distill::distill_article:
+    self_contained: false
+preview: images/IMG_0485.jpg
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Distill is a publication format for scientific and technical writing, native to the web.
+
+Learn more about using Distill at <https://rstudio.github.io/distill>.
+
+
