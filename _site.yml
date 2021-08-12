@@ -1,5 +1,5 @@
 name: "alexclippinger.github.io"
-title: "My Website"
+title: "Home"
 description: |
   My Website
 output_dir: "docs"
@@ -14,3 +14,4 @@ navbar:
     - text: "Blog"
       href: blog.html
 output: distill::distill_article
+theme: theme.css
