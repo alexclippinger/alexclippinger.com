@@ -6,14 +6,14 @@
       "description": "Some additional details about the website",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-08-12T15:13:31-07:00"
+      "last_modified": "2021-08-16T16:59:27-07:00"
     },
     {
       "path": "blog.html",
       "title": "Blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-08-12T15:13:32-07:00"
+      "last_modified": "2021-08-16T16:59:28-07:00"
     },
     {
       "path": "CV.html",
@@ -21,14 +21,14 @@
       "description": "CV/Resume",
       "author": [],
       "contents": "\r\n\r\n\r\nggplot(data = diamonds, aes(x = carat, y = price)) + \r\n  geom_point(aes(color = clarity))\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-08-12T15:13:38-07:00"
+      "last_modified": "2021-08-16T16:59:34-07:00"
     },
     {
       "path": "index.html",
       "title": "Alex Clippinger",
       "author": [],
       "contents": "\r\n\r\n          \r\n          \r\n          Home\r\n          \r\n          \r\n          Portfolio\r\n          About Me\r\n          CV/Resume\r\n          Blog\r\n          ☰\r\n          \r\n          \r\n      \r\n        \r\n          \r\n            Alex Clippinger\r\n          \r\n          \r\n            \r\n              I graduated with a Bachelor’s Degree in Mathematics and Economics from Northeastern University in 2019. I got a glimpse of the applications of data science and the environmental challenges working as a catastrophe risk modeler. I. While working, I earned a Graduate Certificate in Geographic Information Systems (GIS) in 2021 and began pursuing a career combining environmental science and data. This began with an internship as a geospatial analyst, which provided me with experience using geospatial technologies (GIS, remote sensing, and machine learning tools) for agriculture analytics. Currently, I am a Master of Environmental Data Science student at the Bren School of Environmental Science and Management at UC Santa Barbara. Through this program,\r\n            \r\n            \r\n              I graduated with a Bachelor’s Degree in Mathematics and Economics from Northeastern University in 2019. I got a glimpse of the applications of data science and the environmental challenges working as a catastrophe risk modeler. I. While working, I earned a Graduate Certificate in Geographic Information Systems (GIS) in 2021 and began pursuing a career combining environmental science and data. This began with an internship as a geospatial analyst, which provided me with experience using geospatial technologies (GIS, remote sensing, and machine learning tools) for agriculture analytics. Currently, I am a Master of Environmental Data Science student at the Bren School of Environmental Science and Management at UC Santa Barbara. Through this program,\r\n            \r\n          \r\n\r\n          \r\n            \r\n              \r\n                  \r\n                    \r\n                      LinkedIn\r\n                    \r\n                  \r\n                \r\n                                \r\n                  \r\n                    \r\n                      GitHub\r\n                    \r\n                  \r\n                \r\n                                \r\n                  \r\n                    \r\n                      Email\r\n                    \r\n                  \r\n                \r\n                              \r\n          \r\n\r\n          \r\n            \r\n              \r\n                                \r\n                  \r\n                    LinkedIn\r\n                  \r\n                \r\n                                \r\n                  \r\n                    GitHub\r\n                  \r\n                \r\n                                \r\n                  \r\n                    Email\r\n                  \r\n                \r\n                              \r\n            \r\n          \r\n        \r\n      \r\n    \r\n\r\n    \r\n    \r\n    ",
-      "last_modified": "2021-08-12T15:13:38-07:00"
+      "last_modified": "2021-08-16T16:59:34-07:00"
     }
   ],
   "collections": ["posts/posts.json"]

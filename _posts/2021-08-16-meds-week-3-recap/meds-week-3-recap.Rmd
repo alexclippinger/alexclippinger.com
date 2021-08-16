@@ -1,0 +1,49 @@
+---
+title: "MEDS Week 3 Recap"
+description: |
+  A brief look at some of the concepts we've learned so far.
+author:
+  - name: Alex Clippinger
+    url: {}
+date: 08-16-2021
+output:
+  distill::distill_article:
+    self_contained: false
+preview: images/logo-bren.svg
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(palmerpenguins)
+```
+
+We are in week 3 of the MEDS program at UCSB's Bren School of Environmental Science and Management. Here are a few things that we've learned...
+
+#### R functions:
+
+So far, we have learned various methods of getting data into more usable formats.
+
+Here is an example of using the dplyr `group_by` and `summarize` functions...
+
+```{r, include = TRUE}
+# Example using the palmerpenguins dataset
+penguins_summary <- penguins %>% 
+  group_by(species) %>% 
+  summarize(mean_body_mass_g = mean(body_mass_g, na.rm = TRUE))
+
+penguins_summary
+```
+
+#### Concepts
+
+We have also learned fundamental concepts for working with data. One such concept is tidy data, which refers to the following qualities:
+- Each column contains a single variable
+- Each row contains a single observation
+- Each cell contains a single value
+
+This is important for other important concepts that we've learned, such as scientific reproducibility.
+
+#### Takeaways
+The MEDS program has been rewarding and challenging in the initial weeks. I have learned to think critically and deliberately about every bit of code that I write. I have also appreciated the helpful and collaborative community that has formed in our small cohort.

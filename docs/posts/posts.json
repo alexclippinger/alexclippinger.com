@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2021-08-16-meds-week-3-recap/",
+    "title": "MEDS Week 3 Recap",
+    "description": "A brief look at some of the concepts we've learned so far.",
+    "author": [
+      {
+        "name": "Alex Clippinger",
+        "url": {}
+      }
+    ],
+    "date": "2021-08-16",
+    "categories": [],
+    "contents": "\r\nWe are in week 3 of the MEDS program at UCSB’s Bren School of Environmental Science and Management. Here are a few things that we’ve learned…\r\nR functions:\r\nSo far, we have learned various methods of getting data into more usable formats.\r\nHere is an example of using the dplyr group_by and summarize functions…\r\n\r\n# A tibble: 3 x 2\r\n  species   mean_body_mass_g\r\n  <fct>                <dbl>\r\n1 Adelie               3701.\r\n2 Chinstrap            3733.\r\n3 Gentoo               5076.\r\n\r\nConcepts\r\nWe have also learned fundamental concepts for working with data. One such concept is tidy data, which refers to the following qualities: - Each column contains a single variable - Each row contains a single observation - Each cell contains a single value\r\nThis is important for other important concepts that we’ve learned, such as scientific reproducibility.\r\nTakeaways\r\nThe MEDS program has been rewarding and challenging in the initial weeks. I have learned to think critically and deliberately about every bit of code that I write. I have also appreciated the helpful and collaborative community that has formed in our small cohort.\r\n\r\n\r\n\r\n",
+    "preview": "posts/2021-08-16-meds-week-3-recap/images/logo-bren.svg",
+    "last_modified": "2021-08-16T16:59:05-07:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2021-08-10-hello/",
     "title": "My First Blog!",
     "description": "And maybe the last.",
@@ -13,7 +30,7 @@
     "categories": [],
     "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-08-10T10:23:39-07:00",
+    "last_modified": "2021-08-16T16:41:14-07:00",
     "input_file": {}
   },
   {
@@ -30,7 +47,7 @@
     "categories": [],
     "contents": "\r\n\r\n\r\n\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
     "preview": "posts/2021-08-10-new-functions/new-functions_files/figure-html5/unnamed-chunk-1-1.png",
-    "last_modified": "2021-08-10T10:35:54-07:00",
+    "last_modified": "2021-08-16T16:41:14-07:00",
     "input_file": {}
   },
   {
@@ -47,7 +64,7 @@
     "categories": [],
     "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
     "preview": "posts/2021-08-10-third-post/images/IMG_0485.jpg",
-    "last_modified": "2021-08-10T10:45:52-07:00",
+    "last_modified": "2021-08-16T16:41:14-07:00",
     "input_file": {}
   }
 ]
