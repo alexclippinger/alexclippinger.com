@@ -1,5 +1,5 @@
 ---
-title: "Alex Clippinger"
+title: "Portfolio"
 image: "alex.jfif"
 links:
   - label: LinkedIn
@@ -12,5 +12,3 @@ output:
   postcards::jolla
 site: distill::distill_website
 ---
-
-I graduated with a Bachelor’s Degree in Mathematics and Economics from Northeastern University in 2019.  I got a glimpse of the applications of data science and the environmental challenges working as a  catastrophe risk modeler. I. While working, I earned a Graduate Certificate in Geographic Information Systems (GIS) in 2021 and began pursuing a career combining environmental science and data. This began with an internship as a geospatial analyst, which provided me with experience using geospatial technologies (GIS, remote sensing, and machine learning tools) for agriculture analytics. Currently, I am a Master of Environmental Data Science student at the Bren School of Environmental Science and Management at UC Santa Barbara. Through this program, 

@@ -1,10 +1,29 @@
 ---
-title: "About this site"
-description: |
-  Some additional details about the website
+title: "About Me"
+image: "alex.jfif"
+links:
+  - label: LinkedIn
+    url: "https://www.linkedin.com/in/alex-clippinger"
+  - label: GitHub
+    url: "https://github.com/alexclippinger"
+  - label: Email
+    url: "mailto:alexclippinger@ucsb.edu"
+output:
+  postcards::jolla
+site: distill::distill_website
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+
+I am committed to __. I am currently a Master of Environmental Data Science (MEDS) student at the Bren School of Environmental Science and Management at UC Santa Barbara. I have a Bachelor’s Degree in Mathematics and Economics from Northeastern University in 2019. After college, I worked in catastrophe risk modeling, where I gained exposure to the exciting applications of data science to environmental applications. xxxx While working, I earned a Graduate Certificate in Geographic Information Systems (GIS) in 2021 and began pursuing a career combining environmental science and data. Along the way, I completed projects creating an automated dashboard for Northeastern’s International Safety Office and analyzing COVID data for the Kostas Research Institute. I also volunteered with my home town land trust to create a GIS database and completed research studies to identify conservation acquisition targets. Most recently, I was a geospatial analyst where I used GIS, remote sensing, and machine learning tools to analyze in-season agriculture data from drone imagery. Through the MEDS program, I hope to
+
+
+
+```{r, include = FALSE}
+bio <- "I am committed to __. I am currently a Master of Environmental Data Science (MEDS) student at the Bren School of Environmental Science and Management at UC Santa Barbara. I have a Bachelor’s Degree in Mathematics and Economics from Northeastern University in 2019. After college, I worked in catastrophe risk modeling, where I gained exposure to the exciting applications of data science to environmental applications. xxxx While working, I earned a Graduate Certificate in Geographic Information Systems (GIS) in 2021 and began pursuing a career combining environmental science and data. Along the way, I completed projects creating an automated dashboard for Northeastern’s International Safety Office and analyzing COVID data for the Kostas Research Institute. I also volunteered with my home town land trust to create a GIS database and completed research studies to identify conservation acquisition targets. Most recently, I was a geospatial analyst where I used GIS, remote sensing, and machine learning tools to analyze in-season agriculture data from drone imagery. Through the MEDS program, I hope to"
+
+library(ngram)
+word_count <- wordcount(x = bio, sep = " ")
+print(word_count)
 ```
+
 
