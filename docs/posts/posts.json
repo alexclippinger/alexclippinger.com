@@ -15,56 +15,5 @@
     "preview": "posts/2021-08-16-meds-week-3-recap/images/logo-bren.svg",
     "last_modified": "2021-08-16T16:59:05-07:00",
     "input_file": {}
-  },
-  {
-    "path": "posts/2021-08-10-hello/",
-    "title": "My First Blog!",
-    "description": "And maybe the last.",
-    "author": [
-      {
-        "name": "Alex Clippinger",
-        "url": {}
-      }
-    ],
-    "date": "2021-08-10",
-    "categories": [],
-    "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
-    "preview": {},
-    "last_modified": "2021-08-16T16:41:14-07:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/2021-08-10-new-functions/",
-    "title": "New Functions",
-    "description": "A short description of the post.",
-    "author": [
-      {
-        "name": "Alex Clippinger",
-        "url": {}
-      }
-    ],
-    "date": "2021-08-10",
-    "categories": [],
-    "contents": "\r\n\r\n\r\n\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
-    "preview": "posts/2021-08-10-new-functions/new-functions_files/figure-html5/unnamed-chunk-1-1.png",
-    "last_modified": "2021-08-16T16:41:14-07:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/2021-08-10-third-post/",
-    "title": "Third Post",
-    "description": "My third post.",
-    "author": [
-      {
-        "name": "Alex Clippinger",
-        "url": {}
-      }
-    ],
-    "date": "2021-08-10",
-    "categories": [],
-    "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
-    "preview": "posts/2021-08-10-third-post/images/IMG_0485.jpg",
-    "last_modified": "2021-08-16T16:41:14-07:00",
-    "input_file": {}
   }
 ]
