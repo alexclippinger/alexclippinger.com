@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2021-09-20-old-lyme-ospreys-2020-season-review/",
+    "title": "Old Lyme Ospreys - 2020 Season Review",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "Alex Clippinger",
+        "url": {}
+      }
+    ],
+    "date": "2021-09-20",
+    "categories": [],
+    "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-09-20T14:27:19-07:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2021-08-16-meds-week-3-recap/",
     "title": "MEDS Week 3 Recap",
     "description": "A brief look at some of the concepts we've learned so far.",
