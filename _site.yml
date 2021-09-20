@@ -10,7 +10,7 @@ navbar:
     - text: "About Me"
       href: about.html
     - text: "CV/Resume"
-      href: CV.html
+      href: CV/Clippinger_Alex_Resume_2021-08-22.pdf
     - text: "Blog"
       href: blog.html
 output: distill::distill_article
