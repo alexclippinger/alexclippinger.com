@@ -112,12 +112,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview"]}},"value":[{"type":"character","attributes":{},"value":["MEDS Week 3 Recap"]},{"type":"character","attributes":{},"value":["A brief look at some of the concepts we've learned so far."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Alex Clippinger"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["08-16-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["images/logo-bren.svg"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview"]}},"value":[{"type":"character","attributes":{},"value":["MEDS Week 3 Recap"]},{"type":"character","attributes":{},"value":["A brief look at some of the concepts we've learned so far."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Alex Clippinger"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["08-16-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["Toggle Code"]}]}]},{"type":"character","attributes":{},"value":["images/logo-bren.svg"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["images/logo-bren.svg","meds-week-3-recap_files/anchor-4.2.2/anchor.min.js","meds-week-3-recap_files/bowser-1.9.3/bowser.min.js","meds-week-3-recap_files/distill-2.2.21/template.v2.js","meds-week-3-recap_files/header-attrs-2.9/header-attrs.js","meds-week-3-recap_files/jquery-1.11.3/jquery.min.js","meds-week-3-recap_files/popper-2.6.0/popper.min.js","meds-week-3-recap_files/tippy-6.2.7/tippy-bundle.umd.min.js","meds-week-3-recap_files/tippy-6.2.7/tippy-light-border.css","meds-week-3-recap_files/tippy-6.2.7/tippy.css","meds-week-3-recap_files/tippy-6.2.7/tippy.umd.min.js","meds-week-3-recap_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["images/logo-bren.svg","meds-week-3-recap_files/anchor-4.2.2/anchor.min.js","meds-week-3-recap_files/bowser-1.9.3/bowser.min.js","meds-week-3-recap_files/distill-2.2.21/template.v2.js","meds-week-3-recap_files/header-attrs-2.10/header-attrs.js","meds-week-3-recap_files/header-attrs-2.9/header-attrs.js","meds-week-3-recap_files/jquery-1.11.3/jquery.min.js","meds-week-3-recap_files/popper-2.6.0/popper.min.js","meds-week-3-recap_files/tippy-6.2.7/tippy-bundle.umd.min.js","meds-week-3-recap_files/tippy-6.2.7/tippy-light-border.css","meds-week-3-recap_files/tippy-6.2.7/tippy.css","meds-week-3-recap_files/tippy-6.2.7/tippy.umd.min.js","meds-week-3-recap_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -1964,7 +1964,7 @@ code {
 /* body color */
 
 body {
-  background-color: #DAE6E6;
+  background-color: #F5F2F2;
 }</style>
 <style type="text/css">
 /* base style */
@@ -2121,7 +2121,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.9/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.10/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2184,6 +2184,20 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p>So far, we have learned various methods of getting data into more usable formats.</p>
 <p>Here is an example of using the dplyr <code>group_by</code> and <code>summarize</code> functions…</p>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Toggle Code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Example using the palmerpenguins dataset</span>
+<span class='va'>penguins_summary</span> <span class='op'>&lt;-</span> <span class='va'>penguins</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>species</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>summarize</span><span class='op'>(</span>mean_body_mass_g <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>body_mass_g</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>penguins_summary</span>
+</code></pre>
+</div>
+</details>
 <pre><code># A tibble: 3 x 2
   species   mean_body_mass_g
   &lt;fct&gt;                &lt;dbl&gt;
@@ -2192,7 +2206,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 3 Gentoo               5076.</code></pre>
 </div>
 <h4 id="concepts">Concepts</h4>
-<p>We have also learned fundamental concepts for working with data. One such concept is tidy data, which refers to the following qualities: - Each column contains a single variable - Each row contains a single observation - Each cell contains a single value</p>
+<p>We have also learned fundamental concepts for working with data. One such concept is <strong>tidy data</strong>, which refers to the following qualities: - Each column contains a single variable - Each row contains a single observation - Each cell contains a single value</p>
 <p>This is important for other important concepts that we’ve learned, such as scientific reproducibility.</p>
 <h4 id="takeaways">Takeaways</h4>
 <p>The MEDS program has been rewarding and challenging in the initial weeks. I have learned to think critically and deliberately about every bit of code that I write. I have also appreciated the helpful and collaborative community that has formed in our small cohort.</p>

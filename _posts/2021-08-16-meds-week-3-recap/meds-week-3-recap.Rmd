@@ -9,12 +9,13 @@ date: 08-16-2021
 output:
   distill::distill_article:
     self_contained: false
+    code_folding: Toggle Code
 preview: images/logo-bren.svg
 ---
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(palmerpenguins)
 ```
@@ -38,7 +39,7 @@ penguins_summary
 
 #### Concepts
 
-We have also learned fundamental concepts for working with data. One such concept is tidy data, which refers to the following qualities:
+We have also learned fundamental concepts for working with data. One such concept is **tidy data**, which refers to the following qualities:
 - Each column contains a single variable
 - Each row contains a single observation
 - Each cell contains a single value
