@@ -1,7 +1,7 @@
 ---
 title: "Old Lyme Ospreys - 2020 Review"
 description: |
-  A short description of the post.
+  A quick look at the 2020 Osprey Nation Report by the Connecticut Audobon Society, released on March 5, 2021.
 author:
   - name: Alex Clippinger
     url: {}
@@ -16,15 +16,43 @@ preview: images/ct-audobon-logo.png
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 
+# load packages
+
+## manipulate data, create plots
 library(tidyverse)
+
+## open file paths
 library(here)
+
+## clean column names
 library(janitor)
+
+## combine plots
+library(patchwork)
 ```
 
-This blog is a quick look at the 2020 Osprey Nation Report by the Connecticut Audobon Society, released on March 5, 2021. 
+Source for data and Osprey Nation 2020 report: https://www.ctaudubon.org/osprey-nation-home/
 
-Source: https://www.ctaudubon.org/osprey-nation-home/
+# Osprey Nation
 
+The CT Audobon's Osprey Nation is a citizen-science project intended to collect data on Osprey nesting in Connecticut every year. As such, the initiative relies on volunteer stewards to monitor the vast number of nests in Connecticut, with a record 733 monitored in 2020 despite the COVID-19 pandemic.
+
+# Ospreys in Connecticut
+
+<figure>
+  <img src="./images/osprey_landing.jpg" alt="Ospreys landing on a nest" style="height: 522px; width:380px;"/>
+  <figcaption>Ospreys in Essex Land Trust.</figcaption>
+</figure>
+
+
+
+According to the CT DEEP, the osprey population in Connecticut reached a record low of only 9 active nests in 1974. The population suffered from pressure due to coastal development and DDT contamination causing eggshell thinning. Since the banning of DDT and restrictions on other pesticides in the 1970s, their population in the state has steadily been on the rise. 
+
+Source: https://portal.ct.gov/DEEP/Wildlife/Fact-Sheets/Osprey
+
+# Osprey Nation Stewards
+
+Intro to blog (compare single town to overall CT data)...
 
 Let's take a look at the data:
 
@@ -43,6 +71,7 @@ ol_nests <- read.csv(file = "data/OL-Only_Nests.csv") %>%
 ```
 
 ```{r}
+# create data set with counts of nests by monitored status
 all_nests_monitored <- all_nests %>% 
   
   # select only monitored status column
@@ -52,12 +81,14 @@ all_nests_monitored <- all_nests %>%
   group_by(monitored_y_n) %>% 
   summarize(count = n())
 
+# plot monitored status
 ggplot(data = all_nests_monitored, aes(x = count, y = monitored_y_n)) +
   geom_col() + 
   theme_minimal()
 ```
 
 ```{r}
+# create data set with counts of nests in Old Lyme by monitored status
 ol_nests_monitored <- ol_nests %>% 
   
   # select only monitored status column
@@ -67,6 +98,7 @@ ol_nests_monitored <- ol_nests %>%
   group_by(monitored) %>% 
   summarize(count = n())
 
+# plot monitored status in Old Lyme
 ggplot(data = ol_nests_monitored, aes(x = count, y = monitored)) +
   geom_col() + 
   theme_minimal()
