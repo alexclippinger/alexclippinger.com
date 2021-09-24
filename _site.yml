@@ -1,17 +1,18 @@
 name: "alexclippinger.github.io"
-title: "Home"
+title: "Alex Clippinger"
 description: |
-  My Website
+  Alex Clippinger's Website
 output_dir: "docs"
 navbar:
+  search: false
   right:
-    - text: "Portfolio"
+    - text: "About"
       href: index.html
-    - text: "About Me"
-      href: about.html
-    - text: "CV/Resume"
+    - text: "Portfolio"
+      href: portfolio.html
+    - text: "Resume"
       href: CV/Clippinger_Alex_Resume_2021-08-22.pdf
-    - text: "Blog"
+    - text: "Posts"
       href: blog.html
 output: distill::distill_article
 theme: theme.css
