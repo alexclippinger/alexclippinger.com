@@ -40,6 +40,23 @@ Source for data and Osprey Nation 2020 report: https://www.ctaudubon.org/osprey-
 
 The CT Audobon's Osprey Nation is a citizen-science project intended to collect data on Osprey nesting in Connecticut every year. As such, the initiative relies on volunteer stewards to monitor the vast number of nests in Connecticut, with a record 733 monitored in 2020 despite the COVID-19 pandemic.
 
+## Stewards
+
+```{r}
+year = c(2014:2020)
+stewards = c(100, 146, 224, 287, 314, 342, 231)
+nests_with_data = c(174, 322, 420, 540, 603, 732, 733)
+active_nests = c(210, 250, 337, 394, 416, 501, 510)
+fledglings = c(NA, 356, 490, 607, 725, 650, "549/744 estimated")
+fledlings_per_nest = c(NA, 0.69, 0.80, 0.89, 0.93, 0.81, NA)
+
+df <- data.frame(year, stewards, nests_with_data, active_nests, fledglings, fledlings_per_nest)
+
+opts <- options(knitr.kable.NA = "")
+knitr::kable(df, align = "cccccc")
+```
+
+
 # Ospreys in Connecticut
 
 <figure>
@@ -51,7 +68,7 @@ According to the CT DEEP, the osprey population in Connecticut reached a record 
 
 Source: https://portal.ct.gov/DEEP/Wildlife/Fact-Sheets/Osprey
 
-# Osprey Nation Stewards
+
 
 Intro to blog (compare single town to overall CT data)...
 
@@ -83,9 +100,8 @@ all_nests_monitored <- all_nests %>%
   summarize(count = n())
 
 # plot monitored status
-ggplot(data = all_nests_monitored, aes(x = count, y = monitored_y_n)) +
+ggplot(data = all_nests_monitored, aes(x = count, y = monitored_y_n, fill = monitored_y_n)) +
   geom_col() + 
-  scale_color_paletteer_c("pals::ocean.thermal") +
   theme_minimal() 
   
 ```
@@ -102,7 +118,7 @@ ol_nests_monitored <- ol_nests %>%
   summarize(count = n())
 
 # plot monitored status in Old Lyme
-ggplot(data = ol_nests_monitored, aes(x = count, y = monitored)) +
+ggplot(data = ol_nests_monitored, aes(x = count, y = monitored, fill = monitored)) +
   geom_col() + 
   theme_minimal()
 ```
@@ -125,7 +141,7 @@ all_nest_types <- all_nests %>%
   arrange(desc(count)) %>% 
   slice(1:10)
 
-ggplot(data = all_nest_types, aes(x = count, y = nest_type)) +
+ggplot(data = all_nest_types, aes(x = count, y = nest_type, fill = nest_type)) +
   geom_col() +
   theme_minimal()
 
@@ -148,7 +164,7 @@ ol_nest_types <- ol_nests %>%
   # arrange by count desc
   arrange(desc(count))
 
-ggplot(data = ol_nest_types, aes(x = count, y = nest_type)) +
+ggplot(data = ol_nest_types, aes(x = count, y = nest_type, fill = nest_type)) +
   geom_col() +
   theme_minimal()
 
@@ -165,7 +181,7 @@ all_nests_status <- all_nests %>%
   group_by(x2021_status) %>% 
   summarize(count = n())
 
-ggplot(data = all_nests_status, aes(x = count, y = x2021_status)) +
+ggplot(data = all_nests_status, aes(x = count, y = x2021_status, fill = x2021_status)) +
   geom_col() +
   theme_minimal()
 ```
@@ -180,7 +196,7 @@ ol_nests_status <- ol_nests %>%
   group_by(x2021_status) %>% 
   summarize(count = n())
 
-ggplot(data = ol_nests_status, aes(x = count, y = x2021_status)) +
+ggplot(data = ol_nests_status, aes(x = count, y = x2021_status, fill = x2021_status)) +
   geom_col() +
   theme_minimal()
 ```
