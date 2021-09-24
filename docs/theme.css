@@ -30,10 +30,10 @@ html {
   --aside-color:     rgba(0, 0, 0, 0.6);
   --fig-cap-color:   rgba(0, 0, 0, 0.6);
   /*-- Specify custom fonts ~~~ must be imported above   --*/
-  --heading-font:    Quicksand; 
+  --heading-font:    Montserrat; 
   --mono-font:       monospace;
-  --body-font:       Quicksand; 
-  --navbar-font:     Quicksand;  /* websites + blogs only */
+  --body-font:       Montserrat; 
+  --navbar-font:     Montserrat;  /* websites + blogs only */
 }
 
 /*-- ARTICLE METADATA --*/
@@ -66,14 +66,14 @@ d-appendix {
   --text-color:       rgba(255, 255, 255, 0.8);
   --text-size:        19px;
   --hover-color:      white; 
-  --bkgd-color:       #93A588; /*-- was #0F2E3D --*/ 
+  --bkgd-color:       #79A540; /*-- was #0F2E3D --*/ 
 }
 
 .distill-site-footer {
   --text-color:       rgba(255, 255, 255, 0.8);
   --text-size:        15px;
   --hover-color:      white;
-  --bkgd-color:       #93A588; 
+  --bkgd-color:       #79A540; 
 }
 
 /*-- Additional custom styles --*/
@@ -82,7 +82,7 @@ d-appendix {
 /* -- the class, `distill-site-nav` addresses BOTH the header and footer (see https://rstudio.github.io/distill/) -- */ 
 .distill-site-nav{
   color: rgba(255, 255, 255, 0.8); 
-  background-color: #93A588; 
+  background-color: #79A540; 
   font-size: 19px;
   font-weight: 300;
 }
@@ -96,6 +96,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /* -- change color of inline code -- */
 code {
-  color: #93A588;
+  color: #79A540;
   background-color: #F5F2F2;
+}
+
+/* body color */
+
+body {
+  background-color: #DAE6E6;
 }

@@ -29,6 +29,9 @@ library(janitor)
 
 ## combine plots
 library(patchwork)
+
+## color palettes for plots
+library(paletteer)
 ```
 
 Source for data and Osprey Nation 2020 report: https://www.ctaudubon.org/osprey-nation-home/
@@ -43,8 +46,6 @@ The CT Audobon's Osprey Nation is a citizen-science project intended to collect 
   <img src="./images/osprey_landing.jpg" alt="Ospreys landing on a nest" style="height: 522px; width:380px;"/>
   <figcaption>Ospreys in Essex Land Trust.</figcaption>
 </figure>
-
-
 
 According to the CT DEEP, the osprey population in Connecticut reached a record low of only 9 active nests in 1974. The population suffered from pressure due to coastal development and DDT contamination causing eggshell thinning. Since the banning of DDT and restrictions on other pesticides in the 1970s, their population in the state has steadily been on the rise. 
 
@@ -84,7 +85,9 @@ all_nests_monitored <- all_nests %>%
 # plot monitored status
 ggplot(data = all_nests_monitored, aes(x = count, y = monitored_y_n)) +
   geom_col() + 
-  theme_minimal()
+  scale_color_paletteer_c("pals::ocean.thermal") +
+  theme_minimal() 
+  
 ```
 
 ```{r}
