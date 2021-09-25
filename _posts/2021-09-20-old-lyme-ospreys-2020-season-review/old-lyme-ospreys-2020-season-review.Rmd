@@ -32,6 +32,9 @@ library(patchwork)
 
 ## color palettes for plots
 library(paletteer)
+
+## kable table styles
+library(kableExtra)
 ```
 
 Source for data and Osprey Nation 2020 report: https://www.ctaudubon.org/osprey-nation-home/
@@ -40,9 +43,10 @@ Source for data and Osprey Nation 2020 report: https://www.ctaudubon.org/osprey-
 
 The CT Audobon's Osprey Nation is a citizen-science project intended to collect data on Osprey nesting in Connecticut every year. As such, the initiative relies on volunteer stewards to monitor the vast number of nests in Connecticut, with a record 733 monitored in 2020 despite the COVID-19 pandemic.
 
-## Stewards
+### Stewards
 
 ```{r}
+# Create data frame columns
 year = c(2014:2020)
 stewards = c(100, 146, 224, 287, 314, 342, 231)
 nests_with_data = c(174, 322, 420, 540, 603, 732, 733)
@@ -50,9 +54,13 @@ active_nests = c(210, 250, 337, 394, 416, 501, 510)
 fledglings = c(NA, 356, 490, 607, 725, 650, "549/744 estimated")
 fledlings_per_nest = c(NA, 0.69, 0.80, 0.89, 0.93, 0.81, NA)
 
+# Create data frame
 df <- data.frame(year, stewards, nests_with_data, active_nests, fledglings, fledlings_per_nest)
 
+# Make NA values blank
 opts <- options(knitr.kable.NA = "")
+
+# Create center aligned data table
 knitr::kable(df, align = "cccccc")
 ```
 

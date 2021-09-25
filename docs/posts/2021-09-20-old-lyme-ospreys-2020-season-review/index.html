@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["data/All_Nests.csv","data/OL-Only_Nests.csv","images/ct-audobon-logo.png","images/osprey_landing.jpg","old-lyme-ospreys-2020-season-review_files/anchor-4.2.2/anchor.min.js","old-lyme-ospreys-2020-season-review_files/bowser-1.9.3/bowser.min.js","old-lyme-ospreys-2020-season-review_files/distill-2.2.21/template.v2.js","old-lyme-ospreys-2020-season-review_files/figure-html5/unnamed-chunk-2-1.png","old-lyme-ospreys-2020-season-review_files/figure-html5/unnamed-chunk-3-1.png","old-lyme-ospreys-2020-season-review_files/figure-html5/unnamed-chunk-4-1.png","old-lyme-ospreys-2020-season-review_files/figure-html5/unnamed-chunk-5-1.png","old-lyme-ospreys-2020-season-review_files/figure-html5/unnamed-chunk-6-1.png","old-lyme-ospreys-2020-season-review_files/figure-html5/unnamed-chunk-7-1.png","old-lyme-ospreys-2020-season-review_files/figure-html5/unnamed-chunk-8-1.png","old-lyme-ospreys-2020-season-review_files/header-attrs-2.10/header-attrs.js","old-lyme-ospreys-2020-season-review_files/jquery-1.11.3/jquery.min.js","old-lyme-ospreys-2020-season-review_files/popper-2.6.0/popper.min.js","old-lyme-ospreys-2020-season-review_files/tippy-6.2.7/tippy-bundle.umd.min.js","old-lyme-ospreys-2020-season-review_files/tippy-6.2.7/tippy-light-border.css","old-lyme-ospreys-2020-season-review_files/tippy-6.2.7/tippy.css","old-lyme-ospreys-2020-season-review_files/tippy-6.2.7/tippy.umd.min.js","old-lyme-ospreys-2020-season-review_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["data/All_Nests.csv","data/OL-Only_Nests.csv","images/ct-audobon-logo.png","images/osprey_landing.jpg","old-lyme-ospreys-2020-season-review_files/anchor-4.2.2/anchor.min.js","old-lyme-ospreys-2020-season-review_files/bowser-1.9.3/bowser.min.js","old-lyme-ospreys-2020-season-review_files/distill-2.2.21/template.v2.js","old-lyme-ospreys-2020-season-review_files/figure-html5/unnamed-chunk-2-1.png","old-lyme-ospreys-2020-season-review_files/figure-html5/unnamed-chunk-3-1.png","old-lyme-ospreys-2020-season-review_files/figure-html5/unnamed-chunk-4-1.png","old-lyme-ospreys-2020-season-review_files/figure-html5/unnamed-chunk-5-1.png","old-lyme-ospreys-2020-season-review_files/figure-html5/unnamed-chunk-6-1.png","old-lyme-ospreys-2020-season-review_files/figure-html5/unnamed-chunk-7-1.png","old-lyme-ospreys-2020-season-review_files/figure-html5/unnamed-chunk-8-1.png","old-lyme-ospreys-2020-season-review_files/header-attrs-2.10/header-attrs.js","old-lyme-ospreys-2020-season-review_files/jquery-1.11.3/jquery.min.js","old-lyme-ospreys-2020-season-review_files/kePrint-0.0.1/kePrint.js","old-lyme-ospreys-2020-season-review_files/lightable-0.0.1/lightable.css","old-lyme-ospreys-2020-season-review_files/popper-2.6.0/popper.min.js","old-lyme-ospreys-2020-season-review_files/tippy-6.2.7/tippy-bundle.umd.min.js","old-lyme-ospreys-2020-season-review_files/tippy-6.2.7/tippy-light-border.css","old-lyme-ospreys-2020-season-review_files/tippy-6.2.7/tippy.css","old-lyme-ospreys-2020-season-review_files/tippy-6.2.7/tippy.umd.min.js","old-lyme-ospreys-2020-season-review_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2182,75 +2182,168 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p>Source for data and Osprey Nation 2020 report: <a href="https://www.ctaudubon.org/osprey-nation-home/" class="uri">https://www.ctaudubon.org/osprey-nation-home/</a></p>
 <h1 id="osprey-nation">Osprey Nation</h1>
 <p>The CT Audobon’s Osprey Nation is a citizen-science project intended to collect data on Osprey nesting in Connecticut every year. As such, the initiative relies on volunteer stewards to monitor the vast number of nests in Connecticut, with a record 733 monitored in 2020 despite the COVID-19 pandemic.</p>
-<h2 id="stewards">Stewards</h2>
+<h3 id="stewards">Stewards</h3>
 <div class="layout-chunk" data-layout="l-body">
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: center;">year</th>
-<th style="text-align: center;">stewards</th>
-<th style="text-align: center;">nests_with_data</th>
-<th style="text-align: center;">active_nests</th>
-<th style="text-align: center;">fledglings</th>
-<th style="text-align: center;">fledlings_per_nest</th>
+<tr>
+<th style="text-align:center;">
+year
+</th>
+<th style="text-align:center;">
+stewards
+</th>
+<th style="text-align:center;">
+nests_with_data
+</th>
+<th style="text-align:center;">
+active_nests
+</th>
+<th style="text-align:center;">
+fledglings
+</th>
+<th style="text-align:center;">
+fledlings_per_nest
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: center;">2014</td>
-<td style="text-align: center;">100</td>
-<td style="text-align: center;">174</td>
-<td style="text-align: center;">210</td>
-<td style="text-align: center;">NA</td>
-<td style="text-align: center;">NA</td>
+<tr>
+<td style="text-align:center;">
+2014
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+174
+</td>
+<td style="text-align:center;">
+210
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">2015</td>
-<td style="text-align: center;">146</td>
-<td style="text-align: center;">322</td>
-<td style="text-align: center;">250</td>
-<td style="text-align: center;">356</td>
-<td style="text-align: center;">0.69</td>
+<tr>
+<td style="text-align:center;">
+2015
+</td>
+<td style="text-align:center;">
+146
+</td>
+<td style="text-align:center;">
+322
+</td>
+<td style="text-align:center;">
+250
+</td>
+<td style="text-align:center;">
+356
+</td>
+<td style="text-align:center;">
+0.69
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">2016</td>
-<td style="text-align: center;">224</td>
-<td style="text-align: center;">420</td>
-<td style="text-align: center;">337</td>
-<td style="text-align: center;">490</td>
-<td style="text-align: center;">0.80</td>
+<tr>
+<td style="text-align:center;">
+2016
+</td>
+<td style="text-align:center;">
+224
+</td>
+<td style="text-align:center;">
+420
+</td>
+<td style="text-align:center;">
+337
+</td>
+<td style="text-align:center;">
+490
+</td>
+<td style="text-align:center;">
+0.80
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">2017</td>
-<td style="text-align: center;">287</td>
-<td style="text-align: center;">540</td>
-<td style="text-align: center;">394</td>
-<td style="text-align: center;">607</td>
-<td style="text-align: center;">0.89</td>
+<tr>
+<td style="text-align:center;">
+2017
+</td>
+<td style="text-align:center;">
+287
+</td>
+<td style="text-align:center;">
+540
+</td>
+<td style="text-align:center;">
+394
+</td>
+<td style="text-align:center;">
+607
+</td>
+<td style="text-align:center;">
+0.89
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">2018</td>
-<td style="text-align: center;">314</td>
-<td style="text-align: center;">603</td>
-<td style="text-align: center;">416</td>
-<td style="text-align: center;">725</td>
-<td style="text-align: center;">0.93</td>
+<tr>
+<td style="text-align:center;">
+2018
+</td>
+<td style="text-align:center;">
+314
+</td>
+<td style="text-align:center;">
+603
+</td>
+<td style="text-align:center;">
+416
+</td>
+<td style="text-align:center;">
+725
+</td>
+<td style="text-align:center;">
+0.93
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">2019</td>
-<td style="text-align: center;">342</td>
-<td style="text-align: center;">732</td>
-<td style="text-align: center;">501</td>
-<td style="text-align: center;">650</td>
-<td style="text-align: center;">0.81</td>
+<tr>
+<td style="text-align:center;">
+2019
+</td>
+<td style="text-align:center;">
+342
+</td>
+<td style="text-align:center;">
+732
+</td>
+<td style="text-align:center;">
+501
+</td>
+<td style="text-align:center;">
+650
+</td>
+<td style="text-align:center;">
+0.81
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">2020</td>
-<td style="text-align: center;">231</td>
-<td style="text-align: center;">733</td>
-<td style="text-align: center;">510</td>
-<td style="text-align: center;">549/744 estimated</td>
-<td style="text-align: center;">NA</td>
+<tr>
+<td style="text-align:center;">
+2020
+</td>
+<td style="text-align:center;">
+231
+</td>
+<td style="text-align:center;">
+733
+</td>
+<td style="text-align:center;">
+510
+</td>
+<td style="text-align:center;">
+549/744 estimated
+</td>
+<td style="text-align:center;">
+</td>
 </tr>
 </tbody>
 </table>
