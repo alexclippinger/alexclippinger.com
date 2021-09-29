@@ -111,7 +111,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview"]}},"value":[{"type":"character","attributes":{},"value":["Old Lyme Ospreys - 2020 Review"]},{"type":"character","attributes":{},"value":["A quick look at the 2020 Osprey Nation Report by the Connecticut Audobon Society, released on March 5, 2021.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Alex Clippinger"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["09-20-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["images/ct-audobon-logo.png"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview","categories"]}},"value":[{"type":"character","attributes":{},"value":["Old Lyme Ospreys - 2020 Review"]},{"type":"character","attributes":{},"value":["A quick look at the 2020 Osprey Nation Report by the Connecticut Audobon Society, released on March 5, 2021.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Alex Clippinger"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["09-20-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["images/ct-audobon-logo.png"]},{"type":"character","attributes":{},"value":["R","GIS"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1467,6 +1467,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-title">
 <h1>Old Lyme Ospreys - 2020 Review</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">R</div>
+<div class="dt=tag">GIS</div>
+</div>
 <!--/radix_placeholder_categories-->
 <p><p>A quick look at the 2020 Osprey Nation Report by the Connecticut Audobon Society, released on March 5, 2021.</p></p>
 </div>
@@ -1481,7 +1485,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Source for data and Osprey Nation 2020 report: <a href="https://www.ctaudubon.org/osprey-nation-home/" class="uri">https://www.ctaudubon.org/osprey-nation-home/</a></p>
 <h1 id="osprey-nation">Osprey Nation</h1>
 <p>The CT Audobon’s Osprey Nation is a citizen-science project launched in 2014 that collects data on Osprey nesting in Connecticut every year. As such, the initiative relies on volunteer stewards to monitor the vast number of nests in Connecticut, with a record 733 monitored in 2020 despite the COVID-19 pandemic. Stewards collect and send in data on osprey arrival dates each spring, nest locations, nesting success, and departure dates.</p>
-<h3 id="stewards">Stewards</h3>
+<h2 id="stewards">Stewards</h2>
 <div class="layout-chunk" data-layout="l-body">
 <table>
 <thead>
@@ -1647,6 +1651,7 @@ fledlings_per_nest
 </tbody>
 </table>
 </div>
+<p>The table above shows the progression of the Osprey Nation project over time. Notably, 2020 saw a decrease in stewards and fledglings observed due to difficulties with participation during the COVID-19 pandemic.</p>
 <h1 id="ospreys-in-connecticut">Ospreys in Connecticut</h1>
 <figure>
 <img src="images/osprey_landing.jpg" alt="Ospreys landing on a nest" style="height: 522px; width:380px;"/>
@@ -1656,7 +1661,7 @@ Ospreys in Essex Land Trust.
 </figure>
 <p>According to the CT DEEP, the osprey population in Connecticut reached a record low of only 9 active nests in 1974. The population suffered from pressure due to coastal development and DDT contamination causing eggshell thinning. Since the banning of DDT and restrictions on other pesticides in the 1970s, their population in the state has steadily been on the rise.</p>
 <p>Source: <a href="https://portal.ct.gov/DEEP/Wildlife/Fact-Sheets/Osprey" class="uri">https://portal.ct.gov/DEEP/Wildlife/Fact-Sheets/Osprey</a></p>
-<h1 id="old-lyme-ct">Old Lyme, CT</h1>
+<h2 id="old-lyme-ct">Old Lyme, CT</h2>
 <p>For this blog, I am looking at the town of Old Lyme, CT. This is for a few reasons…</p>
 <ol type="1">
 <li>Old Lyme is my hometown!</li>
@@ -1665,6 +1670,7 @@ Ospreys in Essex Land Trust.
 </ol>
 <h2 id="lets-take-a-look-at-the-data">Let’s take a look at the data:</h2>
 <p>Along with the annual report, Osprey Nation publishes data on nest locations, type, stewards, monitored status, and description.</p>
+<p>Here is the data map provided on the Osprey Nation website:</p>
 <iframe src="https://www.google.com/maps/d/embed?mid=1Ryu5cu-Xl8g2f10yxbB37S0JmeqWnJGR" width="640" height="480">
 </iframe>
 <div class="layout-chunk" data-layout="l-body">
