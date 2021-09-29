@@ -55,7 +55,7 @@ d-appendix {
   --heading-size:    15px;
   --heading-color:   #000000; /*-- UNSURE WHAT THIS CHANGES was rgba(0, 0, 0, 0.65) --*/ 
   --text-size:       0.8em;
-  --text-color:      rgb(100, 96, 95, 0.5); /*-- UNSURE WHAT THIS CHANGES was rgba(0, 0, 0, 0.5) --*/
+  --text-color:      #000000; /*-- UNSURE WHAT THIS CHANGES was rgba(0, 0, 0, 0.5) --*/
 }
 
 /*-- WEBSITE HEADER + FOOTER --*/
@@ -81,7 +81,7 @@ d-appendix {
 
 /* -- the class, `distill-site-nav` addresses BOTH the header and footer (see https://rstudio.github.io/distill/) -- */ 
 .distill-site-nav{
-  color: rgba(255, 255, 255, 0.8); 
+  color: rgba(255, 255, 255, 1.0); 
   background-color: #79A540; 
   font-size: 19px;
   font-weight: 300;
@@ -91,7 +91,7 @@ d-appendix {
 h1, h2, h3, h4, h5, h6 {
   letter-spacing: 5px;
   font-weight: 300;
-  color: #64605F;
+  color: #000000;
 }
 
 /* -- change color of inline code -- */
