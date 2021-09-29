@@ -48,7 +48,7 @@ Source for data and Osprey Nation 2020 report: https://www.ctaudubon.org/osprey-
 
 The CT Audobon's Osprey Nation is a citizen-science project launched in 2014 that collects data on Osprey nesting in Connecticut every year. As such, the initiative relies on volunteer stewards to monitor the vast number of nests in Connecticut, with a record 733 monitored in 2020 despite the COVID-19 pandemic. Stewards collect and send in data on osprey arrival dates each spring, nest locations, nesting success, and departure dates.
 
-## Stewards
+### Stewards
 
 ```{r}
 # Create data frame columns
@@ -82,7 +82,7 @@ According to the CT DEEP, the osprey population in Connecticut reached a record 
 
 Source: https://portal.ct.gov/DEEP/Wildlife/Fact-Sheets/Osprey
 
-## Old Lyme, CT
+### Old Lyme, CT
 
 For this blog, I am looking at the town of Old Lyme, CT. This is for a few reasons...
 
@@ -90,7 +90,7 @@ For this blog, I am looking at the town of Old Lyme, CT. This is for a few reaso
 2. ~10% of nests in the state are found in the town's coastline and rivers.
 3. Specifically, Great Island is an important conservation area.
 
-## Let's take a look at the data:
+### Let's take a look at the data:
 
 Along with the annual report, Osprey Nation publishes data on nest locations, type, stewards, monitored status, and description. 
 
