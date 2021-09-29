@@ -12,7 +12,7 @@ output:
     code_folding: Toggle Code
 preview: images/logo-bren.svg
 categories:
-  - General
+  - general
 ---
 
 
