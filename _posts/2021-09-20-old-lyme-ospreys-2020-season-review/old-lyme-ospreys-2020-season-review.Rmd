@@ -9,6 +9,8 @@ date: 09-20-2021
 output:
   distill::distill_article:
     self_contained: false
+    toc: true              # add a table of contents
+    toc_float: true        # float it (positioned on the left-hand side, rather at the top)
 preview: images/ct-audobon-logo.png
 categories: 
   - R
