@@ -42,6 +42,21 @@ library(paletteer)
 library(kableExtra)
 ```
 
+
+```{r}
+# Load all nests dataset
+all_nests <- read.csv(file = "data/All_Nests.csv") %>% 
+  clean_names() %>% 
+  rename("x2021_status" = 19) %>% 
+  select(-(description:icon)) 
+
+# load old lyme data only
+ol_nests <- read.csv(file = "data/OL-Only_Nests.csv") %>% 
+  clean_names() %>% 
+  rename("x2021_status" = 19) %>% 
+  select(-(descriptio:icon))
+```
+
 Source for data and Osprey Nation 2020 report: https://www.ctaudubon.org/osprey-nation-home/
 
 # Osprey Nation
@@ -90,6 +105,8 @@ For this blog, I am looking at the town of Old Lyme, CT. This is for a few reaso
 2. ~10% of nests in the state are found in the town's coastline and rivers.
 3. Specifically, Great Island is an important conservation area.
 
+Of the 231 stewards that volunteered for the project in 2020, there were `r length(unique(ol_nests$x2021_stewa)) - 1` unique stewards who collected data in Old Lyme.
+
 ### Let's take a look at the data:
 
 Along with the annual report, Osprey Nation publishes data on nest locations, type, stewards, monitored status, and description. 
@@ -99,21 +116,11 @@ Here is the data map provided on the Osprey Nation website:
 <iframe src="https://www.google.com/maps/d/embed?mid=1Ryu5cu-Xl8g2f10yxbB37S0JmeqWnJGR" width="640" height="480"></iframe>
 
 
-```{r}
-# Load all nests dataset
-all_nests <- read.csv(file = "data/All_Nests.csv") %>% 
-  clean_names() %>% 
-  rename("x2021_status" = 19) %>% 
-  select(-(description:icon))
-
-# load old lyme data only
-ol_nests <- read.csv(file = "data/OL-Only_Nests.csv") %>% 
-  clean_names() %>% 
-  rename("x2021_status" = 19) %>% 
-  select(-(descriptio:icon))
-```
+First, I wanted to see how many nests were actively monitored in 2020.
 
 ```{r}
+# ALL NESTS
+
 # create data set with counts of nests by monitored status
 all_nests_monitored <- all_nests %>% 
   
@@ -122,17 +129,35 @@ all_nests_monitored <- all_nests %>%
   
   # count by monitored status
   group_by(monitored_y_n) %>% 
-  summarize(count = n())
+  summarize(count = n()) %>%
+  
+  # Add dummy year value for plot
+  mutate(year = "2020") %>% 
+  
+  # Add proportion of total
+  mutate(freq = round(count / sum(count), 2))
 
 # plot monitored status
-ggplot(data = all_nests_monitored, aes(x = count, y = monitored_y_n, fill = monitored_y_n)) +
-  geom_col() + 
-  theme_minimal() 
+all <- ggplot(data = all_nests_monitored, aes(x = year, y = freq, fill = monitored_y_n, label = freq)) +
+  geom_col(position = "fill", stat = "identity") +
+  geom_text(size = 2.5, position = position_stack(vjust = 0.5)) +
+  scale_fill_manual(values = c("#fdb813", "#0079c2")) +
+  theme(
+    legend.position = "none",
+    panel.background = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.x = element_blank(),
+    #axis.ticks.x = element_blank(),
+    axis.title.x = element_text(),
+    plot.margin = margin(0,0,0,0,"pt")
+  ) + 
+  labs(x = "All Nests")
   
-```
+# OLD LYME ONLY
 
-```{r}
-# create data set with counts of nests in Old Lyme by monitored status
+# create data set with counts of nests by monitored status
 ol_nests_monitored <- ol_nests %>% 
   
   # select only monitored status column
@@ -140,13 +165,41 @@ ol_nests_monitored <- ol_nests %>%
   
   # count by monitored status
   group_by(monitored) %>% 
-  summarize(count = n())
+  summarize(count = n()) %>%
+  
+  # Add dummy year value for plot
+  mutate(year = "2020") %>% 
+  
+  # Add proportion of total
+  mutate(freq = round(count / sum(count), 2))
 
-# plot monitored status in Old Lyme
-ggplot(data = ol_nests_monitored, aes(x = count, y = monitored, fill = monitored)) +
-  geom_col() + 
-  theme_minimal()
+
+# plot monitored status
+ol <- ggplot(data = ol_nests_monitored, aes(x = year, y = freq, fill = monitored, label = freq)) +
+  geom_col(position = "fill", stat = "identity") +
+  geom_text(size = 2.5, position = position_stack(vjust = 0.5)) +
+  scale_fill_manual(values = c("#fdb813", "#0079c2")) +
+  theme(
+    legend.title = element_blank(),
+    panel.background = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.x = element_blank(),
+    #axis.ticks.x = element_blank(),
+    axis.title.x = element_text(),
+    plot.margin = margin(0,0,0,0,"pt")
+  ) + 
+  labs(x = "Old Lyme Nests")
+
+all + ol +
+  plot_annotation(title = "What Percent of Nests Were Actively Monitored in 2020?",
+                  theme = theme(plot.title = element_text(hjust = 0.5)))
 ```
+This plot shows that 91% of nests in the entire state and 96% of nests in Old Lyme were actively monitored in 2020.
+
+
+
 
 ```{r}
 all_nest_types <- all_nests %>% 
@@ -231,10 +284,6 @@ ggplot(data = ol_nests_status, aes(x = count, y = x2021_status, fill = x2021_sta
 # Recommendations
 
 Critical information such as osprey arrival dates and departure dates are difficult to analyze as they are only included in a verbose "description" column. Key statistics like these should be saved in separate columns in order to be more useful for long-term insights.
-
-
-
-
 
 
 
