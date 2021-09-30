@@ -97,23 +97,25 @@ According to the CT DEEP, the osprey population in Connecticut reached a record 
 
 Source: https://portal.ct.gov/DEEP/Wildlife/Fact-Sheets/Osprey
 
-### Old Lyme, CT
+### Ospreys in Old Lyme, CT
 
 For this blog, I am looking at the town of Old Lyme, CT. This is for a few reasons...
 
 1. Old Lyme is my hometown!
 2. ~10% of nests in the state are found in the town's coastline and rivers.
-3. Specifically, Great Island is an important conservation area.
+3. Great Island and the Lower Connecticut River Valley area are important ecological and conservation areas.
 
 Of the 231 stewards that volunteered for the project in 2020, there were `r length(unique(ol_nests$x2021_stewa)) - 1` unique stewards who collected data in Old Lyme.
 
-### Let's take a look at the data:
+### Taking a look at the data:
 
 Along with the annual report, Osprey Nation publishes data on nest locations, type, stewards, monitored status, and description. 
 
-Here is the data map provided on the Osprey Nation website:
+Here is the interactive data map provided on the Osprey Nation website:
 
 <iframe src="https://www.google.com/maps/d/embed?mid=1Ryu5cu-Xl8g2f10yxbB37S0JmeqWnJGR" width="640" height="480"></iframe>
+
+I downloaded the data from the map above as a `.kmz` file, which I loaded in `QGIS`. To create the subset of only Old Lyme nests, I created a buffer of the town boundary and used the `Select by location` tool in the QGIS Processing Toolbox. This could have also been achieved in `R` by filtering on the `name` column of the `all_nests` data set, since all Old Lyme nests begin with "Old Lyme".
 
 
 First, I wanted to see how many nests were actively monitored in 2020.
@@ -196,16 +198,20 @@ all + ol +
   plot_annotation(title = "What Percent of Nests Were Actively Monitored in 2020?",
                   theme = theme(plot.title = element_text(hjust = 0.5)))
 ```
-This plot shows that 91% of nests in the entire state and 96% of nests in Old Lyme were actively monitored in 2020.
+In my datasets, there are `r dim(all_nests)[1]` total nests and `r dim(ol_nests)[1]` nests in Old Lyme. This plot shows that 91% of thesenests in the entire state and 96% of nests in Old Lyme were actively monitored in 2020.
 
+Next, let's look at the types of nests that exist. Looking at the data set of all 958 nests in Connecticut, there are a staggering **200** unique nest types entered by stewards (after accounting for capitalization and white space). Many of these are different ways of saying the same thing: For example, a light pole could be entered as light post, electric pole, utility pole, on a light pole, light tower, light fixture, etc. In addition, some nest types included notes, such as dates that platforms were built or "difficult to see". 
 
-
+Instead of re-categorizing all of these nests here, I will simply highlight the most common nest types and urge standardization of this column in future years.
 
 ```{r}
 all_nest_types <- all_nests %>% 
   
   # select only nest type column
   select(nest_type) %>% 
+  
+  # remove blanks
+  filter(nest_type != "") %>% 
   
   # aggregate strings with different cases and white space
   mutate(nest_type = tolower(nest_type)) %>% 
@@ -219,17 +225,28 @@ all_nest_types <- all_nests %>%
   arrange(desc(count)) %>% 
   slice(1:10)
 
-ggplot(data = all_nest_types, aes(x = count, y = nest_type, fill = nest_type)) +
+ggplot(data = all_nest_types, aes(x = count, y = reorder(nest_type, count), fill = nest_type)) +
   geom_col() +
-  theme_minimal()
-
+  geom_text(aes(label = count), vjust = 0.5, hjust = -.25, size = 2.5) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.title.y = element_blank(),
+    panel.grid.major.y = element_blank()
+  ) +
+  labs(
+    title = "What Are The Top 10 Most Common Nest Types?",
+    x = "Count"
+  )
 ```
+
+This plot shows that **platform** nests are by far the most common nest type, making up ~`r round((335 / 958) * 100, 0)`% of all nests. It is important to note that **191** nests had no data on nest type, representing ~`r round((191 / 958) * 100, 0)`% of all nests.
 
 ```{r}
 ol_nest_types <- ol_nests %>% 
   
   # select only nest type column
-  select(nest_type) %>% 
+  select(nest_type) %>%
   
   # aggregate strings with different cases and white space
   mutate(nest_type = tolower(nest_type)) %>% 
@@ -241,12 +258,16 @@ ol_nest_types <- ol_nests %>%
   
   # arrange by count desc
   arrange(desc(count))
-
-ggplot(data = ol_nest_types, aes(x = count, y = nest_type, fill = nest_type)) +
-  geom_col() +
-  theme_minimal()
-
 ```
+
+60 of the 95 nests in Old Lyme had no data on nest type, making up ~`r round((60 / 191) * 100, 0)`% of missing nest types despite Old Lyme only holding ~`r round((95 / 958) * 100, 0)`% of total nests. 19 of the 35 nests with data inputted were platforms, which is consistent with the overall data set.
+
+The map below highlights the nests in Old Lyme with missing nest type data for potential data capture in the next year's report:
+
+<figure>
+  <img src="./images/missing-nest-types.png" style="height: 496px; width:667px;"/>
+  <figcaption>Map of Missing Nest Type Data in Old Lyme, CT.</figcaption>
+</figure>
 
 
 ```{r}
@@ -263,6 +284,8 @@ ggplot(data = all_nests_status, aes(x = count, y = x2021_status, fill = x2021_st
   geom_col() +
   theme_minimal()
 ```
+
+
 
 ```{r}
 ol_nests_status <- ol_nests %>% 
