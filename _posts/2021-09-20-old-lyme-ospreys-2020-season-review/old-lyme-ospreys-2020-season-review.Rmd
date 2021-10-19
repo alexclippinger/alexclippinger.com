@@ -14,7 +14,7 @@ output:
 preview: images/ct-audobon-logo.png
 categories: 
   - R
-  - QGIS
+  - GIS
 ---
 
 ```{r setup, include=FALSE}
