@@ -1,0 +1,26 @@
+---
+title: "Ames Open Space Flooding"
+description: |
+  Visualizing flooding as a result of beaver activity.
+author:
+  - name: Alex Clippinger
+    url: {}
+date: 2021-10-18
+output:
+  distill::distill_article:
+    self_contained: false
+preview: images/ames-open-space.png
+categories:
+  - GIS
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+This is a small side-project that I completed last year. I was curious to see the extent of flooding at one of my favorite Open Spaces in my hometown - the Town of Old Lyme Ames Open Space. At the time, I was in the middle of my Graduate Certificate in GIS and volunteering with the Old Lyme Land Trust, so I wanted to test my ability to communicate technical information to a non-technical crowd. Although brief, this ArcGIS Story Map successfully demonstrated the flooding and was ultimately shared with the town Open Space Commission as an educational reference.
+
+![Here is the link to the Story Map](https://storymaps.arcgis.com/stories/3f4c9e0260e340ec8654e1a4a1417467)
+
+
