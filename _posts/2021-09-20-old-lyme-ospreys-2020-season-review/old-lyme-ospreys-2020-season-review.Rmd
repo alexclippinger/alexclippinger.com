@@ -39,6 +39,9 @@ library(paletteer)
 
 ## kable table styles
 library(kableExtra)
+
+## Interactive maps
+library(plotly)
 ```
 
 ```{r}
@@ -210,7 +213,7 @@ In my datasets, there are `r dim(all_nests)[1]` total nests and `r dim(ol_nests)
 
 Next, let's look at the types of nests that exist. Looking at the data set of all 958 nests in Connecticut, there are a staggering **200** unique nest types entered by stewards (after accounting for capitalization and white space). Many of these are different ways of saying the same thing: For example, a light pole could be entered as light post, electric pole, utility pole, on a light pole, light tower, light fixture, etc. In addition, some nest types included notes, such as dates that platforms were built or "difficult to see".
 
-Instead of re-categorizing all of these nests here, I will simply highlight the most common nest types and urge standardization of this column in future years.
+Instead of re-categorizing all of these nests here, I will simply highlight the most common nest types and the need for standardization of this column in future years.
 
 ```{r}
 all_nest_types <- all_nests %>% 
@@ -248,6 +251,7 @@ ggplot(data = all_nest_types, aes(x = count, y = reorder(nest_type, count), fill
     title = "What Are The Top 10 Most Common Nest Types?",
     x = "Count"
   )
+
 ```
 
 This plot shows that **platform** nests are by far the most common nest type, making up \~`r round((335 / 958) * 100, 0)`% of all nests. It is important to note that **191** nests had no data on nest type, representing \~`r round((191 / 958) * 100, 0)`% of all nests.
@@ -286,6 +290,8 @@ Map of Missing Nest Type Data in Old Lyme, CT.
 
 </figure>
 
+Nests with missing data are spatially distributed throughout the town's coastline. This data should be collected to allow for potential analysis of the relationship between nest type and success rates of fledglings.
+
 Finally, I want to look at the final nest status data.
 
 <figure>
@@ -294,13 +300,13 @@ Finally, I want to look at the final nest status data.
 
 <figcaption>
 
-Map of Missing Nest Type Data in Old Lyme, CT.
+Map of Nest Status at the end of the 2020 Osprey season in Old Lyme, CT.
 
 </figcaption>
 
 </figure>
 
-```{r}
+```{r, include = FALSE}
 all_nests_status <- all_nests %>% 
   
   # select only 2021 status column
@@ -339,6 +345,8 @@ ggplot(data = all_nests_status, aes(x = count, y = reorder(status_desc, count), 
     x = "Count"
   )
 ```
+
+The success of the nest appears to be randomly distributed across all locations. Many sites on Great Island were left as "Active", which indicates that a final report on fledglings was not obtained. This could be due to the difficulty of access for some of these sites. 
 
 ```{r}
 ol_nests_status <- ol_nests %>% 
@@ -380,6 +388,28 @@ ggplot(data = ol_nests_status, aes(x = count, y = reorder(status_desc, count), f
   )
 ```
 
+The plot above shows the final status of nests in Old Lyme for 2020. In all, there were 16 successful nests out of the total of 95, with 30 fledglings reported and likely more unreported. In summary, Old Lyme has ~10% of the state's nests and yielded `r round(30/510,2)`% of reported fledglings.
+
+Finally, here is a fun heat map of nest locations in the town:
+
+<figure>
+
+<img src="./images/heatmap.png" style="height: 496px; width:667px;"/>
+
+<figcaption>
+
+Heatmap of Nests in Old Lyme, CT.
+
+</figcaption>
+
+</figure>
+
+This illustrates the density of nests on and around Great Island - which holds the most nests in one place in all of Connecticut! It is evident that this area is deserving of the conservation and appreciation that it deserves.
+
 # Recommendations
 
 Critical information such as osprey arrival dates and departure dates are difficult to analyze as they are only included in a verbose "description" column. Key statistics like these should be saved in separate columns in order to be more useful for long-term insights.
+
+# Reflections
+
+This was my first attempt at an independent blog post focusing on data visualization. The main difficulty was finding the time to work on this project while balancing work and graduate school! Nonetheless, I learned a lot about integrating text, plots, and maps to tell a story. In the future, I hope to improve my skills in all three of these areas. Also, I hope to make blog posts that are more interactive.
