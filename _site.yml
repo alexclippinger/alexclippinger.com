@@ -13,6 +13,6 @@ navbar:
     - text: "Posts"
       href: blog.html
     - text: "Resume"
-      href: CV/Clippinger_Alex_Resume_2021-08-22.pdf
+      href: CV/Clippinger_Alex_Resume_2021-10-18.pdf
 output: distill::distill_article
 theme: theme.css
