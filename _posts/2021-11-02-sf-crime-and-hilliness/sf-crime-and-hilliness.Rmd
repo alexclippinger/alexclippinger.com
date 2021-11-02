@@ -1,0 +1,14 @@
+---
+title: "SF Crime and Hilliness"
+description: |
+  A linear regression of the relationship between hills and crime in San Francisco.
+author:
+  - name: Alex Clippinger
+    url: {}
+date: 2021-11-02
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
