@@ -12,3 +12,29 @@ output:
 ---
 
 
+# San Francisco Topography
+
+SF is a hilly city. Is there a spatial relationship between hilliness and crime?
+
+# Collecting Data
+
+Reference existing study
+
+- SF GIS portal: streets, elevation contours, high slope areas, crime
+- US Gov: Census blocks and socioeconomic factors
+
+# Visualizing Data and relationships
+
+Maps showing each variable
+
+# Model
+
+Create a simple regression model, show equation and results.
+
+# Visualize results
+
+Maps of results (?)
+
+# Citations
+
+Cite study and data sources
