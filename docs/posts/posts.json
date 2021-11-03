@@ -10,10 +10,13 @@
       }
     ],
     "date": "2021-11-02",
-    "categories": [],
-    "contents": "\r\nSan Francisco Topography\r\nSF is a hilly city. Is there a spatial relationship between hilliness and crime?\r\nCollecting Data\r\nReference existing study\r\nSF GIS portal: streets, elevation contours, high slope areas, crime\r\nUS Gov: Census blocks and socioeconomic factors\r\nVisualizing Data and relationships\r\nMaps showing each variable\r\nModel\r\nCreate a simple regression model, show equation and results.\r\nVisualize results\r\nMaps of results (?)\r\nCitations\r\nCite study and data sources\r\n\r\n\r\n\r\n",
+    "categories": [
+      "R",
+      "GIS"
+    ],
+    "contents": "\r\n\r\nContents\r\nSan Francisco Topography\r\nCollecting Data\r\nVisualizing Data and relationships\r\nModel\r\nVisualize results\r\nCitations\r\n\r\nSan Francisco Topography\r\nSF is a hilly city. Is there a spatial relationship between hilliness and crime?\r\nCollecting Data\r\nReference existing study\r\nSF GIS portal: streets, elevation contours, high slope areas, crime\r\nUS Gov: Census blocks and socioeconomic factors\r\nVisualizing Data and relationships\r\nMaps showing each variable\r\nModel\r\nCreate a simple regression model, show equation and results.\r\nVisualize results\r\nMaps of results (?)\r\nCitations\r\nCite study and data sources\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-11-02T10:01:30-07:00",
+    "last_modified": "2021-11-02T16:35:09-07:00",
     "input_file": "sf-crime-and-hilliness.knit.md"
   },
   {
