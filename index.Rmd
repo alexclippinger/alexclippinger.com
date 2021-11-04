@@ -19,7 +19,9 @@ I graduated from Northeastern University in Boston, MA in 2019 with a Bachelorâ€
 <br />
 <br />
 
-#### Education
+---
+
+### Education
 
 **Master of Environmental Data Science** (Expected June 2022), Bren School of Environmental Science & Management, University of California, Santa Barbara - Santa Barbara, CA
 
@@ -29,7 +31,9 @@ I graduated from Northeastern University in Boston, MA in 2019 with a Bachelorâ€
 <br />
 <br />
 
-#### Interests
+---
+
+### Interests
 
 - Data Science
 - Geospatial Analysis
