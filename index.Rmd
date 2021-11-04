@@ -1,6 +1,6 @@
 ---
 title: "Alex Clippinger"
-image: "alex.jfif"
+image: "Clippinger_Alex_meds22.jpg"
 links:
   - label: '<i class="fab fa-linkedin"></i> LinkedIn'
     url: "https://www.linkedin.com/in/alex-clippinger"
