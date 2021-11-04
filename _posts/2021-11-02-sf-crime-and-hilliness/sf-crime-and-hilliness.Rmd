@@ -12,7 +12,7 @@ output:
     code_folding: show
     toc: true              # add a table of contents
     toc_float: true        # float it (positioned on the left-hand side, rather at the top)
-preview: images/ct-audobon-logo.png
+preview: images/crime_hills.jpg
 categories: 
   - R
   - GIS
