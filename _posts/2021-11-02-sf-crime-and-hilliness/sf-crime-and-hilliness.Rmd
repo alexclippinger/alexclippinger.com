@@ -37,11 +37,11 @@ However, I found that there were not many thorough analyses of the effects of to
 
 <figure>
 
-<img src="./images/steep.jpg" alt="A particularly steep San Francisco street" style="height: 534px; width:800px;"/>
+<img src="./images/san-francisco-hills.jpg" alt="A particularly steep San Francisco street" style="height: 534px; width:800px;"/>
 
 <figcaption>
 
-A Steep San Francisco Street!
+That is one steep street!
 
 </figcaption>
 
