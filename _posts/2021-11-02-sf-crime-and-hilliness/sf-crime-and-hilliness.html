@@ -134,7 +134,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","bibliography","preview","categories"]}},"value":[{"type":"character","attributes":{},"value":["San Francisco Crime and Hilliness"]},{"type":"character","attributes":{},"value":["Anyone who has been to San Francisco is familiar with the hilly terrain and roads that seem to climb into the clouds. But does this topography have an effect on where car break-ins happen? I wanted to take a look at this relationship with visualizations and a linear regression analysis.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Alex Clippinger"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2021-11-02"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["show"]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["bibliography.bib"]},{"type":"character","attributes":{},"value":["images/crime_hills.jpg"]},{"type":"character","attributes":{},"value":["R","GIS"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","bibliography","preview","categories"]}},"value":[{"type":"character","attributes":{},"value":["San Francisco Crime and Hilliness"]},{"type":"character","attributes":{},"value":["Anyone who has been to San Francisco is familiar with the hilly terrain and roads that seem to climb into the clouds. But does this topography have an effect on where car break-ins happen? I wanted to take a look at this relationship with visualizations and a linear regression analysis.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Alex Clippinger"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2021-11-02"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["bibliography.bib"]},{"type":"character","attributes":{},"value":["images/crime_hills.jpg"]},{"type":"character","attributes":{},"value":["R","GIS"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1523,7 +1523,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </ul>
 </nav>
 </div>
-<h1 id="san-francisco-topography">San Francisco Topography</h1>
+<h2 id="san-francisco-topography">San Francisco Topography</h2>
 <p>If you have ever visited San Francisco, you have probably found yourself driving, walking, or biking up an alarmingly steep street at some point. In 2018, I lived on one such hill, Potrero Hill, while completing my second co-op at Alvarez &amp; Marsal. Another unfortunate aspect of San Francisco that is seemingly unavoidable is car break-ins. However, this never seemed to be an issue in my neighborhood for the six months that I lived there. The last two blocks of my bike ride home from work were quite strenuous, so I began wondering - is there a relationship between San Francisco’s steep hills and car break-ins? This is not a unique concept: previous analysis has coined the phrase <a href="https://github.com/gwintrob/crime-doesnt-climb/blob/master/README.md">“crime doesn’t climb”</a> in reference to this possible phenomenon.</p>
 <p>However, I found that there were not many thorough analyses of the effects of topography on crime in San Francisco until this year. In April 2021, Young-An Kim &amp; James C. Wo published <a href="https://www.tandfonline.com/doi/full/10.1080/07352166.2021.1901591">Topography and crime in place: The effects of elevation, slope, and betweenness in San Francisco street segments</a>. Their study provides a robust regression analysis on the effects of elevation, slope, and “hilliness” on crime, controlling for socio-demographic characteristics <span class="citation" data-cites="sfcrime"><a href="#ref-sfcrime" role="doc-biblioref">Kim and Wo</a> (<a href="#ref-sfcrime" role="doc-biblioref">2021</a>)</span>. Due to their success, I decided to conduct my own (albeit less thorough) analysis in R, using some of the tools that I recently learned in <a href="https://bren.ucsb.edu/courses/eds-223">EDS223: Spatial Analysis for Environmental Data Science</a></p>
 <figure>
@@ -1532,16 +1532,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>That is one steep street!</p>
 </figcaption>
 </figure>
-<h1 id="collecting-data">Collecting Data</h1>
+<h2 id="collecting-data">Collecting Data</h2>
 <p>Backed by Kim and Wo’s research and my own intuition, I formulated the following variables for my regression analysis - my <strong>dependent variable</strong> is crime (specifically car break-ins) and my <strong>independent variables</strong> are slope, elevation, and “hilliness,” which is a measure of the overall change in elevation in the surrounding area.</p>
 <p>In addition, there are many socio-economic and demographic variables that could warrant inclusion, such as median income, land use, population/population density, race, etc. However, for the purpose of completing this in a reasonable amount of time and keeping the interpretation of results simple, I have decided to only include median income by census block.</p>
 <h3 id="data-sources">Data Sources</h3>
 <p>Luckily, DataSF has most of the data we need, including <a href="https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783">crime</a>, <a href="https://data.sfgov.org/Energy-and-Environment/Elevation-Contours/rnbg-2qxw">elevation contours</a>, and <a href="https://data.sfgov.org/Geographic-Locations-and-Boundaries/Slopes-of-20-Or-Greater/3vv2-nvev">areas with high slope</a>. In addition, I downloaded <a href="https://data.sfgov.org/Geographic-Locations-and-Boundaries/Streets-Active-and-Retired/3psu-pn9h">streets</a> and <a href="https://data.sfgov.org/Geographic-Locations-and-Boundaries/Census-2010-Blocks-for-San-Francisco/2uzy-uv2r">census block</a> data.</p>
-<h1 id="visualizing-data-and-relationships">Visualizing Data and relationships</h1>
+<h2 id="visualizing-data-and-relationships">Visualizing Data and relationships</h2>
 <div class="layout-chunk" data-layout="l-body">
 <details>
 <summary>
-show
+Show code
 </summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>query</span> <span class='op'>=</span> <span class='st'>"SELECT * FROM census_blocks WHERE aland10 &gt; 0"</span>
@@ -1558,7 +1558,7 @@ Bounding box:  xmin: -122.5149 ymin: 37.70813 xmax: -122.357 ymax: 37.81157
 Geodetic CRS:  WGS84(DD)</code></pre>
 <details>
 <summary>
-show
+Show code
 </summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>census_blocks</span><span class='op'>)</span><span class='op'>)</span>
@@ -1570,7 +1570,7 @@ show
 <div class="layout-chunk" data-layout="l-body">
 <details>
 <summary>
-show
+Show code
 </summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>contours</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='st'>"data/contours/contours.shp"</span><span class='op'>)</span> 
@@ -1587,7 +1587,7 @@ Bounding box:  xmin: -122.5177 ymin: 37.69998 xmax: -122.357 ymax: 37.83325
 Geodetic CRS:  WGS84(DD)</code></pre>
 <details>
 <summary>
-show
+Show code
 </summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>contours</span><span class='op'>)</span><span class='op'>)</span>
@@ -1599,7 +1599,7 @@ show
 <div class="layout-chunk" data-layout="l-body">
 <details>
 <summary>
-show
+Show code
 </summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>slopes_over_20</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='st'>"data/slopes_over_20/slopes_over_20.shp"</span><span class='op'>)</span> 
@@ -1616,7 +1616,7 @@ Bounding box:  xmin: -122.5148 ymin: 37.70679 xmax: -122.3572 ymax: 37.83328
 Geodetic CRS:  WGS84(DD)</code></pre>
 <details>
 <summary>
-show
+Show code
 </summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>slopes_over_20</span><span class='op'>)</span><span class='op'>)</span>
@@ -1628,7 +1628,7 @@ show
 <div class="layout-chunk" data-layout="l-body">
 <details>
 <summary>
-show
+Show code
 </summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>streets</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='st'>"data/streets/streets.shp"</span><span class='op'>)</span>
@@ -1645,7 +1645,7 @@ Bounding box:  xmin: -122.5136 ymin: 37.70702 xmax: -122.3578 ymax: 37.83213
 Geodetic CRS:  WGS84(DD)</code></pre>
 <details>
 <summary>
-show
+Show code
 </summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>streets</span><span class='op'>)</span><span class='op'>)</span>
@@ -1657,7 +1657,7 @@ show
 <div class="layout-chunk" data-layout="l-body">
 <details>
 <summary>
-show
+Show code
 </summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>query</span> <span class='op'>=</span> <span class='st'>"SELECT * FROM crime_reports_2018_present WHERE incident_2 = 'Motor Vehicle Theft'"</span>
@@ -1675,7 +1675,7 @@ Bounding box:  xmin: -122.5113 ymin: 37.70799 xmax: -122.3637 ymax: 37.82999
 Geodetic CRS:  WGS84(DD)</code></pre>
 <details>
 <summary>
-show
+Show code
 </summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>crimes</span><span class='op'>)</span><span class='op'>)</span>
@@ -1684,9 +1684,9 @@ show
 </details>
 <p><img src="sf-crime-and-hilliness_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
-<h1 id="model">Model</h1>
+<h2 id="model">Model</h2>
 <p>Create a simple regression model, show equation and results. Read simple features or layers from file or database</p>
-<h1 id="visualize-results">Visualize results</h1>
+<h2 id="visualize-results">Visualize results</h2>
 <p>Maps of results (?)</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">

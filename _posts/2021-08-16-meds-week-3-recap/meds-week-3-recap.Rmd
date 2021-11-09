@@ -25,7 +25,7 @@ library(kableExtra)
 
 We are in week 3 of the Master of Environmental Data Science (MEDS) program at the Bren School of Environmental Science & Management at UCSB. So far in our summer intensive coursework, we have focused on essential math/statistics, programming (in R), and git skills that will be essential for the rest of the program. Here are a few things that we've learned...
 
-#### R functions:
+## R functions:
 
 Since this is a data science oriented program, we quickly covered basic R syntax before moving on to learning various methods of getting data into more usable formats.
 
@@ -40,7 +40,7 @@ penguins_summary <- penguins %>%
 penguins_summary %>% kable()
 ```
 
-#### Essential Concepts
+## Essential Concepts
 
 We have also learned fundamental ideas for working with data. One such concept is **tidy data**, which refers to the following qualities:
 - Each column contains a single variable
@@ -49,6 +49,6 @@ We have also learned fundamental ideas for working with data. One such concept i
 
 This is relevant for other important topics that we've covered, such as scientific reproducibility.
 
-#### Takeaways
+## Takeaways
 
 In the initial weeks, the MEDS program has been rewarding and challenging. I have learned to think critically and deliberately about every line of code or decision. Additionally, I can already see the profound impact that a supportive and collaborative community can make on learning this type of material. Our group of 25 students is full of inspiring and hard-working individuals from a wide variety of backgrounds, and I look forward to working together in the next year!

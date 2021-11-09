@@ -29,7 +29,7 @@ library(sf)
 library(tidyverse)
 ```
 
-# San Francisco Topography
+## San Francisco Topography
 
 If you have ever visited San Francisco, you have probably found yourself driving, walking, or biking up an alarmingly steep street at some point. In 2018, I lived on one such hill, Potrero Hill, while completing my second co-op at Alvarez & Marsal. Another unfortunate aspect of San Francisco that is seemingly unavoidable is car break-ins. However, this never seemed to be an issue in my neighborhood for the six months that I lived there. The last two blocks of my bike ride home from work were quite strenuous, so I began wondering - is there a relationship between San Francisco's steep hills and car break-ins? This is not a unique concept: previous analysis has coined the phrase ["crime doesn't climb"](https://github.com/gwintrob/crime-doesnt-climb/blob/master/README.md) in reference to this possible phenomenon. 
 
@@ -47,7 +47,7 @@ That is one steep street!
 
 </figure>
 
-# Collecting Data
+## Collecting Data
 
 Backed by Kim and Wo's research and my own intuition, I formulated the following variables for my regression analysis - my **dependent variable** is crime (specifically car break-ins) and my **independent variables** are slope, elevation, and "hilliness", which is a measure of the overall change in elevation in the surrounding area. 
 
@@ -57,7 +57,7 @@ In addition, there are many socio-economic and demographic variables that could 
   
 Luckily, DataSF has most of the data we need, including [crime](https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783), [elevation contours](https://data.sfgov.org/Energy-and-Environment/Elevation-Contours/rnbg-2qxw), and [areas with high slope](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Slopes-of-20-Or-Greater/3vv2-nvev). In addition, I downloaded [streets](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Streets-Active-and-Retired/3psu-pn9h) and [census block](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Census-2010-Blocks-for-San-Francisco/2uzy-uv2r) data.
 
-# Visualizing Data and relationships
+## Visualizing Data and relationships
 
 ```{r}
 query = "SELECT * FROM census_blocks WHERE aland10 > 0"
@@ -82,11 +82,11 @@ crimes <- st_read("data/crime_reports_2018_present/crime_reports_2018_present.sh
 plot(st_geometry(crimes))
 ```
 
-# Model
+## Model
 
 Create a simple regression model, show equation and results.
 Read simple features or layers from file or database
 
-# Visualize results
+## Visualize results
 
 Maps of results (?)

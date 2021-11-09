@@ -130,8 +130,8 @@ d-article h4 {
 
 /* -- change color of inline code -- */
 code {
-  color: #79A540;
-  background-color: #F5F2F2;
+  color: #000000;
+  background-color: #FFFFFF;
 }
 
 /* body color */
