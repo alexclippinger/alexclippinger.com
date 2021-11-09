@@ -1,7 +1,7 @@
 ---
 title: "MEDS Week 3 Recap"
 description: |
-  A reflection on the first few weeks as part of the inaugural cohort of the Master of Environmental Data Science program at the Bren School of Environmental Science & Management, UCSB
+  A reflection on the first few weeks as part of the inaugural cohort of the Master of Environmental Data Science program at the Bren School of Environmental Science & Management, UCSB.
 author:
   - name: Alex Clippinger
     url: {}
