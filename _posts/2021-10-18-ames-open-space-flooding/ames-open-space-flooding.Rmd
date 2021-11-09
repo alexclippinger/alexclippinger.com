@@ -1,7 +1,7 @@
 ---
 title: "Ames Open Space Flooding"
 description: |
-  Visualizing flooding as a result of beaver activity.
+  Returning home from college a few years ago, I went on a hike at a local town open space only to find the trail flooded due to beaver activity. So, I created an ArcGIS Story Map to visualize the extent of the change in landscape.
 author:
   - name: Alex Clippinger
     url: {}

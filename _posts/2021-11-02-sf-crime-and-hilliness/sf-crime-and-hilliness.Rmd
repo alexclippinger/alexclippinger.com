@@ -1,7 +1,7 @@
 ---
 title: "San Francisco Crime and Hilliness"
 description: |
-  A linear regression of the relationship between hills and crime in San Francisco.
+  Anyone who has been to San Francisco is familiar with the hilly terrain and roads that seem to climb into the clouds. But does this topography have an effect on where car break-ins happen? I wanted to take a look at this relationship with visualizations and a linear regression analysis.
 author:
   - name: Alex Clippinger
     url: {}
@@ -9,7 +9,7 @@ date: 2021-11-02
 output:
   distill::distill_article:
     self_contained: false
-    code_folding: show
+    code_folding: true
     toc: true              # add a table of contents
     toc_float: true        # float it (positioned on the left-hand side, rather at the top)
 bibliography: bibliography.bib
@@ -49,7 +49,7 @@ That is one steep street!
 
 # Collecting Data
 
-Backed by Kim and Wo's research and my own intuition, I formulated the following variables for my regression analysis - my **dependent variable** is crimes (specifically car break-ins) and my **independent variables** are slope, elevation, and "hilliness", which is a measure of the overall change in elevation in the surrounding area. 
+Backed by Kim and Wo's research and my own intuition, I formulated the following variables for my regression analysis - my **dependent variable** is crime (specifically car break-ins) and my **independent variables** are slope, elevation, and "hilliness", which is a measure of the overall change in elevation in the surrounding area. 
 
 In addition, there are many socio-economic and demographic variables that could warrant inclusion, such as median income, land use, population/population density, race, etc. However, for the purpose of completing this in a reasonable amount of time and keeping the interpretation of results simple, I have decided to only include median income by census block.
 

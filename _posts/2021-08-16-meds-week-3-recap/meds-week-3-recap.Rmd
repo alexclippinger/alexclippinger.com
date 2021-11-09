@@ -1,7 +1,7 @@
 ---
 title: "MEDS Week 3 Recap"
 description: |
-  A brief look at some of the concepts we've learned so far.
+  A reflection on the first few weeks as part of the inaugural cohort of the Master of Environmental Data Science program at the Bren School of Environmental Science & Management, UCSB
 author:
   - name: Alex Clippinger
     url: {}
@@ -9,7 +9,7 @@ date: 08-16-2021
 output:
   distill::distill_article:
     self_contained: false
-    code_folding: Toggle Code
+    code_folding: true
 preview: images/logo-bren.svg
 categories:
   - general
@@ -20,15 +20,16 @@ categories:
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(palmerpenguins)
+library(kableExtra)
 ```
 
-We are in week 3 of the MEDS program at UCSB's Bren School of Environmental Science and Management. Here are a few things that we've learned...
+We are in week 3 of the Master of Environmental Data Science (MEDS) program at the Bren School of Environmental Science & Management at UCSB. So far in our summer intensive coursework, we have focused on essential math/statistics, programming (in R), and git skills that will be essential for the rest of the program. Here are a few things that we've learned...
 
 #### R functions:
 
-So far, we have learned various methods of getting data into more usable formats.
+Since this is a data science oriented program, we quickly covered basic R syntax before moving on to learning various methods of getting data into more usable formats.
 
-Here is an example of using the dplyr `group_by` and `summarize` functions...
+Here is a brief example of using the dplyr `group_by` and `summarize` functions to find the mean body weight (in grams) of penguin species within the [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/) R data package, created by our professor [Dr. Allison Horst](https://bren.ucsb.edu/people/allison-horst)!
 
 ```{r, include = TRUE}
 # Example using the palmerpenguins dataset
@@ -36,17 +37,18 @@ penguins_summary <- penguins %>%
   group_by(species) %>% 
   summarize(mean_body_mass_g = mean(body_mass_g, na.rm = TRUE))
 
-penguins_summary
+penguins_summary %>% kable()
 ```
 
-#### Concepts
+#### Essential Concepts
 
-We have also learned fundamental concepts for working with data. One such concept is **tidy data**, which refers to the following qualities:
+We have also learned fundamental ideas for working with data. One such concept is **tidy data**, which refers to the following qualities:
 - Each column contains a single variable
 - Each row contains a single observation
 - Each cell contains a single value
 
-This is important for other important concepts that we've learned, such as scientific reproducibility.
+This is relevant for other important topics that we've covered, such as scientific reproducibility.
 
 #### Takeaways
-The MEDS program has been rewarding and challenging in the initial weeks. I have learned to think critically and deliberately about every bit of code that I write. I have also appreciated the helpful and collaborative community that has formed in our small cohort.
+
+In the initial weeks, the MEDS program has been rewarding and challenging. I have learned to think critically and deliberately about every line of code or decision. Additionally, I can already see the profound impact that a supportive and collaborative community can make on learning this type of material. Our group of 25 students is full of inspiring and hard-working individuals from a wide variety of backgrounds, and I look forward to working together in the next year!

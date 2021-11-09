@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,7 +77,7 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
@@ -85,10 +85,11 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+
   <!--radix_placeholder_meta_tags-->
 <title>Alex Clippinger: MEDS Week 3 Recap</title>
 
-<meta property="description" itemprop="description" content="A brief look at some of the concepts we&#39;ve learned so far."/>
+<meta property="description" itemprop="description" content="A reflection on the first few weeks as part of the inaugural cohort of the Master of Environmental Data Science program at the Bren School of Environmental Science &amp; Management, UCSB"/>
 
 
 <!--  https://schema.org/Article -->
@@ -99,25 +100,25 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
 <meta property="og:title" content="Alex Clippinger: MEDS Week 3 Recap"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="A brief look at some of the concepts we&#39;ve learned so far."/>
+<meta property="og:description" content="A reflection on the first few weeks as part of the inaugural cohort of the Master of Environmental Data Science program at the Bren School of Environmental Science &amp; Management, UCSB"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Alex Clippinger"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
 <meta property="twitter:title" content="Alex Clippinger: MEDS Week 3 Recap"/>
-<meta property="twitter:description" content="A brief look at some of the concepts we&#39;ve learned so far."/>
+<meta property="twitter:description" content="A reflection on the first few weeks as part of the inaugural cohort of the Master of Environmental Data Science program at the Bren School of Environmental Science &amp; Management, UCSB"/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview","categories"]}},"value":[{"type":"character","attributes":{},"value":["MEDS Week 3 Recap"]},{"type":"character","attributes":{},"value":["A brief look at some of the concepts we've learned so far."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Alex Clippinger"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["08-16-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["Toggle Code"]}]}]},{"type":"character","attributes":{},"value":["images/logo-bren.svg"]},{"type":"character","attributes":{},"value":["general"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview","categories"]}},"value":[{"type":"character","attributes":{},"value":["MEDS Week 3 Recap"]},{"type":"character","attributes":{},"value":["A reflection on the first few weeks as part of the inaugural cohort of the Master of Environmental Data Science program at the Bren School of Environmental Science & Management, UCSB"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Alex Clippinger"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["08-16-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["images/logo-bren.svg"]},{"type":"character","attributes":{},"value":["general"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["images/logo-bren.svg","meds-week-3-recap_files/anchor-4.2.2/anchor.min.js","meds-week-3-recap_files/bowser-1.9.3/bowser.min.js","meds-week-3-recap_files/distill-2.2.21/template.v2.js","meds-week-3-recap_files/header-attrs-2.10/header-attrs.js","meds-week-3-recap_files/header-attrs-2.9/header-attrs.js","meds-week-3-recap_files/jquery-1.11.3/jquery.min.js","meds-week-3-recap_files/popper-2.6.0/popper.min.js","meds-week-3-recap_files/tippy-6.2.7/tippy-bundle.umd.min.js","meds-week-3-recap_files/tippy-6.2.7/tippy-light-border.css","meds-week-3-recap_files/tippy-6.2.7/tippy.css","meds-week-3-recap_files/tippy-6.2.7/tippy.umd.min.js","meds-week-3-recap_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["images/logo-bren.svg","meds-week-3-recap_files/anchor-4.2.2/anchor.min.js","meds-week-3-recap_files/bowser-1.9.3/bowser.min.js","meds-week-3-recap_files/distill-2.2.21/template.v2.js","meds-week-3-recap_files/header-attrs-2.10/header-attrs.js","meds-week-3-recap_files/header-attrs-2.11/header-attrs.js","meds-week-3-recap_files/header-attrs-2.9/header-attrs.js","meds-week-3-recap_files/jquery-1.11.3/jquery.min.js","meds-week-3-recap_files/jquery-3.6.0/jquery-3.6.0.js","meds-week-3-recap_files/jquery-3.6.0/jquery-3.6.0.min.js","meds-week-3-recap_files/jquery-3.6.0/jquery-3.6.0.min.map","meds-week-3-recap_files/popper-2.6.0/popper.min.js","meds-week-3-recap_files/tippy-6.2.7/tippy-bundle.umd.min.js","meds-week-3-recap_files/tippy-6.2.7/tippy-light-border.css","meds-week-3-recap_files/tippy-6.2.7/tippy.css","meds-week-3-recap_files/tippy-6.2.7/tippy.umd.min.js","meds-week-3-recap_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2158,8 +2159,8 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.10/header-attrs.js"></script>
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2179,7 +2180,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"MEDS Week 3 Recap","description":"A brief look at some of the concepts we've learned so far.","authors":[{"author":"Alex Clippinger","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-08-16T00:00:00.000-07:00","citationText":"Clippinger, 2021"}
+{"title":"MEDS Week 3 Recap","description":"A reflection on the first few weeks as part of the inaugural cohort of the Master of Environmental Data Science program at the Bren School of Environmental Science & Management, UCSB","authors":[{"author":"Alex Clippinger","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-08-16T00:00:00.000-07:00","citationText":"Clippinger, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2209,7 +2210,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   <a href="../../blog.html#category:general" class="dt-tag">general</a>
 </div>
 <!--/radix_placeholder_categories-->
-<p><p>A brief look at some of the concepts we’ve learned so far.</p></p>
+<p><p>A reflection on the first few weeks as part of the inaugural cohort of the Master of Environmental Data Science program at the Bren School of Environmental Science &amp; Management, UCSB</p></p>
 </div>
 
 <div class="d-byline">
@@ -2219,14 +2220,14 @@ d-appendix d-footnote-list a.footnote-backlink {
 </div>
 
 <div class="d-article">
-<p>We are in week 3 of the MEDS program at UCSB’s Bren School of Environmental Science and Management. Here are a few things that we’ve learned…</p>
+<p>We are in week 3 of the Master of Environmental Data Science (MEDS) program at the Bren School of Environmental Science &amp; Management at UCSB. So far in our summer intensive coursework, we have focused on essential math/statistics, programming (in R), and git skills that will be essential for the rest of the program. Here are a few things that we’ve learned…</p>
 <h4 id="r-functions">R functions:</h4>
-<p>So far, we have learned various methods of getting data into more usable formats.</p>
-<p>Here is an example of using the dplyr <code>group_by</code> and <code>summarize</code> functions…</p>
+<p>Since this is a data science oriented program, we quickly covered basic R syntax before moving on to learning various methods of getting data into more usable formats.</p>
+<p>Here is a brief example of using the dplyr <code>group_by</code> and <code>summarize</code> functions to find the mean body weight (in grams) of penguin species within the <a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a> R data package, created by our professor <a href="https://bren.ucsb.edu/people/allison-horst">Dr. Allison Horst</a>!</p>
 <div class="layout-chunk" data-layout="l-body">
 <details>
 <summary>
-Toggle Code
+Show code
 </summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Example using the palmerpenguins dataset</span>
@@ -2234,23 +2235,55 @@ Toggle Code
   <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>species</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>summarize</span><span class='op'>(</span>mean_body_mass_g <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>body_mass_g</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='va'>penguins_summary</span>
+<span class='va'>penguins_summary</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
 </details>
-<pre><code># A tibble: 3 x 2
-  species   mean_body_mass_g
-  &lt;fct&gt;                &lt;dbl&gt;
-1 Adelie               3701.
-2 Chinstrap            3733.
-3 Gentoo               5076.</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+species
+</th>
+<th style="text-align:right;">
+mean_body_mass_g
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Adelie
+</td>
+<td style="text-align:right;">
+3700.662
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chinstrap
+</td>
+<td style="text-align:right;">
+3733.088
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gentoo
+</td>
+<td style="text-align:right;">
+5076.016
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<h4 id="concepts">Concepts</h4>
-<p>We have also learned fundamental concepts for working with data. One such concept is <strong>tidy data</strong>, which refers to the following qualities: - Each column contains a single variable - Each row contains a single observation - Each cell contains a single value</p>
-<p>This is important for other important concepts that we’ve learned, such as scientific reproducibility.</p>
+<h4 id="essential-concepts">Essential Concepts</h4>
+<p>We have also learned fundamental ideas for working with data. One such concept is <strong>tidy data</strong>, which refers to the following qualities: - Each column contains a single variable - Each row contains a single observation - Each cell contains a single value</p>
+<p>This is relevant for other important topics that we’ve covered, such as scientific reproducibility.</p>
 <h4 id="takeaways">Takeaways</h4>
-<p>The MEDS program has been rewarding and challenging in the initial weeks. I have learned to think critically and deliberately about every bit of code that I write. I have also appreciated the helpful and collaborative community that has formed in our small cohort.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>In the initial weeks, the MEDS program has been rewarding and challenging. I have learned to think critically and deliberately about every line of code or decision. Additionally, I can already see the profound impact that a supportive and collaborative community can make on learning this type of material. Our group of 25 students is full of inspiring and hard-working individuals from a wide variety of backgrounds, and I look forward to working together in the next year!</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

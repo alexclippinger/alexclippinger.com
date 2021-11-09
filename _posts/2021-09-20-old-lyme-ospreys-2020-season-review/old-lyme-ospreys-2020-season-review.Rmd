@@ -1,7 +1,7 @@
 ---
 title: "Old Lyme Ospreys - 2020 Review"
 description: |
-  A quick look at the 2020 Osprey Nation Report by the Connecticut Audobon Society, released on March 5, 2021.
+  Once facing extinction, the Connecticut Osprey population has made a substantial comeback. This post looks at the most recent 2020 Osprey Nation Report by the Connecticut Audobon Society, released on March 5, 2021. Specifically, I focus on a coastal town known for it's birding and wildlife (that also happens to be my hometown!) - Old Lyme. 
 author:
   - name: Alex Clippinger
     url: {}
@@ -9,6 +9,7 @@ date: 09-20-2021
 output:
   distill::distill_article:
     self_contained: false
+    code_folding: true
     toc: true              # add a table of contents
     toc_float: true        # float it (positioned on the left-hand side, rather at the top)
 preview: images/ct-audobon-logo.png
@@ -42,20 +43,6 @@ library(kableExtra)
 
 ## Interactive maps
 library(plotly)
-```
-
-```{r}
-# Load all nests dataset
-all_nests <- read.csv(file = "data/All_Nests.csv") %>% 
-  clean_names() %>% 
-  rename("x2021_status" = 19) %>% 
-  select(-(description:icon)) 
-
-# load old lyme data only
-ol_nests <- read.csv(file = "data/OL-Only_Nests.csv") %>% 
-  clean_names() %>% 
-  rename("x2021_status" = 19) %>% 
-  select(-(descriptio:icon))
 ```
 
 Source for data and Osprey Nation 2020 report: <https://www.ctaudubon.org/osprey-nation-home/>
@@ -105,17 +92,7 @@ According to the CT DEEP, the osprey population in Connecticut reached a record 
 
 Source: <https://portal.ct.gov/DEEP/Wildlife/Fact-Sheets/Osprey>
 
-### Ospreys in Old Lyme, CT
-
-For this blog, I am looking at the town of Old Lyme, CT. This is for a few reasons...
-
-1.  Old Lyme is my hometown!
-2.  \~10% of nests in the state are found in the town's coastline and rivers.
-3.  Great Island and the Lower Connecticut River Valley area are important ecological and conservation areas. The CT Audobon reports that the greatest concentration of Osprey nests in the state is on Great Island.
-
-Of the 231 stewards that volunteered for the project in 2020, there were `r length(unique(ol_nests$x2021_stewa)) - 1` unique stewards who collected data in Old Lyme.
-
-### Taking a look at the data:
+### Loading the Data
 
 Along with the annual report, Osprey Nation publishes data on nest locations, type, stewards, monitored status, and description.
 
@@ -127,6 +104,31 @@ Here is the interactive data map provided on the Osprey Nation website:
 
 I downloaded the data from the map above as a `.kmz` file, which I loaded in `QGIS`. To create the subset of only Old Lyme nests, I created a buffer of the town boundary and used the `Select by location` tool in the QGIS Processing Toolbox. This could have also been achieved in `R` by filtering on the `name` column of the `all_nests` data set, since all Old Lyme nests begin with "Old Lyme".
 
+```{r}
+# Load all nests dataset
+all_nests <- read.csv(file = "data/All_Nests.csv") %>% 
+  clean_names() %>% 
+  rename("x2021_status" = 19) %>% 
+  select(-(description:icon)) 
+
+# load old lyme data only
+ol_nests <- read.csv(file = "data/OL-Only_Nests.csv") %>% 
+  clean_names() %>% 
+  rename("x2021_status" = 19) %>% 
+  select(-(descriptio:icon))
+```
+
+### Ospreys in Old Lyme, CT
+
+For this blog, I am looking at the town of Old Lyme, CT. This is for a few reasons...
+
+1.  Old Lyme is my hometown!
+2.  ~10% of nests in the state are found in the town's coastline and rivers.
+3.  Great Island and the Lower Connecticut River Valley area are important ecological and conservation areas. The CT Audobon reports that the greatest concentration of Osprey nests in the state is on Great Island.
+
+Of the 231 stewards that volunteered for the project in 2020, there were `r length(unique(ol_nests$x2021_stewa)) - 1` unique stewards who collected data in Old Lyme.
+
+### Visualizing the Data
 
 First, I wanted to see how many nests were actively monitored in 2020.
 
