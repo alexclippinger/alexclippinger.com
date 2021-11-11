@@ -390,7 +390,7 @@ ggplot(data = ol_nests_status, aes(x = count, y = reorder(status_desc, count), f
   )
 ```
 
-The plot above shows the final status of nests in Old Lyme for 2020. In all, there were 16 successful nests out of the total of 95, with 30 fledglings reported and likely more unreported. In summary, Old Lyme has ~10% of the state's nests and yielded `r round(30/510,2)`% of reported fledglings.
+The plot above shows the final status of nests in Old Lyme for 2020. In all, there were 16 successful nests out of the total of 95, with 30 fledglings reported and likely more unreported. In summary, Old Lyme has ~10% of the state's nests and yielded `r round((30/510) * 100,2)`% of reported fledglings.
 
 Finally, here is a fun heat map of nest locations in the town:
 

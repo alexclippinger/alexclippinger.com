@@ -19,16 +19,6 @@ categories:
   - GIS
 ---
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE,
-                      message = FALSE, 
-                      warning = FALSE, 
-                      include = TRUE)
-
-library(sf)
-library(tidyverse)
-```
-
 ## San Francisco Topography
 
 If you have ever visited San Francisco, you have probably found yourself driving, walking, or biking up an alarmingly steep street at some point. In 2018, I lived on one such hill, Potrero Hill, while completing my second co-op at Alvarez & Marsal. Another unfortunate aspect of San Francisco that is seemingly unavoidable is car break-ins. However, this never seemed to be an issue in my neighborhood for the six months that I lived there. The last two blocks of my bike ride home from work were quite strenuous, so I began wondering - is there a relationship between San Francisco's steep hills and car break-ins? This is not a unique concept: previous analysis has coined the phrase ["crime doesn't climb"](https://github.com/gwintrob/crime-doesnt-climb/blob/master/README.md) in reference to this possible phenomenon. 
@@ -59,28 +49,34 @@ Luckily, DataSF has most of the data we need, including [crime](https://data.sfg
 
 ## Visualizing Data and relationships
 
-```{r}
-query = "SELECT * FROM census_blocks WHERE aland10 > 0"
-census_blocks <- st_read("data/census_blocks/census_blocks.shp", query = query)
-plot(st_geometry(census_blocks))
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE, 
+                      warning = FALSE, 
+                      include = TRUE)
+
+library(sf)
+library(tidyverse)
+library(raster)
 ```
-```{r}
-contours <- st_read("data/contours/contours.shp") 
-plot(st_geometry(contours))
-```
-```{r}
+
+```{r load data}
+#census_blocks <- st_read("data/census_blocks/census_blocks.shp", query = "SELECT * FROM census_blocks WHERE aland10 > 0")
+#streets <- st_read("data/streets/streets.shp")
+contours <- st_read("data/contours/contours.shp")
+
 slopes_over_20 <- st_read("data/slopes_over_20/slopes_over_20.shp") 
-plot(st_geometry(slopes_over_20))
+
+crimes <- st_read("data/crime_reports_2018_present/crime_reports_2018_present.shp", query = "SELECT * FROM crime_reports_2018_present WHERE incident_2 = 'Motor Vehicle Theft'") 
 ```
+
 ```{r}
-streets <- st_read("data/streets/streets.shp")
-plot(st_geometry(streets))
+elev <- st_nearest_feature(x = crimes, y = contours)
+
+crimes <- crimes %>% 
+  mutate(elev = contours[elev,]$elevation)
 ```
-```{r}
-query = "SELECT * FROM crime_reports_2018_present WHERE incident_2 = 'Motor Vehicle Theft'"
-crimes <- st_read("data/crime_reports_2018_present/crime_reports_2018_present.shp", query = query)
-plot(st_geometry(crimes))
-```
+
 
 ## Model
 
