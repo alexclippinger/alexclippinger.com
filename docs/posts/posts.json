@@ -33,9 +33,9 @@
     "categories": [
       "GIS"
     ],
-    "contents": "\r\nThis is a small side-project that I completed last year. I was curious to see the extent of flooding at one of my favorite Open Spaces in my hometown - the Town of Old Lyme Ames Open Space. At the time, I was in the middle of my Graduate Certificate in GIS and volunteering with the Old Lyme Land Trust, so I wanted to test my ability to communicate technical information to a non-technical crowd. Although brief, this ArcGIS Story Map successfully demonstrated the flooding and was ultimately shared with the town Open Space Commission as an educational reference.\r\nHere is the link to the Story Map\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\nGraphic showing the change in landscape from 2012 to 2018 in the Ames Open Space.\r\nThis is a small side-project that I completed last year. I was curious to see the extent of flooding at one of my favorite Open Spaces in my hometown - the Town of Old Lyme Ames Open Space.\r\nAt the time, I was in the middle of my Graduate Certificate in GIS and volunteering with the Old Lyme Land Trust, so I wanted to test my ability to communicate technical information to a non-technical crowd. Although brief, this ArcGIS Story Map successfully demonstrated the flooding and was ultimately shared with the town Open Space Commission as an educational reference.\r\nHere is the link to the full Story Map\r\n\r\n\r\n\r\n",
     "preview": "posts/2021-10-18-ames-open-space-flooding/images/ames-open-space.png",
-    "last_modified": "2021-11-08T20:08:46-08:00",
+    "last_modified": "2021-11-11T11:10:25-08:00",
     "input_file": {}
   },
   {
