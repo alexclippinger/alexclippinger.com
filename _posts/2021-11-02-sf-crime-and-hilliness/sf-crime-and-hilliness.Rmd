@@ -10,20 +10,14 @@ output:
   distill::distill_article:
     self_contained: false
     code_folding: true
-    toc: true              # add a table of contents
-    toc_float: true        # float it (positioned on the left-hand side, rather at the top)
+    toc: true              
+    toc_float: true
 bibliography: bibliography.bib
 preview: images/crime_hills.jpg
 categories: 
   - R
   - GIS
 ---
-
-## San Francisco Topography
-
-If you have ever visited San Francisco, you have probably found yourself driving, walking, or biking up an alarmingly steep street at some point. In 2018, I lived on one such hill, Potrero Hill, while completing my second co-op at Alvarez & Marsal. Another unfortunate aspect of San Francisco that is seemingly unavoidable is car break-ins. However, this never seemed to be an issue in my neighborhood for the six months that I lived there. The last two blocks of my bike ride home from work were quite strenuous, so I began wondering - is there a relationship between San Francisco's steep hills and car break-ins? This is not a unique concept: previous analysis has coined the phrase ["crime doesn't climb"](https://github.com/gwintrob/crime-doesnt-climb/blob/master/README.md) in reference to this possible phenomenon. 
-
-However, I found that there were not many thorough analyses of the effects of topography on crime in San Francisco until this year. In April 2021, Young-An Kim & James C. Wo published [Topography and crime in place: The effects of elevation, slope, and betweenness in San Francisco street segments](https://www.tandfonline.com/doi/full/10.1080/07352166.2021.1901591). Their study provides a robust regression analysis on the effects of elevation, slope, and "hilliness" on crime, controlling for socio-demographic characteristics @sfcrime. Due to their success, I decided to conduct my own (albeit less thorough) analysis in R, using some of the tools that I recently learned in [EDS223: Spatial Analysis for Environmental Data Science](https://bren.ucsb.edu/courses/eds-223)  
 
 <figure>
 
@@ -37,17 +31,36 @@ That is one steep street!
 
 </figure>
 
-## Collecting Data
+## Research Question
 
-Backed by Kim and Wo's research and my own intuition, I formulated the following variables for my regression analysis - my **dependent variable** is crime (specifically car break-ins) and my **independent variables** are slope, elevation, and "hilliness", which is a measure of the overall change in elevation in the surrounding area. 
+My research question is: "What is the relationship between topography and car break-ins in San Francisco?
 
-In addition, there are many socio-economic and demographic variables that could warrant inclusion, such as median income, land use, population/population density, race, etc. However, for the purpose of completing this in a reasonable amount of time and keeping the interpretation of results simple, I have decided to only include median income by census block.
+### Background
+
+In April 2021, Young-An Kim & James C. Wo published [Topography and crime in place: The effects of elevation, slope, and betweenness in San Francisco street segments](https://www.tandfonline.com/doi/full/10.1080/07352166.2021.1901591). Their study provides a robust regression analysis on the effects of elevation, slope, and "hilliness" on crime, controlling for socio-demographic characteristics @sfcrime. **My analysis will focus only on car break-ins rather than all crime reports**, as I believe that these crimes will have an even more pronounced relationship with topography.
+
+## Data Collection
+
+### Important Variables
+
+- **dependent variable**: crime (specifically car break-ins) 
+
+- **independent variables**: slope and elevation 
+
+- **control variables**: median income by census block
 
 ### Data Sources
-  
-Luckily, DataSF has most of the data we need, including [crime](https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783), [elevation contours](https://data.sfgov.org/Energy-and-Environment/Elevation-Contours/rnbg-2qxw), and [areas with high slope](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Slopes-of-20-Or-Greater/3vv2-nvev). In addition, I downloaded [streets](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Streets-Active-and-Retired/3psu-pn9h) and [census block](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Census-2010-Blocks-for-San-Francisco/2uzy-uv2r) data.
 
-## Visualizing Data and relationships
+All data for this analysis was retrieved from the [San Francisco Open Data Portal](https://datasf.org/opendata/).
+
+- [crime](https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783)
+- [elevation contours](https://data.sfgov.org/Energy-and-Environment/Elevation-Contours/rnbg-2qxw)
+- [areas with high slope](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Slopes-of-20-Or-Greater/3vv2-nvev)
+
+- [streets](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Streets-Active-and-Retired/3psu-pn9h)
+- [census block](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Census-2010-Blocks-for-San-Francisco/2uzy-uv2r)
+
+## Analysis Plan
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE,
@@ -57,32 +70,35 @@ knitr::opts_chunk$set(echo = TRUE,
 
 library(sf)
 library(tidyverse)
-library(raster)
+#library(raster)
 ```
 
-```{r load data}
-#census_blocks <- st_read("data/census_blocks/census_blocks.shp", query = "SELECT * FROM census_blocks WHERE aland10 > 0")
-#streets <- st_read("data/streets/streets.shp")
-contours <- st_read("data/contours/contours.shp")
+```{r load data, include = FALSE}
+# EPSG:7132 - NAD83(2011) / San Francisco CS13 (ftUS) - Projected
+crimes <- st_read("data/crime_reports_2018_present/crime_reports_2018_present.shp", query = "SELECT date_incid FROM crime_reports_2018_present WHERE incident_2 = 'Motor Vehicle Theft'") %>% 
+  st_transform(crs = st_crs(7132))
 
-slopes_over_20 <- st_read("data/slopes_over_20/slopes_over_20.shp") 
+contours <- st_read("data/contours/contours.shp") %>% 
+  st_transform(crs = st_crs(7132))
 
-crimes <- st_read("data/crime_reports_2018_present/crime_reports_2018_present.shp", query = "SELECT * FROM crime_reports_2018_present WHERE incident_2 = 'Motor Vehicle Theft'") 
+slopes_over_20 <- st_read("data/slopes_over_20/slopes_over_20.shp", query = "SELECT objectid as slope_over_20 FROM slopes_over_20") %>% 
+  st_transform(crs = st_crs(7132))
 ```
 
-```{r}
+```{r merge data}
+# Find index of nearest contour to each crime
 elev <- st_nearest_feature(x = crimes, y = contours)
 
+# Add elevation and binary slope columns
 crimes <- crimes %>% 
-  mutate(elev = contours[elev,]$elevation)
+  mutate(elev = contours[elev,]$elevation) %>% 
+  st_join(y = slopes_over_20, join = st_within)
 ```
 
+## Results
+  
 
-## Model
 
-Create a simple regression model, show equation and results.
-Read simple features or layers from file or database
 
-## Visualize results
 
-Maps of results (?)
+
