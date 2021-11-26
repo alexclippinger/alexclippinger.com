@@ -70,7 +70,7 @@ knitr::opts_chunk$set(echo = TRUE,
 
 library(sf)
 library(tidyverse)
-#library(raster)
+library(tidycensus)
 ```
 
 ```{r load data, include = FALSE}
@@ -82,6 +82,14 @@ contours <- st_read("data/contours/contours.shp") %>%
   st_transform(crs = st_crs(7132))
 
 slopes_over_20 <- st_read("data/slopes_over_20/slopes_over_20.shp", query = "SELECT objectid as slope_over_20 FROM slopes_over_20") %>% 
+  st_transform(crs = st_crs(7132)) 
+
+# census_api_key()
+census_geom <- get_acs(geography = 'tract',
+                       variables = "B19013_001",
+                       state = "CA",
+                       county = "San Francisco",
+                       geometry = TRUE) %>% 
   st_transform(crs = st_crs(7132))
 ```
 
@@ -91,8 +99,12 @@ elev <- st_nearest_feature(x = crimes, y = contours)
 
 # Add elevation and binary slope columns
 crimes <- crimes %>% 
-  mutate(elev = contours[elev,]$elevation) %>% 
-  st_join(y = slopes_over_20, join = st_within)
+  st_join(y = slopes_over_20, join = st_within, left = TRUE) %>% 
+  st_join(y = census_geom, join = st_within, left = TRUE) %>% 
+  mutate(elev = contours[elev,]$elevation,
+         slope_over_20 = case_when(is.na(slope_over_20) ~ 0, TRUE ~ 1)) %>% 
+  rename(median_income = estimate) %>% 
+  select(date_incid, slope_over_20, median_income, elev, geometry)
 ```
 
 ## Results
