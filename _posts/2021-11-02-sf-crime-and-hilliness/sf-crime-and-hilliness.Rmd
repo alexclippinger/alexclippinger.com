@@ -102,10 +102,40 @@ crimes <- crimes %>%
   st_join(y = slopes_over_20, join = st_within, left = TRUE) %>% 
   st_join(y = census_geom, join = st_within, left = TRUE) %>% 
   mutate(elev = contours[elev,]$elevation,
-         slope_over_20 = case_when(is.na(slope_over_20) ~ 0, TRUE ~ 1)) %>% 
+         slope_over_20 = case_when(is.na(slope_over_20) ~ 0, TRUE ~ 1)) %>%
   rename(median_income = estimate) %>% 
-  select(date_incid, slope_over_20, median_income, elev, geometry)
+  select(slope_over_20, median_income, elev, geometry)
 ```
+
+### Visualizations
+
+```{r}
+crimes_summary <- crimes %>% 
+  st_drop_geometry() %>% 
+  group_by(slope_over_20, median_income, elev) %>% 
+  summarize(count = n())
+
+ggplot(data = crimes_summary, aes(x = median_income, y = count)) +
+  geom_point()
+
+ggplot(data = crimes_summary, aes(x = elev, y = count)) +
+  geom_point()
+
+ggplot(data = crimes_summary, aes(x = slope_over_20, y = count)) +
+  geom_point()
+```
+
+```{r}
+ggplot(data = crimes) +
+  geom_sf(aes(color = elev))
+
+ggplot(data = crimes) +
+  geom_sf(aes(color = slope_over_20))
+
+ggplot(data = crimes) +
+  geom_sf(aes(color = median_income))
+```
+
 
 ## Results
   
