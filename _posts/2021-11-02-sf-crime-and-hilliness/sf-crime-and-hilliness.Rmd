@@ -101,6 +101,9 @@ library(tidyverse)
 library(tidycensus)
 library(patchwork)
 library(lubridate)
+library(modelr)
+library(kableExtra)
+library(xtable)
 ```
 
 ### Merge Data
@@ -115,8 +118,8 @@ contours <- st_read("data/contours/contours.shp") %>%
 
 # developments on parcels with slopes of 20%+. Need to buffer to include streets
 slopes_over_20 <- st_read("data/slopes_over_20/slopes_over_20.shp", query = "SELECT objectid as slope_over_20 FROM slopes_over_20") %>% 
-  st_transform(crs = st_crs(7132)) %>% 
-  st_buffer(dist = 75) #%>% 
+  st_transform(crs = st_crs(7132)) #%>% 
+  #st_buffer(dist = 75) #%>% 
   #st_union(by_feature = FALSE)
 
 # census_api_key()
@@ -145,6 +148,8 @@ crimes <- crimes %>%
 ```
 
 ### Visualize simple relationships
+
+The following plots show the simple relationships between count of car break ins and the three independent variables (elevation, slope, and median income). We see there is a negative correlation between elevation and crime. It is possible that this relationship is not linear, so this variable may fit better if we take the natural log. Since slope in this analysis is a binary variable, we simply see that there are more crimes in areas that are not designated high slope. Lastly, we observe a weak negative correlation between median income and car break-ins.
 
 ```{r}
 # Group by income only
@@ -193,6 +198,8 @@ slope_plot <- ggplot(data = slope_summary, aes(x = slope_over_20, y = count)) +
 elev_plot + (slope_plot / income_plot)
 ```
 
+The following plots show crimes over the time period of our data. We can see that there is a slight upward trend to our crime data.
+
 ```{r}
 # Group by all three variables
 crimes_summary <- crimes %>% 
@@ -200,6 +207,7 @@ crimes_summary <- crimes %>%
   group_by(slope_over_20, median_income, elev) %>% 
   summarize(count = n())
 
+# Group by date
 crimes_ts <- crimes %>% 
   st_drop_geometry() %>% 
   group_by(date_incid) %>% 
@@ -217,6 +225,7 @@ crimes_monthly <- crimes_ts %>%
 
 monthly_plot <- ggplot(data = crimes_monthly, aes(x = month, y = monthly_sum)) +
   geom_point() +
+  geom_line() + 
   #geom_smooth(method = "lm") +
   theme_classic()
 
@@ -224,27 +233,107 @@ ts_plot + monthly_plot
 ```
 
 ```{r}
-ggplot(data = crimes) +
-  geom_sf(aes(color = elev))
+elev_map <- ggplot(data = crimes) +
+  geom_sf(aes(color = elev)) +
+  theme_minimal() +
+  theme(axis.text = element_blank(),
+        legend.position = "bottom",
+        legend.title = element_blank()) +
+  labs(title = "Crime by Elevation")
 
-ggplot(data = crimes) +
-  geom_sf(aes(color = slope_over_20))
+slope_map <- ggplot(data = crimes) +
+  geom_sf(aes(color = slope_over_20)) +
+  theme_minimal() +
+  theme(axis.text = element_blank(),
+        legend.position = "bottom",
+        legend.title = element_blank()) +
+  labs(title = "Crime by Slope")
 
-ggplot(data = crimes) +
-  geom_sf(aes(color = median_income))
+income_map <- ggplot(data = crimes) +
+  geom_sf(aes(color = median_income)) +
+  theme_minimal() +
+  theme(axis.text = element_blank(),
+        legend.position = "bottom",
+        legend.title = element_blank()) +
+  labs(title = "Crime by Median Income")
+
+elev_map + (slope_map / income_map)
+```
+
+### Regression Analysis
+
+```{r}
+model <- lm(formula = count ~ elev + slope_over_20 + median_income, data = crimes_summary)
+
+model %>% 
+  summary() %>% 
+  xtable() %>% 
+  kable()
 ```
 
 ### Test OLS Assumptions
 
-### Regression Analysis
+Recall our four key assumptions for OLS:
+
+1. The population relationship is linear in parameters with an additive disturbance.
+
+2. Our $X$ variables are **exogenous**, _i.e._, $\mathop{\boldsymbol{E}}\left[ u \mid X \right] = 0$.
+
+3. The $X$ variables have variation. 
+
+4. The population disturbances $u_i$ are independently and identically distributed as **normal** random variables with mean zero $\left( \mathop{\boldsymbol{E}}\left[ u \right] = 0 \right)$ and variance $\sigma^2$ (_i.e._,  $\mathop{\boldsymbol{E}}\left[ u^2 \right] = \sigma^2$)
+
+We assume that assumptions 1 and 2 hold. Assumption 3 holds because we see that the $x$ variables have variation in the plots above. Below, the residuals are generated from the main regression and are used to assess the three components of assumption #4.
+
+```{r}
+crime_lm <- crimes_summary %>% 
+  add_predictions(model = lm(count ~ elev + slope_over_20 + median_income, data = crimes_summary)) %>% 
+  mutate(res = count - pred)
+
+ggplot(data = crime_lm, aes(x = res)) +
+  geom_histogram(binwidth = 5, fill = "darkblue", col = "black") + 
+  labs(title = "Residual Plot",
+       x = "Residuals",
+       y = "Count") +
+  theme_classic()
+```
+
+The residuals do not appear to be normally distributed. There is a long right tail with high outliers. This indicates that the regression analysis is systematically under-predicting counts of car break-ins.
+
+```{r}
+ggplot(data = crime_lm, aes(sample = res)) +
+  geom_qq() +
+  geom_qq_line() +
+  theme_classic()
+```
+
+The qq plot shows that the distribution is mostly normally distributed for values up to approximately 2. This suggests that the model is not normally distributed for extreme high values.
+
+```{r}
+x <- ggplot(data = crime_lm, aes(x = count, y = res)) +
+  geom_point() + theme_classic() +
+  labs(title = "Residuals vs Dependent Variable")
+
+y1 <- ggplot(data = crime_lm, aes(x = elev, y = res)) +
+  geom_point() + theme_classic() + 
+  labs(title = "Residuals vs. Explanatory Variable (Elevation)")
+
+y2 <- ggplot(data = crime_lm, aes(x = slope_over_20, y = res)) +
+  geom_point() + theme_classic() + 
+  labs(title = "Residuals vs. Explanatory Variable (Slope)")
+
+y3 <- ggplot(data = crime_lm, aes(x = median_income, y = res)) +
+  geom_point() + theme_classic() + 
+  labs(title = "Residuals vs. Explanatory Variable (Income)")
+
+(x + y1) / (y2 + y3)
+```
+
+Since assumptions 1, 2, and 3 appear to be satisfied, using OLS in this case is an unbiased estimator. However, residual plots indicate that assumption 4 may not be satisfied and therefore OLS may not be the estimator with lowest variance. Thus, an alternative estimator to OLS may provide estimates of the true population parameters with less variance.
 
 ## Results
   
-```{r}
-model <- lm(formula = count ~ elev + slope_over_20 + median_income, data = crimes_summary)
 
-summary(model)
-```
 
 
 
