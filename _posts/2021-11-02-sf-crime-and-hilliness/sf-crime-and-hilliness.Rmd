@@ -37,30 +37,56 @@ My research question is: "What is the relationship between topography and car br
 
 ### Background
 
+This analysis will focus on the link between elevation and "hilliness" in determining the likelihood of car break-ins in San Francisco. Both terrain and motor vehicle crimes are ubiquitous when discussing living or visiting San Francisco. This relationship has been coined by the phrase - ["Crime Doesn't Climb"](https://github.com/gwintrob/crime-doesnt-climb).
+
 In April 2021, Young-An Kim & James C. Wo published [Topography and crime in place: The effects of elevation, slope, and betweenness in San Francisco street segments](https://www.tandfonline.com/doi/full/10.1080/07352166.2021.1901591). Their study provides a robust regression analysis on the effects of elevation, slope, and "hilliness" on crime, controlling for socio-demographic characteristics @sfcrime. **My analysis will focus only on car break-ins rather than all crime reports**, as I believe that these crimes will have an even more pronounced relationship with topography.
 
 ## Data Collection
 
+In order to collect data, we first need to identify our key variables.
+
 ### Important Variables
 
-- **dependent variable**: crime (specifically car break-ins) 
+- **Dependent variable**: Crime (specifically car break-ins) 
 
-- **independent variables**: slope and elevation 
+- **Independent variables**: Slope and elevation 
 
-- **control variables**: median income by census block
+- **Control variables**: Median income by census block
+
+When discussing topography, both elevation and "hilliness", or slope, are necessary for inclusion. This is because it more accurately captures the effect of local level topography, which is supported by Kim & Wo. 
+
+In any econometric analysis, it is vital to control for socio-economic variables. In this case, it could be that higher elevations in the city are more affluent areas, which may have an impact on crime. Thus, we want to include median income as a control variable. 
+
+Here is the regression equation:
+
+$$MotorVehicleTheft_i = \beta_0 + \beta_1Elevation_i + \beta_2Slope_i + \beta_3MedianIncome_i + u_i$$
 
 ### Data Sources
 
-All data for this analysis was retrieved from the [San Francisco Open Data Portal](https://datasf.org/opendata/).
+Crime and elevation data for this analysis were retrieved from the [San Francisco Open Data Portal](https://datasf.org/opendata/).
 
-- [crime](https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783)
-- [elevation contours](https://data.sfgov.org/Energy-and-Environment/Elevation-Contours/rnbg-2qxw)
-- [areas with high slope](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Slopes-of-20-Or-Greater/3vv2-nvev)
+- [Crime Data](https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783) - All crime reports from 2018-01-01 to 2021-11-04.
 
-- [streets](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Streets-Active-and-Retired/3psu-pn9h)
-- [census block](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Census-2010-Blocks-for-San-Francisco/2uzy-uv2r)
+- [Elevation contours](https://data.sfgov.org/Energy-and-Environment/Elevation-Contours/rnbg-2qxw) - 5 ft. elevation contours
+
+- [Areas with high slope](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Slopes-of-20-Or-Greater/3vv2-nvev) - Shapefile with polygons of areas with slopes greater than or equal to 20 percent.
+
+Socio-economic data (median income) was retrieved through the `tidycensus` package via the US Census Bureau.
 
 ## Analysis Plan
+
+The analysis plan steps to address this research question are as follows:
+
+1. Identify question*
+2. Select key variables (based on existing literature)*
+3. Collect data*
+4. **Merge data**
+5. **Visualize simple relationships**
+6. **Test OLS assumptions**
+7. **Conduct regression analysis**
+8. **Interpret Results**
+
+Completed in previous sections*
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE,
@@ -68,10 +94,16 @@ knitr::opts_chunk$set(echo = TRUE,
                       warning = FALSE, 
                       include = TRUE)
 
+options(scipen=999)
+
 library(sf)
 library(tidyverse)
 library(tidycensus)
+library(patchwork)
+library(lubridate)
 ```
+
+### Merge Data
 
 ```{r load data, include = FALSE}
 # EPSG:7132 - NAD83(2011) / San Francisco CS13 (ftUS) - Projected
@@ -81,8 +113,11 @@ crimes <- st_read("data/crime_reports_2018_present/crime_reports_2018_present.sh
 contours <- st_read("data/contours/contours.shp") %>% 
   st_transform(crs = st_crs(7132))
 
+# developments on parcels with slopes of 20%+. Need to buffer to include streets
 slopes_over_20 <- st_read("data/slopes_over_20/slopes_over_20.shp", query = "SELECT objectid as slope_over_20 FROM slopes_over_20") %>% 
-  st_transform(crs = st_crs(7132)) 
+  st_transform(crs = st_crs(7132)) %>% 
+  st_buffer(dist = 75) #%>% 
+  #st_union(by_feature = FALSE)
 
 # census_api_key()
 census_geom <- get_acs(geography = 'tract',
@@ -92,6 +127,8 @@ census_geom <- get_acs(geography = 'tract',
                        geometry = TRUE) %>% 
   st_transform(crs = st_crs(7132))
 ```
+
+The following code chunk demonstrates how the crime, elevation, slope, and income datasets were merged.
 
 ```{r merge data}
 # Find index of nearest contour to each crime
@@ -104,25 +141,86 @@ crimes <- crimes %>%
   mutate(elev = contours[elev,]$elevation,
          slope_over_20 = case_when(is.na(slope_over_20) ~ 0, TRUE ~ 1)) %>%
   rename(median_income = estimate) %>% 
-  select(slope_over_20, median_income, elev, geometry)
+  select(date_incid, slope_over_20, median_income, elev, geometry)
 ```
 
-### Visualizations
+### Visualize simple relationships
 
 ```{r}
+# Group by income only
+income_summary <- crimes %>% 
+  st_drop_geometry() %>% 
+  group_by(median_income) %>% 
+  summarize(count = n())
+
+income_plot = ggplot(data = income_summary, aes(x = median_income, y = count)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  theme_classic() +
+  labs(title = "Crime and Median Income",
+       x = "Median Income (USD)",
+       y = "Number of Break-Ins")
+
+# Group by elevation
+elev_summary <- crimes %>% 
+  st_drop_geometry() %>% 
+  group_by(elev) %>% 
+  summarize(count = n())
+
+elev_plot <- ggplot(data = elev_summary, aes(x = elev, y = count)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  theme_classic() +
+  labs(title = "Crime and Elevation",
+       x = "Elevation (feet)",
+       y = "Number of Break-Ins")
+
+# Group by slope
+slope_summary <- crimes %>% 
+  st_drop_geometry() %>% 
+  group_by(slope_over_20) %>% 
+  summarize(count = n())
+
+slope_plot <- ggplot(data = slope_summary, aes(x = slope_over_20, y = count)) +
+  geom_col() +
+  #geom_smooth(method = "lm") +
+  theme_classic() +
+  #scale_x_discrete(c(0.0,1.0)) +
+  labs(title = "Crime and Slope",
+       x = "Crime in High Slope Area",
+       y = "Number of Break-Ins")
+
+elev_plot + (slope_plot / income_plot)
+```
+
+```{r}
+# Group by all three variables
 crimes_summary <- crimes %>% 
   st_drop_geometry() %>% 
   group_by(slope_over_20, median_income, elev) %>% 
   summarize(count = n())
 
-ggplot(data = crimes_summary, aes(x = median_income, y = count)) +
-  geom_point()
+crimes_ts <- crimes %>% 
+  st_drop_geometry() %>% 
+  group_by(date_incid) %>% 
+  summarize(count = n())
 
-ggplot(data = crimes_summary, aes(x = elev, y = count)) +
-  geom_point()
+ts_plot <- ggplot(data = crimes_ts, aes(x = date_incid, y = count)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  theme_classic()
 
-ggplot(data = crimes_summary, aes(x = slope_over_20, y = count)) +
-  geom_point()
+crimes_monthly <- crimes_ts %>% 
+  mutate(month = lubridate::floor_date(date_incid, "month")) %>% 
+  group_by(month) %>% 
+  summarize(monthly_sum = sum(count))
+
+monthly_plot <- ggplot(data = crimes_monthly, aes(x = month, y = monthly_sum)) +
+  geom_point() +
+  #geom_smooth(method = "lm") +
+  theme_classic()
+
+ts_plot + monthly_plot
 ```
 
 ```{r}
@@ -136,9 +234,17 @@ ggplot(data = crimes) +
   geom_sf(aes(color = median_income))
 ```
 
+### Test OLS Assumptions
+
+### Regression Analysis
 
 ## Results
   
+```{r}
+model <- lm(formula = count ~ elev + slope_over_20 + median_income, data = crimes_summary)
+
+summary(model)
+```
 
 
 
