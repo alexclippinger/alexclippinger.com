@@ -1,7 +1,7 @@
 ---
 title: "San Francisco Crime and Topography"
 description: |
-  Visitors and Residents of San Francisco are familiar with the hilly terrain and roads thatclimb into the clouds. But does this topography have an effect on the likelihood of car break-ins? This regression analysis seeks to provide insights into this question.
+  Visitors and Residents of San Francisco are familiar with the hilly terrain and roads that climb into the clouds. But does this topography have an effect on the likelihood of car break-ins? This regression analysis seeks to provide insights into this question.
 author:
   - name: Alex Clippinger
     url: {}
@@ -39,7 +39,7 @@ My research question is: "What is the relationship between topography and car br
 
 This analysis will focus on the link between elevation and "hilliness" in determining the likelihood of car break-ins in San Francisco. Both terrain and motor vehicle crimes are ubiquitous when discussing living or visiting San Francisco. This relationship has been coined by the phrase - ["Crime Doesn't Climb"](https://github.com/gwintrob/crime-doesnt-climb).
 
-In April 2021, Young-An Kim & James C. Wo published [Topography and crime in place: The effects of elevation, slope, and betweenness in San Francisco street segments](https://www.tandfonline.com/doi/full/10.1080/07352166.2021.1901591). Their study provides a robust regression analysis on the effects of elevation, slope, and "hilliness" on crime, controlling for socio-demographic characteristics @sfcrime. **My analysis will focus only on car break-ins rather than all crime reports**, as I believe that these crimes will have an even more pronounced relationship with topography.
+In April 2021, Young-An Kim & James C. Wo published [Topography and crime in place: The effects of elevation, slope, and betweenness in San Francisco street segments](https://www.tandfonline.com/doi/full/10.1080/07352166.2021.1901591). Their study provides a robust regression analysis on the effects of elevation, slope, and "hilliness" on crime, controlling for socio-demographic characteristics @sfcrime. **My analysis will focus only on car break-ins rather than all crime reports**, as I believe that these crimes will have an even more pronounced relationship with topography. Their analysis also delved deeper into street connectivity and the city's road networks as factors of crime occurrence.
 
 ## Data Collection
 
@@ -63,13 +63,13 @@ $$MotorVehicleTheft_i = \beta_0 + \beta_1Elevation_i + \beta_2Slope_i + \beta_3M
 
 ### Data Sources
 
-Crime and elevation data for this analysis were retrieved from the [San Francisco Open Data Portal](https://datasf.org/opendata/).
+- Crime and elevation data for this analysis were retrieved from the [San Francisco Open Data Portal](https://datasf.org/opendata/).
 
-- [Crime](https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783) - All crime reports from 2018-01-01 to 2021-11-04.
+  - [Crime](https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783) - All crime reports from 2018-01-01 to 2021-11-04.
 
-- [Elevation contours](https://data.sfgov.org/Energy-and-Environment/Elevation-Contours/rnbg-2qxw) - 5 ft. elevation contours, which were also used to derive **slope**.
+  - [Elevation contours](https://data.sfgov.org/Energy-and-Environment/Elevation-Contours/rnbg-2qxw) - 5 ft. elevation contours, which were also used to derive **slope**. This was achieved through a geo-processing workflow in QGIS (see [this video](https://www.youtube.com/watch?v=MvnW6w1_yJg) for a walk through of this process).
 
-- Median income: Retrieved through the `tidycensus` package via the US Census Bureau.
+- Median income by census tract was retrieved through the `tidycensus` package via the US Census Bureau.
 
 ## Analysis Plan
 
@@ -107,7 +107,7 @@ library(jtools)
 
 ### Merge Data
 
-```{r load data, include = FALSE}
+```{r load data, echo = FALSE}
 # EPSG:7132 - NAD83(2011) / San Francisco CS13 (ftUS) - Projected
 #crimes <- st_read("data/crime_reports_2018_present/crime_reports_2018_present.shp", query = "SELECT date_incid FROM crime_reports_2018_present WHERE incident_2 = 'Motor Vehicle Theft'") %>% 
 #  st_transform(crs = st_crs(7132))
@@ -146,7 +146,7 @@ crimes <- crimes %>%
 
 ### Visualize simple relationships
 
-The following plots show the simple relationships between count of car break ins and the three independent variables (elevation, slope, and median income). We see there is a negative correlation between elevation and crime. It is possible that this relationship is not linear, so this variable may fit better if we take the natural log. Since slope in this analysis is a binary variable, we simply see that there are more crimes in areas that are not designated high slope. Lastly, we observe a weak negative correlation between median income and car break-ins.
+The following plots show the simple relationships between count of car break ins and the three independent variables (elevation, slope, and median income). 
 
 ```{r}
 # Group by income only
@@ -194,7 +194,9 @@ slope_plot <- ggplot(data = slope_summary, aes(x = slope, y = count)) +
 elev_plot + (slope_plot / income_plot)
 ```
 
-The following plots show crimes over the time period of our data. We can see that there is a slight upward trend to our crime data.
+We see there is a negative correlation between elevation and crime. It is possible that this relationship is not linear, so this variable may fit better if we take the natural log. Since slope in this analysis is a binary variable, we simply see that there are more crimes in areas that are not designated high slope. Lastly, we observe a weak negative correlation between median income and car break-ins.
+
+The following plots show crimes over the time period of our data. 
 
 ```{r}
 # Group by all three variables
@@ -234,6 +236,8 @@ monthly_plot <- ggplot(data = crimes_monthly, aes(x = month, y = monthly_sum)) +
 
 ts_plot + monthly_plot
 ```
+
+We can see that there is an upward trend to our crime data over the time period of our data.
 
 ```{r}
 bbox <- st_bbox(census_geom)
