@@ -49,7 +49,7 @@ In order to collect data, we first need to identify our key variables.
 
 - **Dependent variable**: Crime (specifically car break-ins) 
 
-- **Independent variables**: Slope and elevation 
+- **Independent variables**: Elevation and slope
 
 - **Control variables**: Median income by census block
 
@@ -65,13 +65,11 @@ $$MotorVehicleTheft_i = \beta_0 + \beta_1Elevation_i + \beta_2Slope_i + \beta_3M
 
 Crime and elevation data for this analysis were retrieved from the [San Francisco Open Data Portal](https://datasf.org/opendata/).
 
-- [Crime Data](https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783) - All crime reports from 2018-01-01 to 2021-11-04.
+- [Crime](https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783) - All crime reports from 2018-01-01 to 2021-11-04.
 
-- [Elevation contours](https://data.sfgov.org/Energy-and-Environment/Elevation-Contours/rnbg-2qxw) - 5 ft. elevation contours
+- [Elevation contours](https://data.sfgov.org/Energy-and-Environment/Elevation-Contours/rnbg-2qxw) - 5 ft. elevation contours, which were also used to derive **slope**.
 
-- [Areas with high slope](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Slopes-of-20-Or-Greater/3vv2-nvev) - Shapefile with polygons of areas with slopes greater than or equal to 20 percent.
-
-Socio-economic data (median income) was retrieved through the `tidycensus` package via the US Census Bureau.
+- Median income: Retrieved through the `tidycensus` package via the US Census Bureau.
 
 ## Analysis Plan
 
@@ -110,19 +108,19 @@ library(xtable)
 
 ```{r load data, include = FALSE}
 # EPSG:7132 - NAD83(2011) / San Francisco CS13 (ftUS) - Projected
-crimes <- st_read("data/crime_reports_2018_present/crime_reports_2018_present.shp", query = "SELECT date_incid FROM crime_reports_2018_present WHERE incident_2 = 'Motor Vehicle Theft'") %>% 
-  st_transform(crs = st_crs(7132))
+#crimes <- st_read("data/crime_reports_2018_present/crime_reports_2018_present.shp", query = "SELECT date_incid FROM crime_reports_2018_present WHERE incident_2 = 'Motor Vehicle Theft'") %>% 
+#  st_transform(crs = st_crs(7132))
+
+crimes <- st_read("data/crime_reports_2018_present/motor_vehicle_theft/motor_vehicle_theft_w_slope.shp", query = "SELECT date_incid, slope FROM motor_vehicle_theft_w_slope WHERE slope IS NOT NULL")
 
 contours <- st_read("data/contours/contours.shp") %>% 
   st_transform(crs = st_crs(7132))
 
 # developments on parcels with slopes of 20%+. Need to buffer to include streets
-slopes_over_20 <- st_read("data/slopes_over_20/slopes_over_20.shp", query = "SELECT objectid as slope_over_20 FROM slopes_over_20") %>% 
-  st_transform(crs = st_crs(7132)) #%>% 
-  #st_buffer(dist = 75) #%>% 
-  #st_union(by_feature = FALSE)
+#slopes_over_20 <- st_read("data/slopes_over_20/buffered_slope_areas.shp", query = "SELECT objectid as slope_over_20 FROM buffered_slope_areas") %>% 
+#  st_transform(crs = st_crs(7132)) 
 
-# census_api_key()
+# need to run census_api_key() first
 census_geom <- get_acs(geography = 'tract',
                        variables = "B19013_001",
                        state = "CA",
@@ -139,12 +137,10 @@ elev <- st_nearest_feature(x = crimes, y = contours)
 
 # Add elevation and binary slope columns
 crimes <- crimes %>% 
-  st_join(y = slopes_over_20, join = st_within, left = TRUE) %>% 
   st_join(y = census_geom, join = st_within, left = TRUE) %>% 
-  mutate(elev = contours[elev,]$elevation,
-         slope_over_20 = case_when(is.na(slope_over_20) ~ 0, TRUE ~ 1)) %>%
+  mutate(elev = contours[elev,]$elevation) %>% 
   rename(median_income = estimate) %>% 
-  select(date_incid, slope_over_20, median_income, elev, geometry)
+  select(date_incid, slope, median_income, elev, geometry)
 ```
 
 ### Visualize simple relationships
@@ -160,7 +156,7 @@ income_summary <- crimes %>%
 
 income_plot = ggplot(data = income_summary, aes(x = median_income, y = count)) +
   geom_point() +
-  geom_smooth(method = "lm") +
+  geom_smooth(method = "lm", se = FALSE) +
   theme_classic() +
   labs(title = "Crime and Median Income",
        x = "Median Income (USD)",
@@ -174,7 +170,7 @@ elev_summary <- crimes %>%
 
 elev_plot <- ggplot(data = elev_summary, aes(x = elev, y = count)) +
   geom_point() +
-  geom_smooth(method = "lm") +
+  geom_smooth(method = "lm", se = FALSE) +
   theme_classic() +
   labs(title = "Crime and Elevation",
        x = "Elevation (feet)",
@@ -183,16 +179,15 @@ elev_plot <- ggplot(data = elev_summary, aes(x = elev, y = count)) +
 # Group by slope
 slope_summary <- crimes %>% 
   st_drop_geometry() %>% 
-  group_by(slope_over_20) %>% 
+  group_by(slope) %>% 
   summarize(count = n())
 
-slope_plot <- ggplot(data = slope_summary, aes(x = slope_over_20, y = count)) +
-  geom_col() +
-  #geom_smooth(method = "lm") +
+slope_plot <- ggplot(data = slope_summary, aes(x = slope, y = count)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
   theme_classic() +
-  #scale_x_discrete(c(0.0,1.0)) +
   labs(title = "Crime and Slope",
-       x = "Crime in High Slope Area",
+       x = "Slope (percent)",
        y = "Number of Break-Ins")
 
 elev_plot + (slope_plot / income_plot)
@@ -204,7 +199,7 @@ The following plots show crimes over the time period of our data. We can see tha
 # Group by all three variables
 crimes_summary <- crimes %>% 
   st_drop_geometry() %>% 
-  group_by(slope_over_20, median_income, elev) %>% 
+  group_by(slope, median_income, elev) %>% 
   summarize(count = n())
 
 # Group by date
@@ -216,7 +211,10 @@ crimes_ts <- crimes %>%
 ts_plot <- ggplot(data = crimes_ts, aes(x = date_incid, y = count)) +
   geom_point() +
   geom_smooth(method = "lm") +
-  theme_classic()
+  theme_classic() +
+  labs(title = "Daily Crime 2018-Present",
+       x = "Date (daily)",
+       y = "Number of Break-Ins")
 
 crimes_monthly <- crimes_ts %>% 
   mutate(month = lubridate::floor_date(date_incid, "month")) %>% 
@@ -227,7 +225,10 @@ monthly_plot <- ggplot(data = crimes_monthly, aes(x = month, y = monthly_sum)) +
   geom_point() +
   geom_line() + 
   #geom_smooth(method = "lm") +
-  theme_classic()
+  theme_classic() +
+  labs(title = "Monthly Crime 2018-Present",
+       x = "Date (monthly)",
+       y = "Number of Break-Ins")
 
 ts_plot + monthly_plot
 ```
@@ -242,7 +243,7 @@ elev_map <- ggplot(data = crimes) +
   labs(title = "Crime by Elevation")
 
 slope_map <- ggplot(data = crimes) +
-  geom_sf(aes(color = slope_over_20)) +
+  geom_sf(aes(color = slope)) +
   theme_minimal() +
   theme(axis.text = element_blank(),
         legend.position = "bottom",
@@ -263,13 +264,15 @@ elev_map + (slope_map / income_map)
 ### Regression Analysis
 
 ```{r}
-model <- lm(formula = count ~ elev + slope_over_20 + median_income, data = crimes_summary)
+model <- lm(formula = count ~ elev + slope + median_income, data = crimes_summary)
 
 model %>% 
   summary() %>% 
   xtable() %>% 
   kable()
 ```
+
+The coefficients above can be interpreted as the effect of the independent variables on car break-ins.
 
 ### Test OLS Assumptions
 
@@ -287,7 +290,7 @@ We assume that assumptions 1 and 2 hold. Assumption 3 holds because we see that 
 
 ```{r}
 crime_lm <- crimes_summary %>% 
-  add_predictions(model = lm(count ~ elev + slope_over_20 + median_income, data = crimes_summary)) %>% 
+  add_predictions(model = lm(count ~ elev + slope + median_income, data = crimes_summary)) %>% 
   mutate(res = count - pred)
 
 ggplot(data = crime_lm, aes(x = res)) +
@@ -318,7 +321,7 @@ y1 <- ggplot(data = crime_lm, aes(x = elev, y = res)) +
   geom_point() + theme_classic() + 
   labs(title = "Residuals vs. Explanatory Variable (Elevation)")
 
-y2 <- ggplot(data = crime_lm, aes(x = slope_over_20, y = res)) +
+y2 <- ggplot(data = crime_lm, aes(x = slope, y = res)) +
   geom_point() + theme_classic() + 
   labs(title = "Residuals vs. Explanatory Variable (Slope)")
 
