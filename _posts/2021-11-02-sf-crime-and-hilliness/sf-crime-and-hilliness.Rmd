@@ -1,7 +1,7 @@
 ---
-title: "San Francisco Crime and Hilliness"
+title: "San Francisco Crime and Topography"
 description: |
-  Anyone who has been to San Francisco is familiar with the hilly terrain and roads that seem to climb into the clouds. But does this topography have an effect on where car break-ins happen? I wanted to take a look at this relationship with visualizations and a linear regression analysis.
+  Visitors and Residents of San Francisco are familiar with the hilly terrain and roads thatclimb into the clouds. But does this topography have an effect on the likelihood of car break-ins? This regression analysis seeks to provide insights into this question.
 author:
   - name: Alex Clippinger
     url: {}
@@ -102,6 +102,7 @@ library(lubridate)
 library(modelr)
 library(kableExtra)
 library(xtable)
+library(jtools)
 ```
 
 ### Merge Data
@@ -219,7 +220,8 @@ ts_plot <- ggplot(data = crimes_ts, aes(x = date_incid, y = count)) +
 crimes_monthly <- crimes_ts %>% 
   mutate(month = lubridate::floor_date(date_incid, "month")) %>% 
   group_by(month) %>% 
-  summarize(monthly_sum = sum(count))
+  summarize(monthly_sum = sum(count)) %>% 
+  filter(month != "2021-11-01")
 
 monthly_plot <- ggplot(data = crimes_monthly, aes(x = month, y = monthly_sum)) +
   geom_point() +
@@ -234,31 +236,38 @@ ts_plot + monthly_plot
 ```
 
 ```{r}
-elev_map <- ggplot(data = crimes) +
-  geom_sf(aes(color = elev)) +
-  theme_minimal() +
-  theme(axis.text = element_blank(),
-        legend.position = "bottom",
-        legend.title = element_blank()) +
-  labs(title = "Crime by Elevation")
+bbox <- st_bbox(census_geom)
 
-slope_map <- ggplot(data = crimes) +
-  geom_sf(aes(color = slope)) +
-  theme_minimal() +
-  theme(axis.text = element_blank(),
-        legend.position = "bottom",
-        legend.title = element_blank()) +
-  labs(title = "Crime by Slope")
+library(tmap)
+tmap_mode("view")
+tm_shape(crimes)+
+  tm_dots("elev")
 
-income_map <- ggplot(data = crimes) +
-  geom_sf(aes(color = median_income)) +
-  theme_minimal() +
-  theme(axis.text = element_blank(),
-        legend.position = "bottom",
-        legend.title = element_blank()) +
-  labs(title = "Crime by Median Income")
+#elev_map <- ggplot(data = crimes) +
+#  geom_sf(aes(color = elev)) +
+#  theme_minimal() +
+#  theme(axis.text = element_blank(),
+#        legend.position = "bottom",
+#        legend.title = element_blank()) +
+#  labs(title = "Crime by Elevation")
 
-elev_map + (slope_map / income_map)
+#slope_map <- ggplot(data = crimes) +
+#  geom_sf(aes(color = slope)) +
+#  theme_minimal() +
+#  theme(axis.text = element_blank(),
+#        legend.position = "bottom",
+#        legend.title = element_blank()) +
+#  labs(title = "Crime by Slope")
+
+#income_map <- ggplot(data = crimes) +
+#  geom_sf(aes(color = median_income)) +
+#  theme_minimal() +
+#  theme(axis.text = element_blank(),
+#        legend.position = "bottom",
+#        legend.title = element_blank()) +
+#  labs(title = "Crime by Median Income")
+
+#elev_map #+ (slope_map / income_map)
 ```
 
 ### Regression Analysis
@@ -266,11 +275,22 @@ elev_map + (slope_map / income_map)
 ```{r}
 model <- lm(formula = count ~ elev + slope + median_income, data = crimes_summary)
 
-model %>% 
-  summary() %>% 
-  xtable() %>% 
-  kable()
+#model %>% 
+#  summary() %>% 
+#  xtable() %>% 
+#  kable()
+
+summ(model) 
 ```
+
+Transformation
+
+```{r}
+model_transformed <- lm(formula = log(count) ~ elev + slope + median_income, data = crimes_summary)
+
+summ(model_transformed)
+```
+
 
 The coefficients above can be interpreted as the effect of the independent variables on car break-ins.
 
@@ -307,7 +327,10 @@ The residuals do not appear to be normally distributed. There is a long right ta
 ggplot(data = crime_lm, aes(sample = res)) +
   geom_qq() +
   geom_qq_line() +
-  theme_classic()
+  theme_classic() +
+  labs(title = "QQ Plot",
+       x = "Theoretical Normal Distribution",
+       y = "Analysis Distribution")
 ```
 
 The qq plot shows that the distribution is mostly normally distributed for values up to approximately 2. This suggests that the model is not normally distributed for extreme high values.
@@ -315,19 +338,27 @@ The qq plot shows that the distribution is mostly normally distributed for value
 ```{r}
 x <- ggplot(data = crime_lm, aes(x = count, y = res)) +
   geom_point() + theme_classic() +
-  labs(title = "Residuals vs Dependent Variable")
+  labs(title = "Residuals vs Dependent (Break-Ins)",
+       x = "Number of Break-Ins",
+       y = "Residual Error")
 
 y1 <- ggplot(data = crime_lm, aes(x = elev, y = res)) +
   geom_point() + theme_classic() + 
-  labs(title = "Residuals vs. Explanatory Variable (Elevation)")
+  labs(title = "Residuals vs. Elevation",
+       x = "Elevation (feet)",
+       y = "Residual Error")
 
 y2 <- ggplot(data = crime_lm, aes(x = slope, y = res)) +
   geom_point() + theme_classic() + 
-  labs(title = "Residuals vs. Explanatory Variable (Slope)")
+  labs(title = "Residuals vs. Slope",
+       x = "Slope (percent)",
+       y = "Residual Error")
 
 y3 <- ggplot(data = crime_lm, aes(x = median_income, y = res)) +
   geom_point() + theme_classic() + 
-  labs(title = "Residuals vs. Explanatory Variable (Income)")
+  labs(title = "Residuals vs. Income",
+       x = "Median Income",
+       y = "Residual Error")
 
 (x + y1) / (y2 + y3)
 ```
