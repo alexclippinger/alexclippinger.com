@@ -19,6 +19,41 @@ categories:
   - GIS
 ---
 
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE, 
+                      warning = FALSE, 
+                      include = TRUE)
+
+options(scipen=999)
+
+library(sf)
+library(tidyverse)
+library(tidycensus)
+library(patchwork)
+library(lubridate)
+library(modelr)
+library(kableExtra)
+library(xtable)
+library(jtools)
+library(psych)
+```
+
+```{r load data, include = FALSE}
+crimes <- st_read("data/crime_reports_2018_present/motor_vehicle_theft/motor_vehicle_theft_w_slope.shp", query = "SELECT date_incid, slope FROM motor_vehicle_theft_w_slope WHERE slope IS NOT NULL")
+
+contours <- st_read("data/contours/contours.shp") %>% 
+  st_transform(crs = st_crs(7132))
+
+# To access ACS data through tidycensus, first an API key needs to be registered.
+census_geom <- get_acs(geography = 'tract',
+                       variables = "B19013_001",
+                       state = "CA",
+                       county = "San Francisco",
+                       geometry = TRUE) %>% 
+  st_transform(crs = st_crs(7132))
+```
+
 <figure>
 
 <img src="./images/san-francisco-hills.jpg" alt="A particularly steep San Francisco street" style="height: 534px; width:800px;"/>
@@ -39,11 +74,13 @@ My research question is: "What is the relationship between topography and car br
 
 This analysis will focus on the link between elevation and "hilliness" in determining the likelihood of car break-ins in San Francisco. Both terrain and motor vehicle crimes are ubiquitous when discussing living or visiting San Francisco. This relationship has been coined by the phrase - ["Crime Doesn't Climb"](https://github.com/gwintrob/crime-doesnt-climb).
 
-In April 2021, Young-An Kim & James C. Wo published [Topography and crime in place: The effects of elevation, slope, and betweenness in San Francisco street segments](https://www.tandfonline.com/doi/full/10.1080/07352166.2021.1901591). Their study provides a robust regression analysis on the effects of elevation, slope, and "hilliness" on crime, controlling for socio-demographic characteristics @sfcrime. **My analysis will focus only on car break-ins rather than all crime reports**, as I believe that these crimes will have an even more pronounced relationship with topography. Their analysis also delved deeper into street connectivity and the city's road networks as factors of crime occurrence.
+In April 2021, Young-An Kim & James C. Wo published [Topography and crime in place: The effects of elevation, slope, and betweenness in San Francisco street segments](https://www.tandfonline.com/doi/full/10.1080/07352166.2021.1901591). Their study provides a robust regression analysis on the effects of elevation, slope, and "hilliness" on crime, controlling for socio-demographic characteristics @sfcrime. However, their analysis did not separate by specific crime categories and instead included all types of crime, including violent, nonviolent, property, etc.  **My analysis will focus only on car break-ins rather than all crime reports**, as I believe that these crimes will have a more significant relationship with topography.
+
+Understanding the relationship between topography and car break-ins can motivate local-level policy decisions, such as implementing measures proven to reduce crime in areas identified as having characteristics more susceptible to break-ins.
 
 ## Data Collection
 
-In order to collect data, we first need to identify our key variables.
+The variables below are the key measures of interest in our analysis:
 
 ### Important Variables
 
@@ -51,7 +88,7 @@ In order to collect data, we first need to identify our key variables.
 
 - **Independent variables**: Elevation and slope
 
-- **Control variables**: Median income by census block
+- **Control variable**: Median income
 
 When discussing topography, both elevation and "hilliness", or slope, are necessary for inclusion. This is because it more accurately captures the effect of local level topography, which is supported by Kim & Wo. 
 
@@ -65,11 +102,18 @@ $$MotorVehicleTheft_i = \beta_0 + \beta_1Elevation_i + \beta_2Slope_i + \beta_3M
 
 - Crime and elevation data for this analysis were retrieved from the [San Francisco Open Data Portal](https://datasf.org/opendata/).
 
-  - [Crime](https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783) - All crime reports from 2018-01-01 to 2021-11-04.
+  - [Crime](https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783) 
+    - All crime reports from 2018-01-01 to 2021-11-04.
+      - Queried to only include "Motor Vehicle Theft"
+    - Locations aggregated to street intersections.
 
-  - [Elevation contours](https://data.sfgov.org/Energy-and-Environment/Elevation-Contours/rnbg-2qxw) - 5 ft. elevation contours, which were also used to derive **slope**. This was achieved through a geo-processing workflow in QGIS (see [this video](https://www.youtube.com/watch?v=MvnW6w1_yJg) for a walk through of this process).
+  - [Elevation contours](https://data.sfgov.org/Energy-and-Environment/Elevation-Contours/rnbg-2qxw) 
+    - 5 ft. elevation contours
+    - Also used to derive **slope**. This was achieved through a geo-processing workflow in QGIS (see [this video](https://www.youtube.com/watch?v=MvnW6w1_yJg) for a walk through of this process).
 
-- Median income by census tract was retrieved through the `tidycensus` package via the US Census Bureau.
+- Median income
+  - Retrieved through the `tidycensus` package via the US Census Bureau.
+  - census Tract detail from the 5-year 2019 ACS data.
 
 ## Analysis Plan
 
@@ -79,56 +123,15 @@ The analysis plan steps to address this research question are as follows:
 2. Select key variables (based on existing literature)*
 3. Collect data*
 4. **Merge data**
-5. **Visualize simple relationships**
-6. **Test OLS assumptions**
-7. **Conduct regression analysis**
-8. **Interpret Results**
+5. **Data description**
+6. **Visualize simple relationships**
+7. **Test OLS assumptions**
+8. **Conduct regression analysis**
+9. **Interpret Results**
 
 Completed in previous sections*
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE,
-                      message = FALSE, 
-                      warning = FALSE, 
-                      include = TRUE)
-
-options(scipen=999)
-
-library(sf)
-library(tidyverse)
-library(tidycensus)
-library(patchwork)
-library(lubridate)
-library(modelr)
-library(kableExtra)
-library(xtable)
-library(jtools)
-```
-
 ### Merge Data
-
-```{r load data, echo = FALSE}
-# EPSG:7132 - NAD83(2011) / San Francisco CS13 (ftUS) - Projected
-#crimes <- st_read("data/crime_reports_2018_present/crime_reports_2018_present.shp", query = "SELECT date_incid FROM crime_reports_2018_present WHERE incident_2 = 'Motor Vehicle Theft'") %>% 
-#  st_transform(crs = st_crs(7132))
-
-crimes <- st_read("data/crime_reports_2018_present/motor_vehicle_theft/motor_vehicle_theft_w_slope.shp", query = "SELECT date_incid, slope FROM motor_vehicle_theft_w_slope WHERE slope IS NOT NULL")
-
-contours <- st_read("data/contours/contours.shp") %>% 
-  st_transform(crs = st_crs(7132))
-
-# developments on parcels with slopes of 20%+. Need to buffer to include streets
-#slopes_over_20 <- st_read("data/slopes_over_20/buffered_slope_areas.shp", query = "SELECT objectid as slope_over_20 FROM buffered_slope_areas") %>% 
-#  st_transform(crs = st_crs(7132)) 
-
-# need to run census_api_key() first
-census_geom <- get_acs(geography = 'tract',
-                       variables = "B19013_001",
-                       state = "CA",
-                       county = "San Francisco",
-                       geometry = TRUE) %>% 
-  st_transform(crs = st_crs(7132))
-```
 
 The following code chunk demonstrates how the crime, elevation, slope, and income datasets were merged.
 
@@ -144,12 +147,72 @@ crimes <- crimes %>%
   select(date_incid, slope, median_income, elev, geometry)
 ```
 
+### Data description
+
+The summary statistics for the data are provided below.
+
+```{r}
+crimes %>% 
+  st_drop_geometry() %>% 
+  select(slope, elev, median_income) %>% 
+  psych::describe(fast=TRUE) %>% 
+  kable(col.names = , caption = "Summary statistics for Slope, Elevation, and Median Income variables") %>%
+  kable_paper(full_width = FALSE) %>%
+  column_spec(1, bold = T) %>%
+  row_spec(0, bold = T, color = "black") %>%
+  row_spec(c(1,2), bold = T, background = "#E5E5E5")
+```
+
+```{r}
+slope_box <- ggplot(data = crimes, aes(x = "", y = slope)) +
+  geom_boxplot() +
+  geom_jitter(aes(color = slope), 
+              width = 0.2,
+              size=0.4, 
+              alpha=0.025, 
+              show.legend = FALSE) +
+  theme_classic() +
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.title.y = element_blank()) +
+  labs(x = "Slope (percent)")
+
+elev_box <- ggplot(data = crimes, aes(x = "", y = elev)) +
+  geom_boxplot() +
+  geom_jitter(aes(color = elev), 
+              width = 0.2,
+              size=0.4, 
+              alpha=0.025, 
+              show.legend = FALSE) +
+  theme_classic() +
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.title.y = element_blank()) +
+  labs(x = "Elevation (feet)")
+
+income_box <- ggplot(data = crimes, aes(x = "", y = median_income)) +
+  geom_boxplot() +
+  geom_jitter(aes(color = median_income), 
+              width = 0.2,
+              size=0.4, 
+              alpha=0.025, 
+              show.legend = FALSE) +
+  theme_classic() +
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.title.y = element_blank()) +
+  labs(x = "Median Income (USD)")
+
+elev_box + slope_box + income_box + plot_annotation(title = 'Boxplots of Independent Variables',
+                                                    theme = theme(plot.title = element_text(hjust = 0.5)))
+```
+
 ### Visualize simple relationships
 
 The following plots show the simple relationships between count of car break ins and the three independent variables (elevation, slope, and median income). 
 
 ```{r}
-# Group by income only
+# Group by income
 income_summary <- crimes %>% 
   st_drop_geometry() %>% 
   group_by(median_income) %>% 
@@ -213,7 +276,7 @@ crimes_ts <- crimes %>%
 
 ts_plot <- ggplot(data = crimes_ts, aes(x = date_incid, y = count)) +
   geom_point() +
-  geom_smooth(method = "lm") +
+  geom_smooth(method = "lm", se = FALSE) +
   theme_classic() +
   labs(title = "Daily Crime 2018-Present",
        x = "Date (daily)",
@@ -228,7 +291,7 @@ crimes_monthly <- crimes_ts %>%
 monthly_plot <- ggplot(data = crimes_monthly, aes(x = month, y = monthly_sum)) +
   geom_point() +
   geom_line() + 
-  #geom_smooth(method = "lm") +
+  geom_smooth(method = "lm", se = FALSE) +
   theme_classic() +
   labs(title = "Monthly Crime 2018-Present",
        x = "Date (monthly)",
@@ -240,38 +303,13 @@ ts_plot + monthly_plot
 We can see that there is an upward trend to our crime data over the time period of our data.
 
 ```{r}
-bbox <- st_bbox(census_geom)
+#bbox <- st_bbox(census_geom)
 
 library(tmap)
 tmap_mode("view")
+
 tm_shape(crimes)+
   tm_dots("elev")
-
-#elev_map <- ggplot(data = crimes) +
-#  geom_sf(aes(color = elev)) +
-#  theme_minimal() +
-#  theme(axis.text = element_blank(),
-#        legend.position = "bottom",
-#        legend.title = element_blank()) +
-#  labs(title = "Crime by Elevation")
-
-#slope_map <- ggplot(data = crimes) +
-#  geom_sf(aes(color = slope)) +
-#  theme_minimal() +
-#  theme(axis.text = element_blank(),
-#        legend.position = "bottom",
-#        legend.title = element_blank()) +
-#  labs(title = "Crime by Slope")
-
-#income_map <- ggplot(data = crimes) +
-#  geom_sf(aes(color = median_income)) +
-#  theme_minimal() +
-#  theme(axis.text = element_blank(),
-#        legend.position = "bottom",
-#        legend.title = element_blank()) +
-#  labs(title = "Crime by Median Income")
-
-#elev_map #+ (slope_map / income_map)
 ```
 
 ### Regression Analysis
@@ -279,12 +317,15 @@ tm_shape(crimes)+
 ```{r}
 model <- lm(formula = count ~ elev + slope + median_income, data = crimes_summary)
 
-#model %>% 
-#  summary() %>% 
-#  xtable() %>% 
-#  kable()
+summ(model, digits = 7) 
+```
 
-summ(model) 
+No median income
+
+```{r}
+model <- lm(formula = count ~ elev + slope, data = crimes_summary)
+
+summ(model, digits = 7) 
 ```
 
 Transformation
@@ -292,7 +333,7 @@ Transformation
 ```{r}
 model_transformed <- lm(formula = log(count) ~ elev + slope + median_income, data = crimes_summary)
 
-summ(model_transformed)
+summ(model_transformed, digits = 7)
 ```
 
 
@@ -370,6 +411,19 @@ y3 <- ggplot(data = crime_lm, aes(x = median_income, y = res)) +
 Since assumptions 1, 2, and 3 appear to be satisfied, using OLS in this case is an unbiased estimator. However, residual plots indicate that assumption 4 may not be satisfied and therefore OLS may not be the estimator with lowest variance. Thus, an alternative estimator to OLS may provide estimates of the true population parameters with less variance.
 
 ## Results
+
+- Interpret the simple visualizations
+- Interpret the R^2 of the two models
+- Interpret the OLS assumptions
+- Conclusions: What are our predicted effects of independent variables on dependent
+- Conclusions: What are the studies flaws? Biases? 
+- Conclusions: What are possibilities for improvement
+
+- Add citations for data sources (SF Data Portal and US Census(?))
+- Finish in project interpretation
+
+- Review rubric
+
   
 
 
