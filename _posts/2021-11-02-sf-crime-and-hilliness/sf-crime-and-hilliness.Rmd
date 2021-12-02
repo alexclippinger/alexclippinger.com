@@ -73,10 +73,10 @@ This analysis will follow the specific steps outlined in Table 1 below:
 ```{r}
 data.frame("Step" = c(1:9),
            "Description" = c("Identify research question", 
-                             "Select key variables (based on existing literature)",
+                             "Select key variables",
                              "Collect data",
                              "Merge data",
-                             "Data description",
+                             "Describe data",
                              "Visualize relationships",
                              "Test OLS assumptions",
                              "Conduct regression analysis",
@@ -157,7 +157,7 @@ crimes <- crimes %>%
   select(date_incid, slope, median_income, elev, geometry)
 ```
 
-## 5. Data description
+## 5. Describe data
 
 The summary statistics for the data are provided in Table 3 below.
 
@@ -174,13 +174,13 @@ crimes %>%
   row_spec(0, bold = T, color = "black")
 ```
 
-We can see in the **Count** column that there are 24,454 total break-ins in our data, with some missing values for median income. The **slope** ranges from 0 to 68 percent (~34 degrees) with a mean value of approximately 4.5 percent. This indicates that there are vastly more break-ins on flatter streets as expected. The **elevation** ranges from -5 to 780 feet with a mean value of approximately 130 (note: negative values are a result of attaching the nearest contour level to crimes very close to the coastline). Again, there are more break-ins at lower elevations than higher. The **median income** ranges from ~$12,000 to ~$208,000 with a mean value of approximately $114,000. This indicates that our median income data appears to be somewhat evenly distributed.
+We can see in the **count** column that there are 24,454 total break-ins in our data, with some missing values for median income. The **slope** ranges from 0 to 68 percent (~34 degrees) with a mean value of approximately 4.5 percent. This indicates that there are vastly more break-ins on flatter streets as expected. The **elevation** ranges from -5 to 780 feet with a mean value of approximately 130 (note: negative values are a result of attaching the nearest contour level to crimes very close to the coastline). Again, there are more break-ins at lower elevations than higher. The **median income** ranges from ~\$12,000 to ~\$208,000 with a mean value of approximately \$114,000. This indicates that our median income data appears to be somewhat evenly distributed.
 
 The box plots below visualize these observations:
 
 ```{r}
 slope_box <- ggplot(data = crimes, aes(x = "", y = slope)) +
-  geom_boxplot() +
+  geom_boxplot(color = "orange") +
   geom_jitter(aes(color = slope), 
               width = 0.2,
               size=0.4, 
@@ -193,7 +193,7 @@ slope_box <- ggplot(data = crimes, aes(x = "", y = slope)) +
   labs(x = "Slope (percent)")
 
 elev_box <- ggplot(data = crimes, aes(x = "", y = elev)) +
-  geom_boxplot() +
+  geom_boxplot(color = "darkgreen") +
   geom_jitter(aes(color = elev), 
               width = 0.2,
               size=0.4, 
@@ -206,7 +206,7 @@ elev_box <- ggplot(data = crimes, aes(x = "", y = elev)) +
   labs(x = "Elevation (feet)")
 
 income_box <- ggplot(data = crimes, aes(x = "", y = median_income)) +
-  geom_boxplot() +
+  geom_boxplot(color = "blue") +
   geom_jitter(aes(color = median_income), 
               width = 0.2,
               size=0.4, 
@@ -222,7 +222,7 @@ elev_box + slope_box + income_box + plot_annotation(title = 'Figure 1. Boxplots 
                                                     theme = theme(plot.title = element_text(hjust = 0.5)))
 ```
 
-The box plots more clearly demonstrate that both elevation and slope have more occurrences at low values than high values, with extremely high outliers. These outliers are mostly trustworthy - the highest peak in San Francisco is Mount Davidson at 938 feet and the steepest surveyed road is Bradford Street at 41% grade. This indicates that at least two of our slope outliers are due to data artifacts.
+The box plots more clearly demonstrate that both elevation and slope have more occurrences at low values than high values, with extremely high outliers. These outliers are mostly trustworthy - the highest peak in San Francisco is Mount Davidson at 938 feet and the steepest surveyed road is Bradford Street at 41% grade. This indicates that two of the slope outliers are likely due to data artifacts.
 
 ## 6. Visualize relationships
 
@@ -236,7 +236,7 @@ income_summary <- crimes %>%
   summarize(count = n())
 
 income_plot = ggplot(data = income_summary, aes(x = median_income, y = count)) +
-  geom_point(alpha = 0.5) +
+  geom_point(alpha = 0.5, color = "darkgreen") +
   geom_smooth(method = "lm", se = FALSE) +
   theme_classic() +
   labs(title = "Crime and Median Income",
@@ -251,7 +251,7 @@ elev_summary <- crimes %>%
   summarize(count = n())
 
 elev_plot <- ggplot(data = elev_summary, aes(x = elev, y = count)) +
-  geom_point(alpha = 0.5) +
+  geom_point(alpha = 0.5, color = "orange") +
   geom_smooth(method = "lm", se = FALSE) +
   theme_classic() +
   labs(title = "Crime and Elevation",
@@ -266,7 +266,7 @@ slope_summary <- crimes %>%
   summarize(count = n())
 
 slope_plot <- ggplot(data = slope_summary, aes(x = slope, y = count)) +
-  geom_point(alpha = 0.5) +
+  geom_point(alpha = 0.5, color = "blue") +
   geom_smooth(method = "lm", se = FALSE) +
   theme_classic() +
   labs(title = "Crime and Slope",
@@ -296,7 +296,7 @@ crimes_ts <- crimes %>%
   summarize(count = n())
 
 ts_plot <- ggplot(data = crimes_ts, aes(x = date_incid, y = count)) +
-  geom_point(alpha = 0.5) +
+  geom_point(alpha = 0.5, color = "darkred") +
   geom_smooth(method = "lm", se = FALSE) +
   theme_classic() +
   labs(title = "Daily Crime 2018-Present",
@@ -312,7 +312,7 @@ crimes_monthly <- crimes_ts %>%
   filter(month != "2021-11-01")
 
 monthly_plot <- ggplot(data = crimes_monthly, aes(x = month, y = monthly_sum)) +
-  geom_point() +
+  geom_point(color = "purple") +
   geom_line() + 
   geom_smooth(method = "lm", se = FALSE) +
   theme_classic() +
@@ -327,7 +327,7 @@ ts_plot + monthly_plot + plot_annotation(title = 'Figure 3. Temporal trend of br
 
 An upward trend in crime is observed, especially beginning in 2020 during the COVID-19 pandemic.
 
-Lastly, the figure below visualizes the spatial distribution of the crime data within the city, as well as provides a relative idea of the areas of higher elevation. It can be observed that the crime data is distributed across most of the land area within the study area. Additionally, the areas with significant terrain (such as Twin Peaks, Potrero Hill, and Nob Hill) can be identified by the areas with concentrations of darker green points.
+Lastly, the figure below visualizes the spatial distribution of the crime data within the city and provides a relative idea of the areas of higher elevation. Crime data is distributed across most of the study area. Additionally, regions with significant terrain (such as Twin Peaks, Potrero Hill, and Nob Hill) can be identified by the areas with concentrations of darker green points.
 
 ```{r}
 tmap_mode("view")
@@ -342,11 +342,8 @@ tm_shape(crimes) +
 In order to appropriately utilize an Ordinary Least Squares (OLS) regression model, the following set of key assumptions should be met:
 
 1. The population relationship is linear in parameters with an additive disturbance.
-
 2. Our $X$ variables are **exogenous**, _i.e._, $\mathop{\boldsymbol{E}}\left[ u \mid X \right] = 0$.
-
 3. The $X$ variables have variation. 
-
 4. The population disturbances $u_i$ are independently and identically distributed as **normal** random variables with mean zero $\left( \mathop{\boldsymbol{E}}\left[ u \right] = 0 \right)$ and variance $\sigma^2$ (_i.e._,  $\mathop{\boldsymbol{E}}\left[ u^2 \right] = \sigma^2$)
 
 For the purpose of this analysis, Assumption #1 holds because the relationships observed in Figure 2 appear linear in parameters. Additionally, this analysis claims that Assumption #2 holds. Assumption #3 holds because the $x$ variables have variation as shown in Figures 1 and 2. 
@@ -372,7 +369,7 @@ Next, Figure 6 shows a QQ plot of the distribution, which visualizes the normali
 
 ```{r}
 ggplot(data = crime_lm, aes(sample = res)) +
-  geom_qq() +
+  geom_qq(alpha = 0.5, color = "magenta") +
   geom_qq_line() +
   theme_classic() +
   labs(title = "Figure 6. QQ Plot",
@@ -380,27 +377,27 @@ ggplot(data = crime_lm, aes(sample = res)) +
        y = "Analysis Distribution")
 ```
 
-The QQ plot indicates that the residuals are relatively normally distributed for values up to approximately 2 on the theoretical normal distribution. This supports the conclusion from Figure 5 that the model is not normally distributed for high values.
+The QQ plot indicates that the residuals are relatively normally distributed for values up to approximately 2 on the theoretical normal distribution. This supports the conclusion from Figure 5 that the model residuals are not normally distributed for high values.
 
 Lastly, Figure 7 tests whether the residuals appear to have constant variance when plotted against our independent variables.
 
 ```{r}
 y1 <- ggplot(data = crime_lm, aes(x = elev, y = res)) +
-  geom_point(alpha = 0.25) + theme_classic() + 
+  geom_point(alpha = 0.25, color = "darkgreen") + theme_classic() + 
   labs(title = "Residuals vs. Elevation",
        x = "Elevation (feet)",
        y = "Residual Error") +
   theme(title = element_text(size = 10))
 
 y2 <- ggplot(data = crime_lm, aes(x = slope, y = res)) +
-  geom_point(alpha = 0.25) + theme_classic() + 
+  geom_point(alpha = 0.25, color = "orange") + theme_classic() + 
   labs(title = "Residuals vs. Slope",
        x = "Slope (percent)",
        y = "Residual Error") +
   theme(title = element_text(size = 10))
 
 y3 <- ggplot(data = crime_lm, aes(x = median_income, y = res)) +
-  geom_point(alpha = 0.25) + theme_classic() + 
+  geom_point(alpha = 0.25, color = "blue") + theme_classic() + 
   labs(title = "Residuals vs. Income",
        x = "Median Income",
        y = "Residual Error") +
@@ -412,7 +409,7 @@ y1 + (y2 / y3) + plot_annotation(title = 'Figure 7. Residual variance across ind
 
 It does not appear that the residuals have constant variance for the independent variables. The plots for elevation and slope have higher variance for lower values and all three plots do not appear to be centered at 0. Therefore, it is likely that Assumption #4 is violated.
 
-Since Assumptions #1, #2, and #3 appear to be satisfied, in this case using **OLS is an unbiased estimator of the coefficients**. However, Figures 5-7 provide sufficient concern that Assumption #4 is not satisfied and therefore **OLS may not be the estimator with lowest variance**. An alternative estimator to OLS may provide estimates of the true population parameters with less variance. The analysis will continue using OLS while taking this into account as limitation for the interpretation of results.
+Since Assumptions #1, #2, and #3 appear to be satisfied, in this case using **OLS is an unbiased estimator of the coefficients**. However, Figures 5-7 provide sufficient concern that Assumption #4 is not satisfied and therefore **OLS may not be the estimator with lowest variance**. An alternative estimator to OLS may provide estimates of the true population parameters with less variance. The analysis will continue using OLS while taking this into account as a limitation for the interpretation of results.
 
 ## 8. Regression Analysis
 
@@ -428,20 +425,20 @@ model <- lm(formula = count ~ elev + slope + median_income, data = crimes_summar
 summ(model, digits = 7) 
 ```
 
-First, the coefficients can be interpreted from the summary above.
+First, the coefficients can be interpreted from the summary above:
 
 - **Intercept**: When elevation, slope, and median income are equal to $0$, the expected average number of car break-ins is ~10.15.
 - **Elevation**: With all else constant, for a 1 foot increase in elevation, there is a ~0.014 decrease in the number of break-ins.
 - **Slope**: With all else constant, for a 1 percent increase in slope, there is a ~0.15 decrease in the number of break-ins.
 - **Median Income**: With all else constant, for a \$1 increase in USD, there is a ~0.00001 decrease in the number of break-ins (more intuitively, a \$10,000 increase has an expected decrease in break-ins of 0.1).
 
-Next, we can interpret the significance of these coefficients using the p-value. For all independent variables, the p-value is less than 0.001 indicating that each of the coefficients represent a significant effect.
+Next, we can interpret the significance of these coefficients using the p-value. For all independent variables, the **p-value is less than 0.001** indicating that each of the independent variables have a significant effect.
 
-Lastly, the $R^2$ value of approximately 0.09 indicates that ~9% of the variance in number of break-ins is accounted for in the model. This is an expected result, as crime is most likely going to be related to many other socio-economic and demographic factors that were not considered in this analysis. Many variables could have been included, such as population density, racial composition, land use, etc. However, this analysis is only focused on the effects of topography.
+Lastly, the $R^2$ value of approximately 0.09 indicates that **~9% of the variance in number of break-ins is accounted for in the model**. This is an expected result, as crime is most likely going to be related to many other socio-economic and demographic factors that were not considered in this analysis, such as population density, racial composition, land use, etc. However, this analysis is only focused on the effects of topography.
 
 ### Model 2: Logarithmic transformation
 
-It is also important to compare the results of the OLS analysis with an alternative regression equation. In earlier sections visualizing the simple relationships, it was identified that the relationship of both elevation and slope with break-ins appeared to be non-linear. Therefore, it could be appropriate to transform the equation. The equation and summary below demonstrate the different results when log-transforming the dependent variable.
+It is also important to compare the results of the OLS analysis with an alternative regression equation. In earlier sections, it was identified that the relationship of both elevation and slope with break-ins appeared to be non-linear. Therefore, it could be appropriate to transform the equation. The equation and summary below demonstrate the different results when log-transforming the dependent variable.
 
 $$log(MotorVehicleTheft_i) = \beta_0 + \beta_1Elevation_i + \beta_2Slope_i + \beta_3MedianIncome_i + u_i$$
 
@@ -451,17 +448,17 @@ model_transformed <- lm(formula = log(count) ~ elev + slope + median_income, dat
 summ(model_transformed, digits = 7)
 ```
 
-The $R^2$ value for Model 2 of 0.145 is higher than the previous $R^2$ of 0.09 for Model 1. This indicates that a transformation may be a better model fit for the data.
+The $R^2$ value for Model 2 of 0.145 is higher than the previous $R^2$ of 0.09 for Model 1. This indicates that **a transformation may be a better model fit** for the data.
 
-## 9. Results
+## 9. Interpret Results
 
-In conclusion, the linear regression model predicts that there are significant negative relationships between the key independent variables (slope and elevation) and the dependent variable (number of car break-ins).
+In conclusion, the linear regression model predicts that **there are significant negative relationships between the key independent variables (slope and elevation) and the dependent variable (number of car break-ins).**
 
-The study found that certain assumptions of OLS were violated, meaning that the OLS method is possibly not the estimator with lowest variance. This should be taken into account while interpreting the resulting coefficients of the variables.
+The study found that certain assumptions of OLS were violated, meaning that **the OLS method is possibly not the estimator with lowest variance.** This should be taken into account while interpreting the resulting coefficients of the variables.
 
 This analysis has room for improvement, including but not limited to:
-1. Adding more key socio-economic and demographic variables.
-2. Accounting for the OLS assumption violation, either by transforming the data or using another estimator.
+1. **Fixing the OLS assumption violation**, either by transforming the data or using another estimator.
+2. Adding more key socio-economic and demographic variables.
 3. More thoroughly researching and selecting a proper transformation method.
 
   
