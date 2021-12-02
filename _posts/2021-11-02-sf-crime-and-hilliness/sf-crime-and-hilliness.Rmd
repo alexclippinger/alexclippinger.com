@@ -418,6 +418,8 @@ Since Assumptions #1, #2, and #3 appear to be satisfied, in this case using **OL
 
 ### Model 1
 
+Below are the results of the OLS regression analysis for the original equation, which is repeated below:
+
 $$MotorVehicleTheft_i = \beta_0 + \beta_1Elevation_i + \beta_2Slope_i + \beta_3MedianIncome_i + u_i$$
 
 ```{r}
@@ -426,17 +428,20 @@ model <- lm(formula = count ~ elev + slope + median_income, data = crimes_summar
 summ(model, digits = 7) 
 ```
 
-### Model 2: Remove median income variable
+First, the coefficients can be interpreted from the summary above.
 
-$$MotorVehicleTheft_i = \beta_0 + \beta_1Elevation_i + \beta_2Slope_i + u_i$$
+- **Intercept**: When elevation, slope, and median income are equal to $0$, the expected average number of car break-ins is ~10.15.
+- **Elevation**: With all else constant, for a 1 foot increase in elevation, there is a ~0.014 decrease in the number of break-ins.
+- **Slope**: With all else constant, for a 1 percent increase in slope, there is a ~0.15 decrease in the number of break-ins.
+- **Median Income**: With all else constant, for a \$1 increase in USD, there is a ~0.00001 decrease in the number of break-ins (more intuitively, a \$10,000 increase has an expected decrease in break-ins of 0.1).
 
-```{r}
-model <- lm(formula = count ~ elev + slope, data = crimes_summary)
+Next, we can interpret the significance of these coefficients using the p-value. For all independent variables, the p-value is less than 0.001 indicating that each of the coefficients represent a significant effect.
 
-summ(model, digits = 7) 
-```
+Lastly, the $R^2$ value of approximately 0.09 indicates that ~9% of the variance in number of break-ins is accounted for in the model. This is an expected result, as crime is most likely going to be related to many other socio-economic and demographic factors that were not considered in this analysis. Many variables could have been included, such as population density, racial composition, land use, etc. However, this analysis is only focused on the effects of topography.
 
-### Model 3: Logarithmic transformation
+### Model 2: Logarithmic transformation
+
+It is also important to compare the results of the OLS analysis with an alternative regression equation. In earlier sections visualizing the simple relationships, it was identified that the relationship of both elevation and slope with break-ins appeared to be non-linear. Therefore, it could be appropriate to transform the equation. The equation and summary below demonstrate the different results when log-transforming the dependent variable.
 
 $$log(MotorVehicleTheft_i) = \beta_0 + \beta_1Elevation_i + \beta_2Slope_i + \beta_3MedianIncome_i + u_i$$
 
@@ -446,16 +451,18 @@ model_transformed <- lm(formula = log(count) ~ elev + slope + median_income, dat
 summ(model_transformed, digits = 7)
 ```
 
+The $R^2$ value for Model 2 of 0.145 is higher than the previous $R^2$ of 0.09 for Model 1. This indicates that a transformation may be a better model fit for the data.
+
 ## 9. Results
 
-- Interpret the simple visualizations
-- Interpret the R^2 of the two models
-- Interpret the OLS assumptions
-- Conclusions: What are our predicted effects of independent variables on dependent
-- Conclusions: What are the studies flaws? Biases? 
-- Conclusions: What are possibilities for improvement
-- Finish in project interpretation
-- Review rubric
+In conclusion, the linear regression model predicts that there are significant negative relationships between the key independent variables (slope and elevation) and the dependent variable (number of car break-ins).
+
+The study found that certain assumptions of OLS were violated, meaning that the OLS method is possibly not the estimator with lowest variance. This should be taken into account while interpreting the resulting coefficients of the variables.
+
+This analysis has room for improvement, including but not limited to:
+1. Adding more key socio-economic and demographic variables.
+2. Accounting for the OLS assumption violation, either by transforming the data or using another estimator.
+3. More thoroughly researching and selecting a proper transformation method.
 
   
 
