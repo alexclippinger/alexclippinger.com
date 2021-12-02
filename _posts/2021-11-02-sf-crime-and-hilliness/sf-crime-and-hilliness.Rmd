@@ -434,8 +434,11 @@ In conclusion, the linear regression model predicts that **there are significant
 The study found that certain assumptions of OLS were violated, meaning that **the OLS method is most likely not the estimator with lowest variance.** This needs to be taken into account while interpreting the resulting coefficients of the variables.
 
 This analysis has room for improvement, including but not limited to:
+
 1. Ensuring that the OLS assumption violation is solved by the transformation of the data or by using another estimator.
+
 2. Including key socio-economic and demographic variables with more significant correlation than median income.
+
 3. More thoroughly researching and selecting the proper transformation method.
 
 All code for this analysis can be found on [**GitHub**](https://github.com/alexclippinger/alexclippinger.github.io/blob/main/_posts/2021-11-02-sf-crime-and-hilliness/sf-crime-and-hilliness.Rmd).
