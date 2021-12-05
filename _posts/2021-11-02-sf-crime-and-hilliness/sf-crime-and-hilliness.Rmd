@@ -6,7 +6,6 @@ author:
   - name: Alex Clippinger
     url: {}
 date: 2021-11-02
-always_allow_html: true
 output:
   distill::distill_article:
     self_contained: false
