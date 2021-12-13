@@ -12,6 +12,7 @@ output:
     code_folding: true
     toc: true              
     toc_float: true
+preview: images/ollt.png
 categories: 
   - GIS
 ---
@@ -63,6 +64,12 @@ Table 1 summarizes the sub-models, data layers, initial data types, and weights 
 
 <figure>
   <img src="./images/Table1.png" alt="Depicts layers in a GIS" style="width:100%">
+</figure>
+
+The input layers are displayed below:
+
+<figure>
+  <img src="./images/input layers 2x5_03.png" alt="Depicts layers in a GIS" style="width:100%">
 </figure>
 
 ## Results
