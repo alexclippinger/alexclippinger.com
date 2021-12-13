@@ -293,7 +293,7 @@ tm_shape(crimes) +
   tm_layout(title = "Figure 4. Distribution of break-ins by elevation")
 ```
 
-### 6. Test OLS Assumptions
+## 6. Test OLS Assumptions
 
 In order to appropriately utilize an Ordinary Least Squares (OLS) regression model, the following set of key assumptions should be met:
 

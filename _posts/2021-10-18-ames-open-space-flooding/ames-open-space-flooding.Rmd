@@ -9,7 +9,7 @@ date: 2021-10-18
 output:
   distill::distill_article:
     self_contained: false
-preview: images/ames-open-space.png
+preview: images/ames-open-space.jpg
 categories:
   - GIS
 ---
