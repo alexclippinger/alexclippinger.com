@@ -119,11 +119,17 @@ d-article h3 {
 
 d-article h4 {
     grid-column: text;
+    text-transform: none;
+    font-style: normal;
     font-size: 18px;
     line-height: 1.1em;
     margin: 0 0 0.5rem;
     padding-top: 20px;
     padding-bottom: 15px;
+}
+
+d-article p {
+    font-style: italic;
 }
 
 /* -- change color of inline code -- */

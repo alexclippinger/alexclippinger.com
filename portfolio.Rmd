@@ -19,7 +19,7 @@ create_proj_card(
   title = "View Project (Coming Soon!)",
   text = "Understanding Climate Change’s Impact on the Forest Ecosystem: Developing a
 Reproducible Machine Learning Approach to Ecohydrologic Model Outputs",
-  text2 = ""
+  text2 = "Bren School of Environmental Science & Management"
 )
 ```
 
