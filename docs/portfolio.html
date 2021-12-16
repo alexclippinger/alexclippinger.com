@@ -106,7 +106,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title"]}},"value":[{"type":"character","attributes":{},"value":["Portfolio"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Portfolio"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -1992,6 +1992,53 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   body {
     background-color: #FFFFFF;
+  }
+
+  /* I think everything below is for the portfolio cards????? */
+
+  .pull-left {
+    float: left;
+    width: 47%;
+  }
+
+  .pull-right {
+    float: right;
+    width: 47%;
+  }
+
+  .card {
+      color: #474747;
+      background-color: #FFFFFF;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      border-radius: 10px; 
+      margin: 16px 16px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: row;
+  }
+
+  .card-body {
+    padding: 2px 16px;
+  }
+
+  .card-img-top {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 40%;
+  }
+
+  .icon-link {
+      background-color: #0095eb;
+      color: #0095eb;
+      padding: 3px 5px 3px 5px;
+      margin: 0 2px 0 2px;
+      border-radius: 0px; 
+  }
+
+  .icon-link:hover {
+      background-color: #0095eb;
+      color: #0095eb;
   }</style>
   <style type="text/css">
   /* base style */
@@ -2200,7 +2247,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <div class="d-article">
-<p>Coming soon!</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="card">
+<img class="card-img-top" src="images/bren-leaf-art-small.jpg"/>
+<div class="card-body">
+<h4>
+<a href="project-url-here">View Project (Coming Soon!)</a>
+</h4>
+<p>
+Understanding Climate Change’s Impact on the Forest Ecosystem: Developing a
+Reproducible Machine Learning Approach to Ecohydrologic Model Outputs
+<br/>
+
+</p>
+</div>
+</div>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

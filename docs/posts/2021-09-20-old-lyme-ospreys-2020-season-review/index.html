@@ -2018,6 +2018,53 @@ code {
 
 body {
   background-color: #FFFFFF;
+}
+
+/* I think everything below is for the portfolio cards????? */
+
+.pull-left {
+  float: left;
+  width: 47%;
+}
+
+.pull-right {
+  float: right;
+  width: 47%;
+}
+
+.card {
+    color: #474747;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 10px; 
+    margin: 16px 16px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.card-body {
+  padding: 2px 16px;
+}
+
+.card-img-top {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  width: 40%;
+}
+
+.icon-link {
+    background-color: #0095eb;
+    color: #0095eb;
+    padding: 3px 5px 3px 5px;
+    margin: 0 2px 0 2px;
+    border-radius: 0px; 
+}
+
+.icon-link:hover {
+    background-color: #0095eb;
+    color: #0095eb;
 }</style>
 <style type="text/css">
 /* base style */
@@ -2195,7 +2242,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Old Lyme Ospreys - 2020 Review","description":"Once facing extinction, the Connecticut Osprey population has made a substantial comeback. This post looks at the most recent 2020 Osprey Nation Report by the Connecticut Audobon Society, released on March 5, 2021. Specifically, I focus on a coastal town known for it's birding and wildlife (that also happens to be my hometown!) - Old Lyme.","authors":[{"author":"Alex Clippinger","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-20T00:00:00.000-07:00","citationText":"Clippinger, 2021"}
+{"title":"Old Lyme Ospreys - 2020 Review","description":"Once facing extinction, the Connecticut Osprey population has made a substantial comeback. This post looks at the most recent 2020 Osprey Nation Report by the Connecticut Audobon Society, released on March 5, 2021. Specifically, I focus on a coastal town known for it's birding and wildlife (that also happens to be my hometown!) - Old Lyme.","authors":[{"author":"Alex Clippinger","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-20T00:00:00.000-04:00","citationText":"Clippinger, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2221,10 +2268,6 @@ d-appendix d-footnote-list a.footnote-backlink {
 <div class="d-title">
 <h1>Old Lyme Ospreys - 2020 Review</h1>
 <!--radix_placeholder_categories-->
-<div class="dt-tags">
-  <a href="../../blog.html#category:R" class="dt-tag">R</a>
-  <a href="../../blog.html#category:GIS" class="dt-tag">GIS</a>
-</div>
 <!--/radix_placeholder_categories-->
 <p><p>Once facing extinction, the Connecticut Osprey population has made a substantial comeback. This post looks at the most recent 2020 Osprey Nation Report by the Connecticut Audobon Society, released on March 5, 2021. Specifically, I focus on a coastal town known for it’s birding and wildlife (that also happens to be my hometown!) - Old Lyme.</p></p>
 </div>

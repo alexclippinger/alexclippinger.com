@@ -1,4 +1,10 @@
 ---
 title: "Blog Posts & Projects"
-listing: posts
+listing: 
+  posts:
+    - 2021-12-04-old-lyme-land-trust-gis-overlay-analysis
+    - 2021-11-02-sf-crime-and-hilliness
+    - 2021-10-18-ames-open-space-flooding
+    - 2021-09-20-old-lyme-ospreys-2020-season-review
+    - 2021-08-16-meds-week-3-recap
 ---

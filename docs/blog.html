@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
   <meta name="generator" content="distill" />
-  <link rel="alternate" type="application/rss+xml" href="https://alexclippinger.github.io/blog.xml" />
 
   <style type="text/css">
   /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
@@ -107,7 +106,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","listing"]}},"value":[{"type":"character","attributes":{},"value":["Blog Posts & Projects"]},{"type":"character","attributes":{},"value":["posts"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","listing"]}},"value":[{"type":"character","attributes":{},"value":["Blog Posts & Projects"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["posts"]}},"value":[{"type":"character","attributes":{},"value":["2021-12-04-old-lyme-land-trust-gis-overlay-analysis","2021-11-02-sf-crime-and-hilliness","2021-10-18-ames-open-space-flooding","2021-09-20-old-lyme-ospreys-2020-season-review","2021-08-16-meds-week-3-recap"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -1993,6 +1992,53 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   body {
     background-color: #FFFFFF;
+  }
+
+  /* I think everything below is for the portfolio cards????? */
+
+  .pull-left {
+    float: left;
+    width: 47%;
+  }
+
+  .pull-right {
+    float: right;
+    width: 47%;
+  }
+
+  .card {
+      color: #474747;
+      background-color: #FFFFFF;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      border-radius: 10px; 
+      margin: 16px 16px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: row;
+  }
+
+  .card-body {
+    padding: 2px 16px;
+  }
+
+  .card-img-top {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 40%;
+  }
+
+  .icon-link {
+      background-color: #0095eb;
+      color: #0095eb;
+      padding: 3px 5px 3px 5px;
+      margin: 0 2px 0 2px;
+      border-radius: 0px; 
+  }
+
+  .icon-link:hover {
+      background-color: #0095eb;
+      color: #0095eb;
   }</style>
   <style type="text/css">
   /* base style */
