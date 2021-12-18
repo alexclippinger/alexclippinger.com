@@ -16,7 +16,7 @@ source("R/functions.R")
 create_proj_card(
   img_src = "images/bren-leaf-art-small.jpg",
   url = "project-url-here",
-  title = "View Project (Coming Soon!)",
+  title = "View Project",
   text = "Understanding Climate Change’s Impact on the Forest Ecosystem: Developing a
 Reproducible Machine Learning Approach to Ecohydrologic Model Outputs",
   text2 = "Bren School of Environmental Science & Management"

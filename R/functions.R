@@ -8,9 +8,10 @@ create_proj_card = function(img_src, url, title, text, text2){
       src = img_src),
     tags$div(
       class = "card-body",
-      h3(a(href = url,  title)),
+      p(text2),
       h4(text),
-      p(text2)
+      tags$button(a(href = url,  title))
     )
   )
 }
+

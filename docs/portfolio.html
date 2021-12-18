@@ -1982,10 +1982,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       padding-bottom: 15px;
   }
 
-  d-article p {
-      font-style: italic;
-  }
-
   /* -- change color of inline code -- */
   code {
     color: #000000;
@@ -1998,7 +1994,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     background-color: #FFFFFF;
   }
 
-  /* I think everything below is for the portfolio cards????? */
+  /* Everything below this should relate to the Portfolio page cards */
 
   .pull-left {
     float: left;
@@ -2026,24 +2022,58 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding: 2px 16px;
   }
 
+  .card-body p {
+    line-height: 1.25em;
+    font-style: italic;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+  }
+
+  .card-body h4 {
+    line-height: 1.25em;
+    font-weight: 300;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .card-body a {
+    border-bottom: none;
+  }
+
+  .card-body a:hover {
+    border-bottom: none;
+  }
+
+  .card-body button {
+    color: white;
+    font: Montserrat;
+    font-size: 16px;
+    font-weight: 200;
+    background-color: #0095eb;
+    border-radius: 12px;
+    border: none;
+    padding: 12px 16px;
+    text-align: center;
+    transition-duration: 1s;
+  }
+
+  .card-body button:hover {
+    background:#9ecde8;
+  }
+
   .card-img-top {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     width: 40%;
   }
 
-  .icon-link {
-      background-color: #0095eb;
-      color: #0095eb;
-      padding: 3px 5px 3px 5px;
-      margin: 0 2px 0 2px;
-      border-radius: 0px; 
+  /*
+  a:hover {
+    color:#0095eb;
   }
-
-  .icon-link:hover {
-      background-color: #0095eb;
-      color: #0095eb;
-  }</style>
+  */
+  </style>
   <style type="text/css">
   /* base style */
 
@@ -2255,12 +2285,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="card">
 <img class="card-img-top" src="images/bren-leaf-art-small.jpg"/>
 <div class="card-body">
-<h3>
-<a href="project-url-here">View Project (Coming Soon!)</a>
-</h3>
+<p>Bren School of Environmental Science &amp; Management</p>
 <h4>Understanding Climate Change’s Impact on the Forest Ecosystem: Developing a
 Reproducible Machine Learning Approach to Ecohydrologic Model Outputs</h4>
-<p>Bren School of Environmental Science &amp; Management</p>
+<button>
+<a href="project-url-here">View Project</a>
+</button>
 </div>
 </div>
 </div>
