@@ -227,6 +227,20 @@ elev_box + slope_box + income_box + plot_annotation(title = 'Figure 1. Boxplots 
 
 The box plots more clearly demonstrate that both elevation and slope have more occurrences at low values than high values, with high outliers. These extreme values appear to be accurate - the highest peak in San Francisco is Mount Davidson at 938 feet and the steepest surveyed road is Bradford Street at 41% grade. This indicates that two of the slope outliers are likely due to data artifacts.
 
+The following maps visualize the four variables:
+
+<figure>
+
+<img src="./images/maps.png" alt="Maps depicting car break-ins, elevation, slope, and median income in San Francisco, CA" style="height: 496px; width:701px;"/>
+
+<figcaption>
+
+Visualizing the spatial distribution of crime data in relation to the distributions of the three independent variables (elevation, slope, and median income).
+
+</figcaption>
+
+</figure>
+
 ## 5. Visualize relationships
 
 The following plots in Figure 2 show the simple relationships between count of car break ins and the three independent variables (elevation, slope, and median income). 
