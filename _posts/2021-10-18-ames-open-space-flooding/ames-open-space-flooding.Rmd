@@ -4,7 +4,6 @@ description: |
   Returning home from college a few years ago, I went on a hike at a local town open space only to find the trail flooded due to beaver activity. So, I created an ArcGIS Story Map to visualize the extent of the change in landscape.
 author:
   - name: Alex Clippinger
-    url: {}
 date: 2021-10-18
 output:
   distill::distill_article:

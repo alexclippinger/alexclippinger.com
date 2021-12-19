@@ -1967,45 +1967,66 @@ d-appendix {
   font-weight: 300;
 }
 
+.nav-right a {
+  color: #000000;
+}
+
+.nav-right a:hover {
+  color: #0095eb;
+}
+
 /* -- header letter spacing, font weight, color -- */
 d-article h1 {
-    grid-column: text;
-    font-size: 40px;
-    font-weight: 360;
-    line-height: 1.1em;
-    margin: 0 0 0.5rem;
-    padding-top: 30px;
+  grid-column: text;
+  font-size: 40px;
+  font-weight: 360;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+  padding-top: 30px;
 }
 
 
 d-article h2 {
-    grid-column: text;
-    font-size: 32px;
-    font-weight: 200;
-    line-height: 1.1em;
-    margin: 0 0 0.5rem;
-    padding-top: 30px;
+  grid-column: text;
+  font-size: 32px;
+  font-weight: 200;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+  padding-top: 30px;
 }
 
 d-article h3 {
-    grid-column: text;
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 1.1em;
-    margin: 0 0 0.5rem;
-    padding-top: 20px;
-    padding-bottom: 15px;
+  grid-column: text;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+  padding-top: 20px;
+  padding-bottom: 15px;
 }
 
 d-article h4 {
-    grid-column: text;
-    text-transform: none;
-    font-style: normal;
-    font-size: 18px;
-    line-height: 1.1em;
-    margin: 0 0 0.5rem;
-    padding-top: 20px;
-    padding-bottom: 15px;
+  grid-column: text;
+  text-transform: none;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+  padding-top: 20px;
+  padding-bottom: 15px;
+}
+
+d-article a {
+  border-bottom: none;
+}
+
+d-article a:hover {
+  border-bottom: none;
+}
+
+name a {
+  color: #000000;
+  text-decoration: none;
 }
 
 /* -- change color of inline code -- */
@@ -2020,6 +2041,34 @@ body {
   background-color: #FFFFFF;
 }
 
+/* change button hover color on About Me page ## Not really sure it looks better */
+
+.btn-outline-dark:hover {
+    background-color: #0095eb;
+    border-color: #0095eb;
+}
+
+
+/* Change body link styles throughout hopefully */
+
+p a {
+  color: #0095eb !important;
+  text-decoration: none !important;
+  background-image: linear-gradient(#0095eb, #0095eb);
+  background-size: 0% 0.07em;
+  background-position-y: 100%;
+  background-position-x: 0%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease-in-out;
+}
+
+p a:hover,
+p a:focus,
+p a:active {
+  background-size: 100% 0.07em;
+}
+
+
 /* Everything below this should relate to the Portfolio page cards */
 
 .pull-left {
@@ -2033,15 +2082,15 @@ body {
 }
 
 .card {
-    color: #474747;
-    background-color: #FFFFFF;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    border-radius: 10px; 
-    margin: 16px 16px;
-    text-decoration: none;
-    display: flex;
-    flex-direction: row;
+  color: #474747;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 10px; 
+  margin: 16px 16px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
 }
 
 .card-body {
@@ -2073,7 +2122,7 @@ body {
 
 .card-body button {
   color: white;
-  font: Montserrat;
+  font-family: Montserrat;
   font-size: 16px;
   font-weight: 200;
   background-color: #0095eb;
@@ -2094,11 +2143,6 @@ body {
   width: 40%;
 }
 
-/*
-a:hover {
-  color:#0095eb;
-}
-*/
 </style>
 <style type="text/css">
 /* base style */

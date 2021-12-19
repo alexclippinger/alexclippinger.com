@@ -4,7 +4,6 @@ description: |
   Does topography have an effect on the likelihood of car break-ins? This regression analysis seeks to provide insights into this question using data from San Francisco, which has ideal geography for this context.
 author:
   - name: Alex Clippinger
-    url: {}
 date: 2021-11-02
 output:
   distill::distill_article:

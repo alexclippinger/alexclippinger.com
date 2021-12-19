@@ -97,6 +97,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="article:published" itemprop="datePublished" content="2021-09-20"/>
 <meta property="article:created" itemprop="dateCreated" content="2021-09-20"/>
 <meta name="article:author" content="Alex Clippinger"/>
+<meta name="article:author" content=""/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
 <meta property="og:title" content="Alex Clippinger: Old Lyme Ospreys - 2020 Review"/>
@@ -124,11 +125,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta name="citation_online_date" content="2021/09/20"/>
 <meta name="citation_publication_date" content="2021/09/20"/>
 <meta name="citation_author" content="Alex Clippinger"/>
+<meta name="citation_author" content=""/>
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview","categories","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Old Lyme Ospreys - 2020 Review"]},{"type":"character","attributes":{},"value":["Once facing extinction, the Connecticut Osprey population has made a substantial comeback. This post looks at the most recent 2020 Osprey Nation Report by the Connecticut Audobon Society, released on March 5, 2021. Specifically, I focus on a coastal town known for it's birding and wildlife (that also happens to be my hometown!) - Old Lyme."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Alex Clippinger"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["09-20-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["images/ct-audobon-logo.png"]},{"type":"character","attributes":{},"value":["R","GIS"]},{"type":"character","attributes":{},"value":["https://alexclippinger.github.io/posts/2021-09-20-old-lyme-ospreys-2020-season-review/"]},{"type":"character","attributes":{},"value":["https://alexclippinger.github.io/posts/2021-09-20-old-lyme-ospreys-2020-season-review/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview","categories","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Old Lyme Ospreys - 2020 Review"]},{"type":"character","attributes":{},"value":["Once facing extinction, the Connecticut Osprey population has made a substantial comeback. This post looks at the most recent 2020 Osprey Nation Report by the Connecticut Audobon Society, released on March 5, 2021. Specifically, I focus on a coastal town known for it's birding and wildlife (that also happens to be my hometown!) - Old Lyme."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Alex Clippinger"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["url"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["09-20-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["images/ct-audobon-logo.png"]},{"type":"character","attributes":{},"value":["R","GIS"]},{"type":"character","attributes":{},"value":["https://alexclippinger.github.io/posts/2021-09-20-old-lyme-ospreys-2020-season-review/"]},{"type":"character","attributes":{},"value":["https://alexclippinger.github.io/posts/2021-09-20-old-lyme-ospreys-2020-season-review/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1967,45 +1969,66 @@ d-appendix {
   font-weight: 300;
 }
 
+.nav-right a {
+  color: #000000;
+}
+
+.nav-right a:hover {
+  color: #0095eb;
+}
+
 /* -- header letter spacing, font weight, color -- */
 d-article h1 {
-    grid-column: text;
-    font-size: 40px;
-    font-weight: 360;
-    line-height: 1.1em;
-    margin: 0 0 0.5rem;
-    padding-top: 30px;
+  grid-column: text;
+  font-size: 40px;
+  font-weight: 360;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+  padding-top: 30px;
 }
 
 
 d-article h2 {
-    grid-column: text;
-    font-size: 32px;
-    font-weight: 200;
-    line-height: 1.1em;
-    margin: 0 0 0.5rem;
-    padding-top: 30px;
+  grid-column: text;
+  font-size: 32px;
+  font-weight: 200;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+  padding-top: 30px;
 }
 
 d-article h3 {
-    grid-column: text;
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 1.1em;
-    margin: 0 0 0.5rem;
-    padding-top: 20px;
-    padding-bottom: 15px;
+  grid-column: text;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+  padding-top: 20px;
+  padding-bottom: 15px;
 }
 
 d-article h4 {
-    grid-column: text;
-    text-transform: none;
-    font-style: normal;
-    font-size: 18px;
-    line-height: 1.1em;
-    margin: 0 0 0.5rem;
-    padding-top: 20px;
-    padding-bottom: 15px;
+  grid-column: text;
+  text-transform: none;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+  padding-top: 20px;
+  padding-bottom: 15px;
+}
+
+d-article a {
+  border-bottom: none;
+}
+
+d-article a:hover {
+  border-bottom: none;
+}
+
+name a {
+  color: #000000;
+  text-decoration: none;
 }
 
 /* -- change color of inline code -- */
@@ -2020,6 +2043,34 @@ body {
   background-color: #FFFFFF;
 }
 
+/* change button hover color on About Me page ## Not really sure it looks better */
+
+.btn-outline-dark:hover {
+    background-color: #0095eb;
+    border-color: #0095eb;
+}
+
+
+/* Change body link styles throughout hopefully */
+
+p a {
+  color: #0095eb !important;
+  text-decoration: none !important;
+  background-image: linear-gradient(#0095eb, #0095eb);
+  background-size: 0% 0.07em;
+  background-position-y: 100%;
+  background-position-x: 0%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease-in-out;
+}
+
+p a:hover,
+p a:focus,
+p a:active {
+  background-size: 100% 0.07em;
+}
+
+
 /* Everything below this should relate to the Portfolio page cards */
 
 .pull-left {
@@ -2033,15 +2084,15 @@ body {
 }
 
 .card {
-    color: #474747;
-    background-color: #FFFFFF;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    border-radius: 10px; 
-    margin: 16px 16px;
-    text-decoration: none;
-    display: flex;
-    flex-direction: row;
+  color: #474747;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 10px; 
+  margin: 16px 16px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
 }
 
 .card-body {
@@ -2073,7 +2124,7 @@ body {
 
 .card-body button {
   color: white;
-  font: Montserrat;
+  font-family: Montserrat;
   font-size: 16px;
   font-weight: 200;
   background-color: #0095eb;
@@ -2094,11 +2145,6 @@ body {
   width: 40%;
 }
 
-/*
-a:hover {
-  color:#0095eb;
-}
-*/
 </style>
 <style type="text/css">
 /* base style */
@@ -2276,7 +2322,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Old Lyme Ospreys - 2020 Review","description":"Once facing extinction, the Connecticut Osprey population has made a substantial comeback. This post looks at the most recent 2020 Osprey Nation Report by the Connecticut Audobon Society, released on March 5, 2021. Specifically, I focus on a coastal town known for it's birding and wildlife (that also happens to be my hometown!) - Old Lyme.","authors":[{"author":"Alex Clippinger","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-20T00:00:00.000-04:00","citationText":"Clippinger, 2021"}
+{"title":"Old Lyme Ospreys - 2020 Review","description":"Once facing extinction, the Connecticut Osprey population has made a substantial comeback. This post looks at the most recent 2020 Osprey Nation Report by the Connecticut Audobon Society, released on March 5, 2021. Specifically, I focus on a coastal town known for it's birding and wildlife (that also happens to be my hometown!) - Old Lyme.","authors":[{"author":"Alex Clippinger","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-20T00:00:00.000-04:00","citationText":"Clippinger & , 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2307,7 +2353,10 @@ d-appendix d-footnote-list a.footnote-backlink {
 </div>
 
 <div class="d-byline">
-  Alex Clippinger true 
+  Alex Clippinger  
+  
+,   
+  true
   
 <br/>09-20-2021
 </div>
@@ -2825,10 +2874,10 @@ Show code
 <div class="appendix-bottom">
   <h3 id="citation">Citation</h3>
   <p>For attribution, please cite this work as</p>
-  <pre class="citation-appendix short">Clippinger (2021, Sept. 20). Alex Clippinger: Old Lyme Ospreys - 2020 Review. Retrieved from https://alexclippinger.github.io/posts/2021-09-20-old-lyme-ospreys-2020-season-review/</pre>
+  <pre class="citation-appendix short">Clippinger &amp;  (2021, Sept. 20). Alex Clippinger: Old Lyme Ospreys - 2020 Review. Retrieved from https://alexclippinger.github.io/posts/2021-09-20-old-lyme-ospreys-2020-season-review/</pre>
   <p>BibTeX citation</p>
   <pre class="citation-appendix long">@misc{clippinger2021old,
-  author = {Clippinger, Alex},
+  author = {Clippinger, Alex and , },
   title = {Alex Clippinger: Old Lyme Ospreys - 2020 Review},
   url = {https://alexclippinger.github.io/posts/2021-09-20-old-lyme-ospreys-2020-season-review/},
   year = {2021}
