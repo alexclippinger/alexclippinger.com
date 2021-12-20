@@ -89,24 +89,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_meta_tags-->
   <title>Alex Clippinger: Portfolio</title>
 
+  <meta property="description" itemprop="description" content="A showcase of my significant projects and work"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Alex Clippinger: Portfolio"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="A showcase of my significant projects and work"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Alex Clippinger"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Alex Clippinger: Portfolio"/>
+  <meta property="twitter:description" content="A showcase of my significant projects and work"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Portfolio"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Portfolio"]},{"type":"character","attributes":{},"value":["A showcase of my significant projects and work"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2012,6 +2015,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     background-color: #FFFFFF;
   }
 
+  .d-title h1 {
+    font-weight: 500;
+  }
+
   /* change button hover color on About Me page ## Not really sure it looks better */
 
   .btn-outline-dark:hover {
@@ -2061,7 +2068,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   .card {
     color: #474747;
     background-color: #FFFFFF;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 4px 6px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     border-radius: 10px; 
     /*margin: 16px 16px;*/
@@ -2126,10 +2133,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   }
 
   .card-img-top {
-    object-fit: scale-down;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    object-fit: cover;
+    padding: 20px 20px;
+    border-radius: 30px;
     width: 40%;
+    max-height: 250px; /* not a permanent solution to this problem */
   }
 
   </style>
@@ -2308,7 +2316,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Portfolio","authors":[]}
+{"title":"Portfolio","description":"A showcase of my significant projects and work","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2335,7 +2343,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Portfolio</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-
+<p>A showcase of my significant projects and work</p>
 </div>
 
 
@@ -2348,6 +2356,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3>Capstone Project</h3>
 <h4>Understanding Climate Change’s Impact on the Forest Ecosystem: Developing a
 Reproducible Machine Learning Approach to Ecohydrologic Model Outputs</h4>
+<button>
+<a href="project-url-here">View Project</a>
+</button>
+</div>
+</div>
+</div>
+<p><br /></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="card">
+<img class="card-img-top" src="images/trailmap.png"/>
+<div class="card-body">
+<p>Various Projects</p>
+<h3>Map Collection</h3>
+<h4>A collection of maps created for Educational, Volunteer, and Professional purposes</h4>
 <button>
 <a href="project-url-here">View Project</a>
 </button>

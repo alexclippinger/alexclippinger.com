@@ -1,5 +1,6 @@
 ---
 title: "Portfolio"
+description: "A showcase of my significant projects and work"
 output: 
   distill::distill_article:
     self_contained: false
@@ -24,4 +25,16 @@ Reproducible Machine Learning Approach to Ecohydrologic Model Outputs",
 )
 ```
 
+<br />
+
+```{r}
+create_proj_card(
+  img_src = "images/trailmap.png",
+  url = "project-url-here",
+  button = "View Project",
+  text = "A collection of maps created for Educational, Volunteer, and Professional purposes",
+  text2 = "Various Projects",
+  text3 = "Map Collection"
+)
+```
 
