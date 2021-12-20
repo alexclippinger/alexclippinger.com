@@ -1,5 +1,6 @@
 ---
 title: "Alex Clippinger"
+subtitle: "test"
 image: "Clippinger_Alex_meds22.jpg"
 links:
   - label: '<i class="fab fa-linkedin"></i> LinkedIn'
@@ -23,17 +24,18 @@ I graduated from Northeastern University in Boston, MA in 2019 with a Bachelorâ€
 
 ### Education
 
-**Master of Environmental Data Science** (Expected June 2022), Bren School of Environmental Science & Management, University of California, Santa Barbara - Santa Barbara, CA
+<i class="fa fa-graduation-cap" aria-hidden="true"></i> **Master of Environmental Data Science** (Expected June 2022), Bren School of Environmental Science & Management, University of California, Santa Barbara - Santa Barbara, CA
 
-**Graduate Certificate** (April 2021), Northeastern University - Boston, MA
+<i class="fa fa-graduation-cap" aria-hidden="true"></i> **Graduate Certificate** (April 2021), Northeastern University - Boston, MA
 
-**Bachelor of Science in Economics and Mathematics** (December 2019), Northeastern University - Boston, MA
+<i class="fa fa-graduation-cap" aria-hidden="true"></i> **Bachelor of Science in Economics and Mathematics** (December 2019), Northeastern University - Boston, MA
 <br />
 <br />
 
 ---
 
-### Interests
+### Currently
 
-- Data Science
-- Geospatial Analysis
+- Data Scientist @ [RDN, Inc.](https://www.rdniehaus.com/) <br />
+- Graduate Student @ [Bren School of Environmental Science & Management](https://bren.ucsb.edu/) <br />
+- Teaching Assistant @ [UCSB Department of Economics](https://econ.ucsb.edu/)
