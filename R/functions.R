@@ -1,6 +1,6 @@
 # credit: https://github.com/Ijeamakaanyene/ijeamaka-anyene/blob/master/R/functions.R
 
-create_proj_card = function(img_src, url, title, text, text2){
+create_proj_card = function(img_src, url, button, text, text2, text3){
   tags$div(
     class = "card",
     tags$img(
@@ -9,8 +9,9 @@ create_proj_card = function(img_src, url, title, text, text2){
     tags$div(
       class = "card-body",
       p(text2),
+      h3(text3),
       h4(text),
-      tags$button(a(href = url,  title))
+      tags$button(a(href = url,  button))
     )
   )
 }

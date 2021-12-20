@@ -2070,16 +2070,6 @@ p a:active {
 
 /* Everything below this should relate to the Portfolio page cards */
 
-.pull-left {
-  float: left;
-  width: 47%;
-}
-
-.pull-right {
-  float: right;
-  width: 47%;
-}
-
 .card {
   color: #474747;
   background-color: #FFFFFF;
@@ -2098,13 +2088,22 @@ p a:active {
 
 .card-body p {
   line-height: 1.25em;
-  font-style: italic;
+  font-style: normal;
+  font-weight: 100;
   padding-top: 10px;
   padding-bottom: 0px;
   margin-bottom: 0px;
 }
 
+.card-body h3 {
+  font-weight: 600;
+  padding-top: 15px;
+  padding-bottom: 0px;
+  margin: 0 0 0;
+}
+
 .card-body h4 {
+  font-size: 16px;
   line-height: 1.25em;
   font-weight: 300;
   padding-top: 15px;
@@ -2137,6 +2136,7 @@ p a:active {
 }
 
 .card-img-top {
+  object-fit: scale-down;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   width: 40%;
