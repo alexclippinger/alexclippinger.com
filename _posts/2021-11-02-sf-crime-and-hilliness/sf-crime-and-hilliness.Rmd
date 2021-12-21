@@ -1,5 +1,5 @@
 ---
-title: "Crime and Topography in San Francisco"
+title: "Regression Analysis of Crime and Topography in San Francisco"
 description: |
   Does topography have an effect on the likelihood of car break-ins? This regression analysis seeks to provide insights into this question using data from San Francisco, which has ideal geography for this context.
 author:

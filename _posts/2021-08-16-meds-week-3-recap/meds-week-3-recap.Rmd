@@ -1,5 +1,5 @@
 ---
-title: "MEDS Week 3 Recap"
+title: "Recap of the MEDS Program in Week 3"
 description: |
   A reflection on the first few weeks as part of the inaugural cohort of the Master of Environmental Data Science program at the Bren School of Environmental Science & Management, UCSB.
 author:

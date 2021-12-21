@@ -1,5 +1,5 @@
 ---
-title: "Old Lyme Land Trust GIS Overlay Analysis"
+title: "A GIS Overlay Analysis for the Old Lyme Land Trust"
 description: |
   As a GIS Volunteer for the Old Lyme Land Trust, I delivered a GIS overlay analysis that identified properties with high natural resource value in order to assist with conservation acquisition targets.
 author:

@@ -1,5 +1,5 @@
 ---
-title: "Old Lyme Ospreys - 2020 Review"
+title: "Analyzing the 2020 Osprey Nation Season"
 description: |
   Once facing extinction, the Connecticut Osprey population has made a substantial comeback. This post looks at the most recent 2020 Osprey Nation Report by the Connecticut Audobon Society, released on March 5, 2021. Specifically, I focus on a coastal town known for it's birding and wildlife (that also happens to be my hometown!) - Old Lyme. 
 author:
