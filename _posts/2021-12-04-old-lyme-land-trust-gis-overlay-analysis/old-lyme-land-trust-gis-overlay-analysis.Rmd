@@ -117,7 +117,7 @@ The table below lists the highest valued parcels for conservation.
   <img src="./images/table2.png" alt="Table of parcel IDs with highest conservation values." style="width:100%">
 </figure>
 
-Parcel IDs can be searched using the [Town of Old Lyme MapGeo site] (https://oldlymect.mapgeo.io/)
+Parcel IDs can be searched using the [Town of Old Lyme MapGeo site](https://oldlymect.mapgeo.io/).
 
 All of these properties are in coastal or riparian zones, with the highest concentration at the inlet of the Lieutenant River. It is quite notable that 75% of the top 20 properties are already owned and protected by the Town of Old Lyme, State of Connecticut, Old Lyme Land Trust, or Nature Conservancy, with an impressive 30% protected by the OLLT.
 
