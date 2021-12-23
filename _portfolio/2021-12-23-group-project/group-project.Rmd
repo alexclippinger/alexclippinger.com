@@ -4,17 +4,22 @@ description: |
   Understanding Climate Change’s Impact on the Forest Ecosystem: Developing a Reproducible Machine Learning Approach to Ecohydrologic Model Outputs.
 author:
   - name: Alex Clippinger
-  - url: {alexclippinger.github.io}
+    url:
+      alexclippinger.github.io: {}
   - name: Peter Menzies
-  - url: {petermenzies.github.io}
+    url:
+      petermenzies.github.io: {}
   - name: Wylie Hampson
-  - url: {https://wyliehampson.github.io/}
+    url:
+      https://wyliehampson.github.io/: {}
   - name: Shale Hunter
-  - url: {https://hub-shale.github.io/}
+    url:
+      https://hub-shale.github.io/: {}
 date: 2021-12-23
 output:
   distill::distill_article:
     self_contained: false
+citation: false
 ---
 
 Coming Soon!

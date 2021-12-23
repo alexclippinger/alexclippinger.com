@@ -1,0 +1,16 @@
+---
+title: "Map Collection"
+description: |
+  A collection of maps created for Educational, Volunteer, and Professional purposes.
+author:
+  - name: Alex Clippinger
+    url:
+      alexclippinger.github.io: {}
+date: 2021-12-23
+output:
+  distill::distill_article:
+    self_contained: false
+citation: false
+---
+
+Coming Soon!
