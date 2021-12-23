@@ -16,7 +16,7 @@ source("R/functions.R")
 ```{r}
 create_proj_card(
   img_src = "images/bren-leaf-art-small.jpg",
-  url = "docs",
+  url = "portfolio/2021-12-23-group-project/index.html",
   button = "View Project",
   text = "Understanding Climate Change’s Impact on the Forest Ecosystem: Developing a
 Reproducible Machine Learning Approach to Ecohydrologic Model Outputs",

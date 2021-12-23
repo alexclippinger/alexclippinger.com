@@ -1,22 +1,21 @@
 ---
-title: "group-project"
+title: "Capstone Project"
 description: |
-  A short description of the post.
+  Understanding Climate Change’s Impact on the Forest Ecosystem: Developing a Reproducible Machine Learning Approach to Ecohydrologic Model Outputs.
 author:
-  - name: Unknown
+  - name: Alex Clippinger
+  - url: {alexclippinger.github.io}
+  - name: Peter Menzies
+  - url: {petermenzies.github.io}
+  - name: Wylie Hampson
+  - url: {https://wyliehampson.github.io/}
+  - name: Shale Hunter
+  - url: {https://hub-shale.github.io/}
 date: 2021-12-23
 output:
   distill::distill_article:
     self_contained: false
 ---
 
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
-
-Distill is a publication format for scientific and technical writing, native to the web.
-
-Learn more about using Distill at <https://rstudio.github.io/distill>.
-
+Coming Soon!
 

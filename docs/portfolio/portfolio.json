@@ -1,19 +1,55 @@
 [
   {
     "path": "portfolio/2021-12-23-group-project/",
-    "title": "group-project",
-    "description": "A short description of the post.",
+    "title": "Capstone Project",
+    "description": "Understanding Climate Change’s Impact on the Forest Ecosystem: Developing a Reproducible Machine Learning Approach to Ecohydrologic Model Outputs.",
     "author": [
       {
-        "name": "Unknown",
+        "name": "Alex Clippinger",
         "url": {}
+      },
+      {
+        "name": "",
+        "url": {
+          "alexclippinger.github.io": {}
+        }
+      },
+      {
+        "name": "Peter Menzies",
+        "url": {}
+      },
+      {
+        "name": "",
+        "url": {
+          "petermenzies.github.io": {}
+        }
+      },
+      {
+        "name": "Wylie Hampson",
+        "url": {}
+      },
+      {
+        "name": "",
+        "url": {
+          "https://wyliehampson.github.io/": {}
+        }
+      },
+      {
+        "name": "Shale Hunter",
+        "url": {}
+      },
+      {
+        "name": "",
+        "url": {
+          "https://hub-shale.github.io/": {}
+        }
       }
     ],
     "date": "2021-12-23",
     "categories": [],
-    "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
+    "contents": "\r\nComing Soon!\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-12-23T17:52:26-05:00",
+    "last_modified": "2021-12-23T18:21:55-05:00",
     "input_file": {}
   }
 ]
