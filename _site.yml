@@ -17,3 +17,6 @@ navbar:
       href: CV/Clippinger_Alex_Resume_2021-10-29.pdf
 output: distill::distill_article
 theme: theme.css
+collections:
+  portfolio:
+    categories: true

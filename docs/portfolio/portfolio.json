@@ -1,0 +1,19 @@
+[
+  {
+    "path": "portfolio/2021-12-23-group-project/",
+    "title": "group-project",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "Unknown",
+        "url": {}
+      }
+    ],
+    "date": "2021-12-23",
+    "categories": [],
+    "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-12-23T17:52:26-05:00",
+    "input_file": {}
+  }
+]
