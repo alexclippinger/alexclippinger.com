@@ -26,7 +26,7 @@ I graduated from Northeastern University in Boston, MA in 2019 with a Bachelorâ€
 
 <i class="fa fa-graduation-cap" aria-hidden="true"></i> **Master of Environmental Data Science** (Expected June 2022), Bren School of Environmental Science & Management, University of California, Santa Barbara - Santa Barbara, CA
 
-<i class="fa fa-graduation-cap" aria-hidden="true"></i> **Graduate Certificate** (April 2021), Northeastern University - Boston, MA
+<i class="fa fa-graduation-cap" aria-hidden="true"></i> **Graduate Certificate in GIS** (April 2021), Northeastern University - Boston, MA
 
 <i class="fa fa-graduation-cap" aria-hidden="true"></i> **Bachelor of Science in Economics and Mathematics** (December 2019), Northeastern University - Boston, MA
 <br />

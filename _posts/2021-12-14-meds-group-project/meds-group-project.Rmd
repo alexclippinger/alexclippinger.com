@@ -7,8 +7,13 @@ author:
     url: {}
 date: 2021-12-14
 output:
+  pdf_document:
   distill::distill_article:
     self_contained: false
+  
 ---
 
-Test
+```{r}
+getwd()
+```
+
