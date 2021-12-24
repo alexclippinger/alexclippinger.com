@@ -6,34 +6,26 @@
     "author": [
       {
         "name": "Alex Clippinger",
-        "url": {
-          "alexclippinger.github.io": {}
-        }
+        "url": "https://alexclippinger.github.io"
       },
       {
         "name": "Peter Menzies",
-        "url": {
-          "petermenzies.github.io": {}
-        }
+        "url": "https://petermenzies.github.io"
       },
       {
         "name": "Wylie Hampson",
-        "url": {
-          "https://wyliehampson.github.io/": {}
-        }
+        "url": "https://wyliehampson.github.io"
       },
       {
         "name": "Shale Hunter",
-        "url": {
-          "https://hub-shale.github.io/": {}
-        }
+        "url": "https://hub-shale.github.io"
       }
     ],
     "date": "2021-12-23",
     "categories": [],
     "contents": "\r\nComing Soon!\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-12-23T18:32:26-05:00",
+    "last_modified": "2021-12-24T17:14:57-05:00",
     "input_file": {}
   },
   {
@@ -43,16 +35,14 @@
     "author": [
       {
         "name": "Alex Clippinger",
-        "url": {
-          "alexclippinger.github.io": {}
-        }
+        "url": "https://alexclippinger.github.io"
       }
     ],
     "date": "2021-12-23",
     "categories": [],
     "contents": "\r\nComing Soon!\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-12-23T18:32:35-05:00",
+    "last_modified": "2021-12-24T17:15:15-05:00",
     "input_file": {}
   }
 ]

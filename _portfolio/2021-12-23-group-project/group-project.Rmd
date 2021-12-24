@@ -2,19 +2,19 @@
 title: "Capstone Project"
 description: |
   Understanding Climate Change’s Impact on the Forest Ecosystem: Developing a Reproducible Machine Learning Approach to Ecohydrologic Model Outputs.
-author:
-  - name: Alex Clippinger
-    url:
-      alexclippinger.github.io: {}
-  - name: Peter Menzies
-    url:
-      petermenzies.github.io: {}
-  - name: Wylie Hampson
-    url:
-      https://wyliehampson.github.io/: {}
-  - name: Shale Hunter
-    url:
-      https://hub-shale.github.io/: {}
+authors:
+  - first_name: "Alex" 
+    last_name: "Clippinger"
+    url: https://alexclippinger.github.io
+  - first_name: "Peter"
+    last_name: "Menzies"
+    url: https://petermenzies.github.io
+  - first_name: "Wylie"
+    last_name: "Hampson"
+    url: https://wyliehampson.github.io
+  - first_name: "Shale"
+    last_name: "Hunter"
+    url: https://hub-shale.github.io
 date: 2021-12-23
 output:
   distill::distill_article:
@@ -23,4 +23,3 @@ citation: false
 ---
 
 Coming Soon!
-
