@@ -32,8 +32,8 @@ In 2020, I was a GIS Volunteer with the Old Lyme Land Trust (OLLT). This blog po
 The OLLT is a non-profit organization dedicated to conserving land and water resources for the public of Old Lyme, a coastal town in Southeastern Connecticut. Local land trusts like the OLLT are vital to natural resource conservation and education in the lower Connecticut River region. This area was identified by the Nature Conservancy as a focal area in their “Resilient Sites for Terrestrial Conservation in the Northeast and Mid-Atlantic Region” report ([Source](https://lcrclandtrustexchange.org/InformationDocuments/LTE_Strategic_PlanFINAL091814.pdf)).
 
 <figure>
-  <img src="./images/Map1.png" alt="Map showing the town of Old Lyme in the Southeastern corner of Connecticut"    style="height: 500px; width:706px;"/>
-  <img src="./images/Map2.png" alt="Map showing the town of Old Lyme in the Southeastern corner of Connecticut"    style="height: 500px; width:706px;"/>
+  <img src="./images/Map1.png" alt="Map showing the town of Old Lyme in the Southeastern corner of Connecticut"    style="width:75%;"/>
+  <img src="./images/Map2.png" alt="Map showing the town of Old Lyme in the Southeastern corner of Connecticut"    style="width:75%;"/>
     <figcaption>
 Maps depicting the location of Old Lyme, Connecticut. The town is located in Southeastern Connecticut at the mouth of the Connecticut River.
     </figcaption>
@@ -56,7 +56,7 @@ In all, the project answered two principal questions:
 The overlay analysis follows the standard methodology outline by Esri that can be applied in suitability modeling and optimal site selection ([Source](https://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/understanding-overlay-analysis.htm)). These key steps include defining the problem, breaking into-sub models, determining significant layers, reclassifying these layers to be comparable, weighting based on specific project goals, then finally combining the inputs, and analyzing the results (ibid.). An overlay analysis is a common technique to apply a common scale to diverse inputs to create an integrated analysis.
 
 <figure>
-  <img src="./images/gis_layers.png" alt="Depicts layers in a GIS" style="width:50%">
+  <img src="./images/gis_layers.png" alt="Depicts layers in a GIS" style="width:35%">
     <figcaption>
       This image depicts the basic idea of an overlay analysis - aggregating values of various data layers
     </figcaption>
@@ -71,7 +71,7 @@ Table 1 summarizes the sub-models, data layers, initial data types, and weights 
 After discussion with the OLLT Acquisition Lead, **geological areas** were added as another layer of interest. The final input layers are displayed below:
 
 <figure>
-  <img src="./images/input layers 2x5_03.png" alt="Data layers included in the overlay analysis"                    style="width:100%">
+  <img src="./images/input layers 2x5_03.png" alt="Data layers included in the overlay analysis" style="width:100%">
 </figure>
 
 [Click here for the full-sized image](images/input layers 2x5_03.png)
@@ -83,7 +83,7 @@ For full details on how these data layers were processed and combined, see the F
 The raster layer representing the weighted matrix of natural resource criteria is seen in the map below. 
 
 <figure>
-  <img src="./images/Map 3.png" alt="Raster map of natural resources in Old Lyme, CT"    style="height: 500px; width:706px;"/>
+  <img src="./images/Map 3.png" alt="Raster map of natural resources in Old Lyme, CT" style="width:100%;"/>
     <figcaption>
 The map depicts natural resource values as a result of the overlay analysis. Particular areas of high resource values include the Lieutenant River, Black Hall River, and Great Island.
     </figcaption>
@@ -94,7 +94,7 @@ The largest concentration of natural resources is in coastal and riparian zones 
 The following map shows the results of the parcel prioritization. 
 
 <figure>
-  <img src="./images/parcelconservationvalue.png" alt="Parcels with high values of conservation in Old Lyme, CT."    style="height: 500px; width:706px;"/>
+  <img src="./images/parcelconservationvalue.png" alt="Parcels with high values of conservation in Old Lyme, CT." style="width:100%;"/>
     <figcaption>
 Parcels in darker shades of green have higher average values of natural resources. Additionally, these conservation values take into account proximity to existing protected land and parcel size.
     </figcaption>
@@ -103,7 +103,7 @@ Parcels in darker shades of green have higher average values of natural resource
 Fortunately, many of these parcels are existing property of the OLLT, Open Space Commission, or other agencies as shown in the map below.
 
 <figure>
-  <img src="./images/Parcel Conservation Values.png" alt="Parcels with high values of conservation in Old Lyme, CT, with existing protected properties labeled." style="height: 500px; width:706px;"/>
+  <img src="./images/Parcel Conservation Values.png" alt="Parcels with high values of conservation in Old Lyme, CT, with existing protected properties labeled." style="width:100%;"/>
     <figcaption>
       This map contains the same information as previous, now including existed protected property.
     </figcaption>

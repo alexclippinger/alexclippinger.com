@@ -55,7 +55,7 @@ census_geom <- get_acs(geography = 'tract',
 
 <figure>
 
-<img src="./images/san-francisco-hills.jpg" alt="A particularly steep San Francisco street" style="height: 534px; width:800px;"/>
+<img src="./images/san-francisco-hills.jpg" alt="A particularly steep San Francisco street" style="width:100%;"/>
 
 <figcaption>
 
@@ -230,7 +230,7 @@ The following maps visualize the four variables:
 
 <figure>
 
-<img src="./images/maps.png" alt="Maps depicting car break-ins, elevation, slope, and median income in San Francisco, CA" style="height: 496px; width:701px;"/>
+<img src="./images/maps.png" alt="Maps depicting car break-ins, elevation, slope, and median income in San Francisco, CA" style="width:100%;"/>
 
 <figcaption>
 

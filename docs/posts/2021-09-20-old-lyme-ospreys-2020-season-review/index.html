@@ -2108,6 +2108,8 @@ li a:active {
   text-decoration: none;
   display: flex;
   flex-direction: row;
+  max-width: 75%;
+  margin: auto;
 }
 
 .card-body {
@@ -2173,7 +2175,23 @@ li a:active {
   max-height: 300px; /* not a permanent solution to this problem */
 }
 
-</style>
+/* Update overall layout (body width) */
+
+@media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 0.5fr [page-start kicker-start] 30px [middle-start] 50px [text-start kicker-end] 100px 100px 100px 100px 100px 100px 100px 100px [text-end gutter-start] 30px [middle-end] 50px [page-end gutter-end] 0.5fr [screen-end];
+      grid-column-gap: 20px;
+    }</style>
 <style type="text/css">
 /* base style */
 
@@ -2600,7 +2618,7 @@ fledlings_per_nest
 <p>The table above shows the progression of the Osprey Nation project over time. Notably, 2020 saw a decrease in stewards and fledglings observed due to difficulties with participation during the COVID-19 pandemic.</p>
 <h2 id="ospreys-in-connecticut">Ospreys in Connecticut</h2>
 <figure>
-<p><img src="images/osprey_landing.jpg" alt="Ospreys landing on a nest" style="height: 522px; width:380px;"/></p>
+<p><img src="images/osprey_landing.jpg" alt="Ospreys landing on a nest" style="width:50%;"/></p>
 <figcaption>
 <p>Ospreys in Essex Land Trust.</p>
 </figcaption>
@@ -2809,7 +2827,7 @@ Show code
 <p>60 of the 95 nests in Old Lyme had no data on nest type, making up ~31% of missing nest types despite Old Lyme only holding ~10% of total nests. 19 of the 35 nests with data inputted were platforms, which is consistent with the overall data set.</p>
 <p>The map below highlights the nests in Old Lyme with missing nest type data for potential data capture in the next year’s report:</p>
 <figure>
-<p><img src="images/missing-nest-types.png" style="height: 496px; width:667px;"/></p>
+<p><img src="images/missing-nest-types.png" style="width:100%;"/></p>
 <figcaption>
 <p>Map of Missing Nest Type Data in Old Lyme, CT.</p>
 </figcaption>
@@ -2817,7 +2835,7 @@ Show code
 <p>Nests with missing data are spatially distributed throughout the town’s coastline. This data should be collected to allow for potential analysis of the relationship between nest type and success rates of fledglings.</p>
 <p>Finally, I want to look at the final nest status data.</p>
 <figure>
-<p><img src="images/nest_status.png" style="height: 496px; width:667px;"/></p>
+<p><img src="images/nest_status.png" style="width:100%;"/></p>
 <figcaption>
 <p>Map of Nest Status at the end of the 2020 Osprey season in Old Lyme, CT.</p>
 </figcaption>
@@ -2874,7 +2892,7 @@ Show code
 <p>The plot above shows the final status of nests in Old Lyme for 2020. In all, there were 16 successful nests out of the total of 95, with 30 fledglings reported and likely more unreported. In summary, Old Lyme has ~10% of the state’s nests and yielded 5.88% of reported fledglings.</p>
 <p>Finally, here is a fun heat map of nest locations in the town:</p>
 <figure>
-<p><img src="images/heatmap.png" style="height: 496px; width:667px;"/></p>
+<p><img src="images/heatmap.png" style="width:100%;"/></p>
 <figcaption>
 <p>Heatmap of Nests in Old Lyme, CT.</p>
 </figcaption>

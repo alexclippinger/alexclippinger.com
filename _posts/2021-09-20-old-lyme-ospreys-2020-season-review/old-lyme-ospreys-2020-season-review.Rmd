@@ -77,7 +77,7 @@ The table above shows the progression of the Osprey Nation project over time. No
 
 <figure>
 
-<img src="./images/osprey_landing.jpg" alt="Ospreys landing on a nest" style="height: 522px; width:380px;"/>
+<img src="./images/osprey_landing.jpg" alt="Ospreys landing on a nest" style="width:50%;"/>
 
 <figcaption>
 
@@ -281,7 +281,7 @@ The map below highlights the nests in Old Lyme with missing nest type data for p
 
 <figure>
 
-<img src="./images/missing-nest-types.png" style="height: 496px; width:667px;"/>
+<img src="./images/missing-nest-types.png" style="width:100%;"/>
 
 <figcaption>
 
@@ -297,7 +297,7 @@ Finally, I want to look at the final nest status data.
 
 <figure>
 
-<img src="./images/nest_status.png" style="height: 496px; width:667px;"/>
+<img src="./images/nest_status.png" style="width:100%;"/>
 
 <figcaption>
 
@@ -395,7 +395,7 @@ Finally, here is a fun heat map of nest locations in the town:
 
 <figure>
 
-<img src="./images/heatmap.png" style="height: 496px; width:667px;"/>
+<img src="./images/heatmap.png" style="width:100%;"/>
 
 <figcaption>
 

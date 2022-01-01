@@ -2104,6 +2104,8 @@ li a:active {
   text-decoration: none;
   display: flex;
   flex-direction: row;
+  max-width: 75%;
+  margin: auto;
 }
 
 .card-body {
@@ -2169,7 +2171,23 @@ li a:active {
   max-height: 300px; /* not a permanent solution to this problem */
 }
 
-</style>
+/* Update overall layout (body width) */
+
+@media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 0.5fr [page-start kicker-start] 30px [middle-start] 50px [text-start kicker-end] 100px 100px 100px 100px 100px 100px 100px 100px [text-end gutter-start] 30px [middle-end] 50px [page-end gutter-end] 0.5fr [screen-end];
+      grid-column-gap: 20px;
+    }</style>
 <style type="text/css">
 /* base style */
 
@@ -2384,7 +2402,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 
 <div class="d-article">
 <figure>
-<p><img src="images/bren_nceas_web.jpg" style="height: 360px; width:660px;"/></p>
+<p><img src="images/bren_nceas_web.jpg" style="width:100%;"/></p>
 <figcaption>
 <p>My classmates and I in the brand new classroom space at the National Center for Ecological Analysis &amp; Synthesis (NCEAS)</p>
 </figcaption>

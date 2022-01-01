@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 <figure>
 
-<img src="./images/Ames_NDWI_Diff.png" style="height: 450px; width:700px;"/>
+<img src="./images/Ames_NDWI_Diff.png" style="width:100%;"/>
 
 <figcaption>
 
