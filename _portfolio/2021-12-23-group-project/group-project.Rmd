@@ -76,3 +76,6 @@ algorithms have the capability of quantifying patterns in data that are not reve
   <p>January - June 2022</p>
   </div>
 </div>
+
+<br/><br/>
+This project is currently in progress. For more information prior to completion, please see the [Initial Project Proposal](files/Clippinger-Menzies_Ecohydrologic-Machine-Learning-Capstone-Proposal.pdf).
