@@ -37,14 +37,18 @@ citation: false
   }
   .left {
     vertical-align: top;
-    width: 50%;
+    width: 40%;
   }
-  .break {
-    width: 15%;
+  .middle {
+    vertical-align:top;
+    width: 20%;
   }
   .right {
     vertical-align: top;
-    width: 30%;
+    width: 20%;
+  }
+  .break {
+    width: 5%;
   }
 </style>
 
@@ -57,19 +61,18 @@ Ecohydrologic models are core tools when investigating how climate can influence
 algorithms have the capability of quantifying patterns in data that are not revealed by statistical analysis.
 
 <div class="box">
-  <h4>Timeline</h4>
-</div>
-
-January - June 2022
-
-<div class="box">
   <div class="left">
   <h3>Role</h3>
   <p>I collaborated with 3 peers to develop and implement a reproducible machine learning algorithm that predicts climate change impact on forest health using RHESSys model output.</p>
   </div>
   <div class="break"></div>
-  <div class="right">
+  <div class="middle">
   <h3>Skills</h3>
-  <p>R (RStudio), RShiny, GitHub <br/><br/> Machine Learning</p>
+  <p>R (RStudio)<br/>RShiny<br/>GitHub<br/>Machine Learning</p>
+  </div>
+  <div class="break"></div>
+  <div class="right">
+  <h3>Timeline</h3>
+  <p>January - June 2022</p>
   </div>
 </div>
