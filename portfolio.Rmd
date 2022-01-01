@@ -37,4 +37,3 @@ create_proj_card(
   text3 = "Map Collection"
 )
 ```
-

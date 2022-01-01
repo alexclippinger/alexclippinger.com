@@ -21,11 +21,11 @@
         "url": "https://hub-shale.github.io"
       }
     ],
-    "date": "2021-12-23",
+    "date": "2022-01-01",
     "categories": [],
-    "contents": "\r\nComing Soon!\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\n  .box div {\r\n    display: inline-block;\r\n    text-align: left;\r\n    color: #000000;\r\n  }\r\n  \r\n  .box h3 {\r\n    padding-bottom: 0px;\r\n  }\r\n  .box h4 {\r\n    padding-bottom: 0px;\r\n  }\r\n  \r\n  .left {\r\n    vertical-align: top;\r\n    width: 50%;\r\n  }\r\n  .break {\r\n    width: 15%;\r\n  }\r\n  .right {\r\n    vertical-align: top;\r\n    width: 30%;\r\n  }\r\n\r\n\r\nBackground\r\n\r\n\r\nEcohydrologic models are core tools when investigating how climate can influence water, carbon, and energy cycles in natural and urbanizing landscapes. RHESSys and other similar models are becoming increasingly sophisticated due to advances in software engineering, increased data availability, and a growing body of knowledge within the field of ecohydrology. Due to the complexity of these models, interpreting the high volume of data they output is a key challenge—both for scientists and the public. Machine learning algorithms have the capability of quantifying patterns in data that are not revealed by statistical analysis.\r\n\r\n\r\nTimeline\r\n\r\n\r\nJanuary - June 2022\r\n\r\n\r\n\r\nRole\r\n\r\n\r\nI collaborated with 3 peers to develop and implement a reproducible machine learning algorithm that predicts climate change impact on forest health using RHESSys model output.\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nSkills\r\n\r\n\r\nR (RStudio), RShiny, GitHub  Machine Learning\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-12-24T17:14:57-05:00",
+    "last_modified": "2022-01-01T12:33:09-05:00",
     "input_file": {}
   },
   {
