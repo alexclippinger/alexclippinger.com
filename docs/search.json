@@ -12,7 +12,7 @@
       "title": "Blog Posts & Projects",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-01-09T19:23:59-08:00"
+      "last_modified": "2022-01-09T19:27:04-08:00"
     },
     {
       "path": "CV.html",
@@ -34,7 +34,7 @@
       "description": "Showcasing my significant projects and work",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\nBren School of Environmental Science & Management\r\nCapstone Project\r\nUnderstanding Climate Change’s Impact on the Forest Ecosystem: Developing a\r\nReproducible Machine Learning Approach to Ecohydrologic Model Outputs\r\n\r\nView Project\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nVarious Projects\r\nMap Collection\r\nA collection of maps created for Educational, Volunteer, and Professional purposes\r\n\r\nView Project\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-01-09T19:24:02-08:00"
+      "last_modified": "2022-01-09T19:27:20-08:00"
     }
   ],
   "collections": ["portfolio/portfolio.json", "posts/posts.json"]
