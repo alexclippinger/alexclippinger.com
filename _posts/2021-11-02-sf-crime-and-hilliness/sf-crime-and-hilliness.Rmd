@@ -26,9 +26,9 @@ knitr::opts_chunk$set(echo = TRUE,
 
 options(scipen=999)
 
-library(sf)
+#library(sf)
 library(tidyverse)
-library(tidycensus)
+#library(tidycensus)
 library(patchwork)
 library(lubridate)
 library(modelr)
@@ -39,18 +39,20 @@ library(jtools)
 ```
 
 ```{r load data, include = FALSE}
-crimes <- st_read("data/crime_reports_2018_present/motor_vehicle_theft/motor_vehicle_theft_w_slope.shp", query = "SELECT date_incid, slope FROM motor_vehicle_theft_w_slope WHERE slope IS NOT NULL")
+#crimes <- st_read("data/crime_reports_2018_present/motor_vehicle_theft/motor_vehicle_theft_w_slope.shp", query = "SELECT date_incid, slope FROM motor_vehicle_theft_w_slope WHERE slope IS NOT NULL")
 
-contours <- st_read("data/contours/contours.shp") %>% 
-  st_transform(crs = st_crs(7132))
+#contours <- st_read("data/contours/contours.shp") %>% 
+#  st_transform(crs = st_crs(7132))
 
 # To access ACS data through tidycensus, first an API key needs to be registered.
-census_geom <- get_acs(geography = 'tract',
-                       variables = "B19013_001",
-                       state = "CA",
-                       county = "San Francisco",
-                       geometry = TRUE) %>% 
-  st_transform(crs = st_crs(7132))
+#census_geom <- get_acs(geography = 'tract',
+#                       variables = "B19013_001",
+#                       state = "CA",
+#                       county = "San Francisco",
+#                       geometry = TRUE) %>% 
+#  st_transform(crs = st_crs(7132))
+crimes <- read_csv("data/crimes.csv")
+crimes_summary <- read_csv("data/crimes_summary.csv")
 ```
 
 <figure>
@@ -141,22 +143,22 @@ Based on the existing literature by Kim & Wo, **it is expected that there is a n
 
 Since our variables interact over space, we merge the crimes, topography, and median income data sets by spatially joining them together. All data sets are loaded into `R` as **shapefiles** in the Coordinate Reference System (CRS) EPSG:7132 (NAD83(2011) / San Francisco CS13 (ftUS)), which is a projected CRS for the city and county of San Francisco adequate for high-precision (0.03 ft) analysis.
 
-```{r merge data}
+```{r merge data, include = FALSE}
 # Find index of nearest contour to each crime
-elev <- st_nearest_feature(x = crimes, y = contours)
+#elev <- st_nearest_feature(x = crimes, y = contours)
 
 # Add elevation and binary slope columns
-crimes <- crimes %>% 
-  st_join(y = census_geom, join = st_within, left = TRUE) %>% 
-  mutate(elev = contours[elev,]$elevation) %>% 
-  rename(median_income = estimate) %>% 
-  select(date_incid, slope, median_income, elev, geometry)
+#crimes <- crimes %>% 
+#  st_join(y = census_geom, join = st_within, left = TRUE) %>% 
+#  mutate(elev = contours[elev,]$elevation) %>% 
+#  rename(median_income = estimate) %>% 
+#  select(date_incid, slope, median_income, elev, geometry)
 
 # Group by all three variables
-crimes_summary <- crimes %>% 
-  st_drop_geometry() %>% 
-  group_by(slope, median_income, elev) %>% 
-  summarize(count = n())
+#crimes_summary <- crimes %>% 
+#  st_drop_geometry() %>% 
+#  group_by(slope, median_income, elev) %>% 
+#  summarize(count = n())
 ```
 
 ## 4. Describe data
@@ -165,7 +167,7 @@ The summary statistics for the data are provided in Table 3 below.
 
 ```{r}
 crimes %>% 
-  st_drop_geometry() %>% 
+  #st_drop_geometry() %>% 
   select(slope, elev, median_income) %>% 
   psych::describe(fast=TRUE) %>% 
   kable(col.names = c("", "Count", "Mean", "SD", "Min", "Max", "Range", "SE"), caption = "Summary statistics for Slope, Elevation, and Median Income variables") %>%
@@ -181,25 +183,25 @@ We can see in the **count** column that there are 24,454 total break-ins in our 
 The box plots below visualize these observations:
 
 ```{r}
-slope_box <- ggplot(data = crimes, aes(x = "", y = slope)) +
+slope_box <- ggplot(data = crimes_summary, aes(x = "", y = slope)) +
   geom_boxplot(color = "orange") +
   geom_jitter(aes(color = slope), 
               width = 0.2,
               size=0.4, 
-              alpha=0.025, 
+              alpha=0.1, 
               show.legend = FALSE) +
   theme_classic() +
   theme(axis.text.x = element_blank(),
         axis.ticks.x = element_blank(),
         axis.title.y = element_blank()) +
-  labs(x = "Slope (percent)")
+  labs(x = "Slope (%)")
 
-elev_box <- ggplot(data = crimes, aes(x = "", y = elev)) +
+elev_box <- ggplot(data = crimes_summary, aes(x = "", y = elev)) +
   geom_boxplot(color = "darkgreen") +
   geom_jitter(aes(color = elev), 
               width = 0.2,
               size=0.4, 
-              alpha=0.025, 
+              alpha=0.1, 
               show.legend = FALSE) +
   theme_classic() +
   theme(axis.text.x = element_blank(),
@@ -207,12 +209,12 @@ elev_box <- ggplot(data = crimes, aes(x = "", y = elev)) +
         axis.title.y = element_blank()) +
   labs(x = "Elevation (feet)")
 
-income_box <- ggplot(data = crimes, aes(x = "", y = median_income)) +
+income_box <- ggplot(data = crimes_summary, aes(x = "", y = median_income)) +
   geom_boxplot(color = "blue") +
   geom_jitter(aes(color = median_income), 
               width = 0.2,
               size=0.4, 
-              alpha=0.025, 
+              alpha=0.1, 
               show.legend = FALSE) +
   theme_classic() +
   theme(axis.text.x = element_blank(),
@@ -220,7 +222,7 @@ income_box <- ggplot(data = crimes, aes(x = "", y = median_income)) +
         axis.title.y = element_blank()) +
   labs(x = "Median Income (USD)")
 
-elev_box + slope_box + income_box + plot_annotation(title = 'Figure 1. Boxplots of Independent Variables',
+elev_box + slope_box + income_box + plot_annotation(title = 'Figure 1. Distributions of Independent Variables',
                                                     theme = theme(plot.title = element_text(hjust = 0.5)))
 ```
 
@@ -247,7 +249,7 @@ The following plots in Figure 2 show the simple relationships between count of c
 ```{r}
 # Group by income
 income_summary <- crimes %>% 
-  st_drop_geometry() %>% 
+  #st_drop_geometry() %>% 
   group_by(median_income) %>% 
   summarize(count = n())
 
@@ -262,7 +264,7 @@ income_plot = ggplot(data = income_summary, aes(x = median_income, y = count)) +
 
 # Group by elevation
 elev_summary <- crimes %>% 
-  st_drop_geometry() %>% 
+  #st_drop_geometry() %>% 
   group_by(elev) %>% 
   summarize(count = n())
 
@@ -277,7 +279,7 @@ elev_plot <- ggplot(data = elev_summary, aes(x = elev, y = count)) +
 
 # Group by slope
 slope_summary <- crimes %>% 
-  st_drop_geometry() %>% 
+  #st_drop_geometry() %>% 
   group_by(slope) %>% 
   summarize(count = n())
 
@@ -296,14 +298,16 @@ elev_plot + (slope_plot / income_plot) + plot_annotation(title = 'Figure 2. Simp
 
 There is a negative correlation between **elevation** and crime. It also appears that this relationship is not linear, so the model may fit better if transformed. Additionally, there is a negative correlation between **slope** and crime also showing signs of a non-linear relationship, supporting the justification for a transformation. Lastly, there appears to be a weak negative correlation, or even possibly no significant relationship, between **median income** and car break-ins.
 
-Lastly, the figure below visualizes the spatial distribution of the crime data within the city and provides a relative idea of the areas of higher elevation. Crime data is distributed across most of the study area. Additionally, regions with significant terrain (such as Twin Peaks, Potrero Hill, and Nob Hill) can be identified by the areas with concentrations of darker green points.
 
-```{r}
-tmap_mode("view")
 
-tm_shape(crimes) +
-  tm_dots("elev") +
-  tm_layout(title = "Figure 4. Distribution of break-ins by elevation")
+```{r, include = FALSE}
+#Lastly, the figure below visualizes the spatial distribution of the crime data within the city and provides a relative idea of the areas of higher elevation. Crime data is #distributed across most of the study area. Additionally, regions with significant terrain (such as Twin Peaks, Potrero Hill, and Nob Hill) can be identified by the areas with #concentrations of darker green points.
+
+#tmap_mode("view")
+
+#tm_shape(crimes) +
+#  tm_dots("elev") +
+#  tm_layout(title = "Figure 4. Distribution of break-ins by elevation")
 ```
 
 ## 6. Test OLS Assumptions
