@@ -15,7 +15,6 @@ authors:
   - first_name: "Shale"
     last_name: "Hunter"
     url: https://hub-shale.github.io
-timeline: Jan-Jun 2022
 output:
   distill::distill_article:
     self_contained: false

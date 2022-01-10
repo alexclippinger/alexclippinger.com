@@ -12,8 +12,9 @@ create_proj_card = function(img_src, url, button, text, text2, text3){
       h3(text3),
       h4(text),
       tags$button(a(href = url,  button))
+      #a(href = url, tags$button(button))
     )
   )
 }
 
-#a(href = url, tags$button(button))
+
