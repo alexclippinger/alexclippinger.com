@@ -13,4 +13,62 @@ output:
 citation: false
 ---
 
-Coming Soon!
+<style>
+  .box div {
+    display: inline-block;
+    text-align: left;
+    color: #000000;
+  }
+  .box h3 {
+    padding-bottom: 0px;
+  }
+  .box h4 {
+    padding-bottom: 0px;
+  }
+  .left {
+    vertical-align: top;
+    width: 65%;
+  }
+  .middle {
+    vertical-align:top;
+    width: 12.5%;
+  }
+  .right {
+    vertical-align: top;
+    width: 12.5%;
+  }
+  .break {
+    width: 4%;
+  }
+</style>
+
+
+# Big Seki Loop
+
+<div class="box">
+  <div class="left">
+  <h3>Background</h3>
+  <p>As the final project for EDS240 (Data Visualization) in my Master of Environmental Data Science degree, we were tasked with creating a visualization that told a story. For my project, I chose to create a graphic that would capture the personal memories and details of a backpacking trip that someone close to me completed in June of 2020.</p>
+  </div>
+  <div class="break"></div>
+  <div class="middle">
+  <h3>Skills</h3>
+  <p>R (RStudio)<br/>ArcGIS Pro<br/>Figma<br/></p>
+  </div>
+  <div class="break"></div>
+  <div class="right">
+  <h3>Timeline</h3>
+  <p>January - March 2022</p>
+  </div>
+</div>
+
+<figure>
+  <img src="./images/EDS240_Clippinger_Visual.png" alt="Data visualization of backpacking trip on the Big Seki Loop, including a map, elevation topo, and a trip journal"   style="width:100%;"/>
+  <figcaption>
+Data visualization of a backpacking trip along the Big Seki Loop.
+    </figcaption>
+</figure>
+
+The map was created in ArcGIS Pro using a variety of data sources, including an SRTM Digital Elevation Model and National Park Service trails, boundaries, and water bodies. The elevation line chart was created using a GPX file downloaded from [CalTopo](https://caltopo.com/) that was then processed and visualized in R. Lastly, the vast majority of the graphic design work was completed in Figma - including the trip journal, chart axes, and many finishing touches to the map (labels, linear gradients, masks, and more). I am extremely happy with the finished product!
+
+[Click here for the full-sized image](images/EDS240_Clippinger_Visual.png)
