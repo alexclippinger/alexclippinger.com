@@ -9,12 +9,12 @@ navbar:
   right:
     - text: "About"
       href: index.html
-    - text: "Portfolio"
+    - text: "Projects"
       href: portfolio.html
-    - text: "Posts"
+    - text: "Blog"
       href: blog.html
     - text: "Resume"
-      href: CV/Clippinger_Alex_Resume_03-29-22.pdf
+      href: CV/Clippinger_Alex_Resume_05-01-22.pdf
 output: distill::distill_article
 theme: theme.css
 collections:

@@ -16,9 +16,7 @@ site: distill::distill_website
 
 ### About Me
 
-Hello! I graduated from Northeastern University in 2019 with a degree in Mathematics and Economics. Since then, I've managed risk from extreme events at [AIR Worldwide](https://www.air-worldwide.com/), helped farmers save money using in-season agriculture insights from drone imagery at [Sentera](https://sentera.com/), and volunteered with the Old Lyme Land Trust to understand high priority conservation areas in my home town.
-
-I am currently a [Master of Environmental Data Science](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) student at UCSB, where I hope to gain the necessary data science and analysis skills to support innovation and investment in sustainable practices and clean energy. I believe that economic principles, supported by data science and analytics, can be used to address the environmental challenges we now face.
+I am a [Master of Environmental Data Science](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) student at UCSB, where I am learning to apply machine learning, statistics, and data visualization to my work in environmental science. My [capstone](https://alexclippinger.github.io/portfolio/2021-12-23-group-project/index.html)  uses decision-tree-based algorithms to explore variable importance from ecohydrologic model output.
 <br />
 <br />
 
