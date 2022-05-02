@@ -1,7 +1,7 @@
 ---
 title: "Capstone Project"
 description: |
-  Understanding Climate Change’s Impact on the Forest Ecosystem: Developing a Reproducible Machine Learning Approach to Ecohydrologic Model Outputs.
+  Reproducible Machine Learning Approach for Interpreting Ecohydrologic Model Outputs.
 authors:
   - first_name: "Alex" 
     last_name: "Clippinger"
@@ -20,7 +20,6 @@ output:
     self_contained: false
 citation: false
 ---
-
 
 <style>
   .box div {
@@ -75,20 +74,24 @@ Ecohydrologic models are core tools when investigating how climate can influence
   </div>
 </div>
 
-<br/><br/>
-This project is currently in progress. For more information prior to completion, please see the [Initial Project Proposal](files/Clippinger-Menzies_Ecohydrologic-Machine-Learning-Capstone-Proposal.pdf).
 
 ### Introduction
 
-The Regional Hydro-Ecological Simulation System (RHESSys) is a GIS-based ecohydrologic model that assesses nutrient and water cycling at varying spatial scales. RHESSys is used by researchers to, among other applications, investigate climate change impacts on forest ecosystems. For example, [Burke et. al 2021](https://doi.org/10.3389/ffgc.2020.591162) explored fuel treatment effects on forest health and fires, and [Peng et. al 2013](https://doi.org/10.1002/jgrg.20073) analyzed the effect of timing of precipitation and snow melt recharge on stream flow.
+For my Capstone Project, I worked with the creator of The Regional Hydro-Ecological Simulation System (RHESSys), Dr. Naomi Tague, and the Tague Team Lab at UCSB's Bren School. 
+
+RHESSys is a GIS-based ecohydrologic model that assesses nutrient and water cycling at varying spatial scales. RHESSys is used by researchers to, among other applications, investigate climate change impacts on forest ecosystems. For example, [Burke et. al 2021](https://doi.org/10.3389/ffgc.2020.591162) explored fuel treatment effects on forest health and fires, and [Peng et. al 2013](https://doi.org/10.1002/jgrg.20073) analyzed the effect of timing of precipitation and snow melt recharge on stream flow.
+
 
 ### Problem
 
-For my Capstone Project, I worked with the creator of RHESSys, Dr. Naomi Tague, and the Tague Team Lab at UCSB's Bren School. 
+RHESSys, like other process-based models, can produce massive data sets with spatial, temporal, and non-linear variable relationships. The figure below demonstrates the complexity of the project's case study data for the Sagehen Creek Field Station. 
 
 <figure>
   <img src="./images/vars_v3.png" alt="Visualization of the complexity of a RHESSys dataset, including a breakdown by scenario, topography, and more"   style="width:100%;"/>
-  <figcaption>
-Visualization of the complexity of a RHESSys dataset.
-    </figcaption>
 </figure>
+
+The goal of this project is to make it easier for researchers to quickly analyze and understand RHESSys output. 
+
+
+<br/><br/>
+**This project is currently in progress. For more information prior to completion, please see the [Initial Project Proposal](files/Clippinger-Menzies_Ecohydrologic-Machine-Learning-Capstone-Proposal.pdf).**
