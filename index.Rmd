@@ -16,12 +16,11 @@ site: distill::distill_website
 
 ### About Me
 
-I am a [Master of Environmental Data Science](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) student at UCSB, where I am learning to apply machine learning, statistics, and data visualization to my work in environmental science. My [capstone](https://alexclippinger.github.io/portfolio/2021-12-23-group-project/index.html)  uses decision-tree-based algorithms to explore variable importance from ecohydrologic model output.
+I am a recent graduate of the [Master of Environmental Data Science](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) program at UCSB. My [capstone](https://alexclippinger.github.io/portfolio/2021-12-23-group-project/index.html)  research involved the use of decision-tree-based algorithms to explore variable importance from ecohydrologic model output.
 <br />
 <br />
 
 ### Currently
 
-- Data Scientist (Part-Time) @ [RDN, Inc.](https://www.rdniehaus.com/) <br />
-- Graduate Student @ [Bren School of Environmental Science & Management](https://bren.ucsb.edu/) <br />
-- Teaching Assistant @ [UCSB Department of Economics](https://econ.ucsb.edu/)
+- Data Scientist @ [RDN, Inc.](https://www.rdniehaus.com/) <br />
+
