@@ -80,24 +80,5 @@
     "input_file": {},
     "preview_width": 375,
     "preview_height": 134
-  },
-  {
-    "path": "posts/2021-08-16-meds-week-3-recap/",
-    "title": "Recap of the MEDS Program in Week 3",
-    "description": "A reflection on the first few weeks as part of the inaugural cohort of the Master of Environmental Data Science program at the Bren School of Environmental Science & Management, UCSB.",
-    "author": [
-      {
-        "name": "Alex Clippinger",
-        "url": {}
-      }
-    ],
-    "date": "2021-08-16",
-    "categories": [
-      "general"
-    ],
-    "contents": "\r\n\r\nMy classmates and I in the brand new classroom space at the National Center for Ecological Analysis & Synthesis (NCEAS)\r\nWe are in week 3 of the Master of Environmental Data Science (MEDS) program at the Bren School of Environmental Science & Management at UCSB. So far in our summer intensive coursework, we have focused on essential math/statistics, programming (in R), and git skills that will be essential for the rest of the program. Here are a few things that we’ve learned…\r\nR functions\r\nSince this is a data science oriented program, we quickly covered basic R syntax before moving on to learning various methods of getting data into more usable formats.\r\nHere is a brief example of using the dplyr group_by and summarize functions to find the mean body weight (in grams) of penguin species within the palmerpenguins R data package, created by our professor Dr. Allison Horst!\r\n\r\n\r\nShow code\r\n\r\n# Example using the palmerpenguins dataset\r\npenguins_summary <- penguins %>% \r\n  group_by(species) %>% \r\n  summarize(mean_body_mass_g = mean(body_mass_g, na.rm = TRUE))\r\n\r\npenguins_summary %>% kable()\r\n\r\n\r\n\r\nspecies\r\n\r\n\r\nmean_body_mass_g\r\n\r\n\r\nAdelie\r\n\r\n\r\n3700.662\r\n\r\n\r\nChinstrap\r\n\r\n\r\n3733.088\r\n\r\n\r\nGentoo\r\n\r\n\r\n5076.016\r\n\r\n\r\nEssential Concepts\r\nWe have also learned fundamental ideas for working with data. One such concept is tidy data, which refers to the following qualities:\r\nEach column contains a single variable\r\nEach row contains a single observation\r\nEach cell contains a single value\r\nThis is relevant for other important topics that we’ve covered, such as scientific reproducibility.\r\nHow to Create a Website!\r\nHaving a personal website to share my work through moving forward is incredibly exciting. I hope to fill this site with personal work and my data-science intensive Capstone Project that will be completed in June, 2022.\r\nThis website is also version-controlled on GitHub!\r\nTakeaways\r\nIn the initial weeks, the MEDS program has been rewarding and challenging. I have learned to think critically and deliberately about every line of code or decision. Additionally, I can already see the profound impact that a supportive and collaborative community can make on learning this type of material. Our group of 25 students is full of inspiring and hard-working individuals from a wide variety of backgrounds, and I look forward to working together in the next year!\r\n\r\n\r\n\r\n",
-    "preview": "posts/2021-08-16-meds-week-3-recap/images/logo-bren.svg",
-    "last_modified": "2022-08-13T14:24:19-07:00",
-    "input_file": {}
   }
 ]
