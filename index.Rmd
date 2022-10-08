@@ -14,6 +14,48 @@ output:
 site: distill::distill_website
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(htmltools)
+source("R/functions.R")
+```
+
+```{css}
+/* Everything below this relates to the button on the "About" page */
+
+.my-button a,
+.my-button a:hover {
+  border-bottom: none;
+  color: #FFFFFF
+}
+
+.my-button button {
+  color: white;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 200;
+  background-color: #0095eb;
+  border-radius: 12px;
+  border: none;
+  padding: 12px 16px;
+  text-align: center;
+  transition-duration: 0.5s;
+  display: block;
+}
+
+.my-button button:hover {
+  background:#9ecde8;
+}
+```
+
+```{r}
+create_button(url = "portfolio.html",
+              button = "View My Projects")
+```
+<br>
+<br>
+
 ### About Me
 
 I am a recent graduate of the [Master of Environmental Data Science](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) program at UCSB. My [capstone](https://alexclippinger.github.io/portfolio/2021-12-23-group-project/index.html)  research involved the use of decision-tree-based algorithms to explore variable importance from ecohydrologic model output.

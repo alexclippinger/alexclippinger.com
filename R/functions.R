@@ -17,4 +17,9 @@ create_proj_card = function(img_src, url, button, text, text2, text3){
   )
 }
 
-
+create_button = function(url, button){
+    tags$div(
+      class = "my-button",
+      tags$button(a(href = url,  button))
+    )
+}

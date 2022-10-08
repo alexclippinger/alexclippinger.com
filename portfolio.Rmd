@@ -23,8 +23,7 @@ Reproducible Machine Learning Approach to Ecohydrologic Model Outputs",
   text3 = "Capstone Project"
 )
 ```
-
-<br />
+<br>
 
 ```{r}
 create_proj_card(
@@ -36,3 +35,52 @@ create_proj_card(
   text3 = "Map Collection"
 )
 ```
+<br>
+
+```{r}
+create_proj_card(
+  img_src = "images/crime_map.png",
+  url = "portfolio/2021-11-02-sf-crime-and-hilliness/index.html",
+  button = "View Project",
+  text = "A regression analysis",
+  text2 = "EDS",
+  text3 = "Crime and Hilliness Regression Analysis"
+)
+```
+<br>
+
+```{r}
+create_proj_card(
+  img_src = "images/Map 3.png",
+  url = "portfolio/2021-12-04-old-lyme-land-trust-gis-overlay-analysis/index.html",
+  button = "View Project",
+  text = "Spatial analysis",
+  text2 = "OLLT Volunteer",
+  text3 = "Conservation Spatial Analysis"
+)
+```
+<br>
+
+```{r}
+create_proj_card(
+  img_src = "images/Ames_NDWI_Diff.png",
+  url = "portfolio/2021-10-18-ames-open-space-flooding/index.html",
+  button = "View Project",
+  text = "ArcGIS Story Map",
+  text2 = "OLLT Volunteer",
+  text3 = "Visualizing Flooding with NDWI"
+)
+```
+<br>
+
+```{r}
+create_proj_card(
+  img_src = "images/osprey_landing.jpg",
+  url = "portfolio/2021-09-20-old-lyme-ospreys-2020-season-review/index.html",
+  button = "View Project",
+  text = "Data Analysis",
+  text2 = "Text2",
+  text3 = "Osprey Data Analysis"
+)
+```
+<br>
