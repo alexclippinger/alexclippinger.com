@@ -8,9 +8,9 @@ navbar:
   search: false
   right:
     - text: "About"
-      href: index.html
+      href: index
     - text: "Projects"
-      href: portfolio.html
+      href: portfolio
     - text: "Resume"
       href: CV/Clippinger_Alex_Resume_05-01-22.pdf
 output: distill::distill_article
