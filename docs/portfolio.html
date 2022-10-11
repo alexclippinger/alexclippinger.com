@@ -2111,17 +2111,40 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   /* Everything below this should relate to the Portfolio page cards */
 
+  d-article {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+
+  .project-page-wrapper {
+    width: 75%;
+  }
+
+  .project-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0.5em;
+  }
+
+  .project-card-wrapper {
+    width: 50%;
+    height: 100%
+  }
+
   .card {
     color: #474747;
     background-color: #FFFFFF;
-    box-shadow: 4px 6px 8px 0 rgba(0,0,0,0.2);
+    border: 1px solid #e0e0e0;
     transition: 0.3s;
     border-radius: 10px; 
-    /*margin: 16px 16px;*/
     text-decoration: none;
     display: flex;
     flex-direction: row;
-    max-width: 75%;
+    max-width: 95%;
     margin: auto;
   }
 
@@ -2183,13 +2206,66 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     object-fit: cover;
     padding: 20px 20px;
     border-radius: 30px;
-    width: 40%;
-    max-height: 300px; /* not a permanent solution to this problem */
+    max-width: 300px !important;
+    aspect-ratio: 1 / 1;
   }
+
+  @media(max-width: 1440px) {
+  .project-row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+  }
+
+  .project-card-wrapper {
+    width: 100%;
+    height: 50%;
+    margin: 0.5em;
+  }
+  }
+
+  @media(max-width: 630px) {
+  .project-row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+
+  .project-card-wrapper {
+    width: 100%;
+    height: 50%;
+  }
+
+  .card {
+    flex-direction: column;
+    margin-bottom: 1em;
+  }
+
+  .card-img-top {
+    flex-shrink: 0.5;
+  }
+
+  .h3 {
+    font-size: 20px;
+  }
+
+  .h4,
+  .p {
+    font-size: 14px;
+  }
+
+  .d-title h1 {
+    font-size: 24px;
+  }
+    
+  }
+
 
   /* Update overall layout (body width) */
 
-  @media(min-width: 1180px) {
+  /*@media(min-width: 1180px) {
       .base-grid,
       distill-header,
       d-title,
@@ -2203,7 +2279,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       distill-footer {
         grid-template-columns: [screen-start] 0.5fr [page-start kicker-start] 30px [middle-start] 50px [text-start kicker-end] 100px 100px 100px 100px 100px 100px 100px 100px [text-end gutter-start] 30px [middle-end] 50px [page-end gutter-end] 0.5fr [screen-end];
         grid-column-gap: 20px;
-      }</style>
+      }
+  */
+  </style>
   <style type="text/css">
   /* base style */
 
@@ -2410,7 +2488,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <div class="d-article">
-<div class="layout-chunk" data-layout="l-body">
+<div class="project-row">
+<div class="layout-chunk" data-layout="project-card-wrapper">
 <div class="card">
 <img class="card-img-top" src="images/bren-leaf-art-small.jpg"/>
 <div class="card-body">
@@ -2424,8 +2503,7 @@ Reproducible Machine Learning Approach to Ecohydrologic Model Outputs</h4>
 </div>
 </div>
 </div>
-<p><br></p>
-<div class="layout-chunk" data-layout="l-body">
+<div class="layout-chunk" data-layout="project-card-wrapper">
 <div class="card">
 <img class="card-img-top" src="images/trailmap.png"/>
 <div class="card-body">
@@ -2438,8 +2516,9 @@ Reproducible Machine Learning Approach to Ecohydrologic Model Outputs</h4>
 </div>
 </div>
 </div>
-<p><br></p>
-<div class="layout-chunk" data-layout="l-body">
+</div>
+<div class="project-row">
+<div class="layout-chunk" data-layout="project-card-wrapper">
 <div class="card">
 <img class="card-img-top" src="images/crime_map.png"/>
 <div class="card-body">
@@ -2452,8 +2531,7 @@ Reproducible Machine Learning Approach to Ecohydrologic Model Outputs</h4>
 </div>
 </div>
 </div>
-<p><br></p>
-<div class="layout-chunk" data-layout="l-body">
+<div class="layout-chunk" data-layout="project-card-wrapper">
 <div class="card">
 <img class="card-img-top" src="images/Map%203.png"/>
 <div class="card-body">
@@ -2466,8 +2544,9 @@ Reproducible Machine Learning Approach to Ecohydrologic Model Outputs</h4>
 </div>
 </div>
 </div>
-<p><br></p>
-<div class="layout-chunk" data-layout="l-body">
+</div>
+<div class="project-row">
+<div class="layout-chunk" data-layout="project-card-wrapper">
 <div class="card">
 <img class="card-img-top" src="images/Ames_NDWI_Diff.png"/>
 <div class="card-body">
@@ -2480,8 +2559,7 @@ Reproducible Machine Learning Approach to Ecohydrologic Model Outputs</h4>
 </div>
 </div>
 </div>
-<p><br></p>
-<div class="layout-chunk" data-layout="l-body">
+<div class="layout-chunk" data-layout="project-card-wrapper">
 <div class="card">
 <img class="card-img-top" src="images/osprey_landing.jpg"/>
 <div class="card-body">
@@ -2494,7 +2572,7 @@ Reproducible Machine Learning Approach to Ecohydrologic Model Outputs</h4>
 </div>
 </div>
 </div>
-<p><br></p>
+</div>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

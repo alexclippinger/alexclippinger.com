@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -429,10 +430,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1264,6 +1261,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1278,6 +1281,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1377,6 +1405,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1399,7 +1429,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -1438,7 +1468,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="old-lyme-land-trust-gis-overlay-analysis_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="old-lyme-land-trust-gis-overlay-analysis_files/header-attrs-2.14/header-attrs.js"></script>
   <script src="old-lyme-land-trust-gis-overlay-analysis_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="old-lyme-land-trust-gis-overlay-analysis_files/popper-2.6.0/popper.min.js"></script>
   <link href="old-lyme-land-trust-gis-overlay-analysis_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1459,7 +1489,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"A GIS Overlay Analysis for the Old Lyme Land Trust","description":"As a GIS Volunteer for the Old Lyme Land Trust, I delivered a GIS overlay analysis that identified properties with high natural resource value in order to assist with conservation acquisition targets.","authors":[{"author":"Alex Clippinger","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-12-04T00:00:00.000-05:00","citationText":"Clippinger, 2021"}
+{"title":"A GIS Overlay Analysis for the Old Lyme Land Trust","description":"As a GIS Volunteer for the Old Lyme Land Trust, I delivered a GIS overlay analysis that identified properties with high natural resource value in order to assist with conservation acquisition targets.","authors":[{"author":"Alex Clippinger","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-12-04T00:00:00.000-08:00","citationText":"Clippinger, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1472,10 +1502,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>A GIS Overlay Analysis for the Old Lyme Land Trust</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
-<div class="dt=tag">GIS</div>
+<div class="dt-tag">GIS</div>
 </div>
 <!--/radix_placeholder_categories-->
-<p><p>As a GIS Volunteer for the Old Lyme Land Trust, I delivered a GIS overlay analysis that identified properties with high natural resource value in order to assist with conservation acquisition targets.</p></p>
+<p><p>As a GIS Volunteer for the Old Lyme Land Trust, I delivered a GIS
+overlay analysis that identified properties with high natural resource
+value in order to assist with conservation acquisition targets.</p></p>
 </div>
 
 <div class="d-byline">
@@ -1489,88 +1521,177 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#background">Background</a></li>
-<li><a href="#client">Client</a></li>
-<li><a href="#analysis-plan">Analysis Plan</a></li>
-<li><a href="#overlay-analysis">Overlay Analysis</a></li>
-<li><a href="#results">Results</a></li>
+<li><a href="#background" id="toc-background">Background</a></li>
+<li><a href="#client" id="toc-client">Client</a></li>
+<li><a href="#analysis-plan" id="toc-analysis-plan">Analysis
+Plan</a></li>
+<li><a href="#overlay-analysis" id="toc-overlay-analysis">Overlay
+Analysis</a></li>
+<li><a href="#results" id="toc-results">Results</a></li>
 </ul>
 </nav>
 </div>
 <h2 id="background">Background</h2>
-<p>In 2020, I was a GIS Volunteer with the Old Lyme Land Trust (OLLT). This blog post details a project conducted for the OLLT in April 2020, which was delivered to board members. This also served as the final project of <a href="https://catalog.northeastern.edu/graduate/professional-studies/graduate-certificate-programs/geographic-information-systems-graduate-certificate/#programrequirementstext">GIS 6320</a> during my Graduate Certificate in GIS.</p>
+<p>In 2020, I was a GIS Volunteer with the Old Lyme Land Trust (OLLT).
+This blog post details a project conducted for the OLLT in April 2020,
+which was delivered to board members. This also served as the final
+project of <a
+href="https://catalog.northeastern.edu/graduate/professional-studies/graduate-certificate-programs/geographic-information-systems-graduate-certificate/#programrequirementstext">GIS
+6320</a> during my Graduate Certificate in GIS.</p>
 <h2 id="client">Client</h2>
-<p>The OLLT is a non-profit organization dedicated to conserving land and water resources for the public of Old Lyme, a coastal town in Southeastern Connecticut. Local land trusts like the OLLT are vital to natural resource conservation and education in the lower Connecticut River region. This area was identified by the Nature Conservancy as a focal area in their “Resilient Sites for Terrestrial Conservation in the Northeast and Mid-Atlantic Region” report (<a href="https://lcrclandtrustexchange.org/InformationDocuments/LTE_Strategic_PlanFINAL091814.pdf">Source</a>).</p>
+<p>The OLLT is a non-profit organization dedicated to conserving land
+and water resources for the public of Old Lyme, a coastal town in
+Southeastern Connecticut. Local land trusts like the OLLT are vital to
+natural resource conservation and education in the lower Connecticut
+River region. This area was identified by the Nature Conservancy as a
+focal area in their “Resilient Sites for Terrestrial Conservation in the
+Northeast and Mid-Atlantic Region” report (<a
+href="https://lcrclandtrustexchange.org/InformationDocuments/LTE_Strategic_PlanFINAL091814.pdf">Source</a>).</p>
 <figure>
-<img src="images/Map1.png" alt="Map showing the town of Old Lyme in the Southeastern corner of Connecticut"    style="width:75%;"/> <img src="images/Map2.png" alt="Map showing the town of Old Lyme in the Southeastern corner of Connecticut"    style="width:75%;"/>
+<img src="images/Map1.png" alt="Map showing the town of Old Lyme in the Southeastern corner of Connecticut"    style="width:75%;"/>
+<img src="images/Map2.png" alt="Map showing the town of Old Lyme in the Southeastern corner of Connecticut"    style="width:75%;"/>
 <figcaption>
-Maps depicting the location of Old Lyme, Connecticut. The town is located in Southeastern Connecticut at the mouth of the Connecticut River.
+Maps depicting the location of Old Lyme, Connecticut. The town is
+located in Southeastern Connecticut at the mouth of the Connecticut
+River.
 </figcaption>
 </figure>
-<p>The OLLT protects 70 properties covering roughly 1,100 of 16,000 acres of land in the town and is continuously seeking new acquisitions (<a href="https://www.oldlymelandtrust.org/">Source</a>). These efforts are primarily placed on parcels that are adjacent to existing preserves or town open space, with a goal of linking these properties to create town-wide trail systems and wildlife corridors. However, there was not a comprehensive understanding of the spatial distribution of important natural resources.</p>
+<p>The OLLT protects 70 properties covering roughly 1,100 of 16,000
+acres of land in the town and is continuously seeking new acquisitions
+(<a href="https://www.oldlymelandtrust.org/">Source</a>). These efforts
+are primarily placed on parcels that are adjacent to existing preserves
+or town open space, with a goal of linking these properties to create
+town-wide trail systems and wildlife corridors. However, there was not a
+comprehensive understanding of the spatial distribution of important
+natural resources.</p>
 <h2 id="analysis-plan">Analysis Plan</h2>
-<p>This project aimed to address this lack of insight into areas and parcels in Old Lyme with a high concentration of natural resources and thus an increased priority for conservation efforts. Taking into consideration both key natural resources criteria and OLLT Board Member concerns, the results provided a basis for acquisition targets and support for grant applications. These criteria are weighted and combined using a GIS overlay analysis.</p>
+<p>This project aimed to address this lack of insight into areas and
+parcels in Old Lyme with a high concentration of natural resources and
+thus an increased priority for conservation efforts. Taking into
+consideration both key natural resources criteria and OLLT Board Member
+concerns, the results provided a basis for acquisition targets and
+support for grant applications. These criteria are weighted and combined
+using a GIS overlay analysis.</p>
 <p>In all, the project answered two principal questions:</p>
 <ol type="1">
-<li><p>What is the distribution of key natural resources in town?</p></li>
-<li><p>Which parcels contain high values of natural resources and other conservation criteria?</p></li>
+<li><p>What is the distribution of key natural resources in
+town?</p></li>
+<li><p>Which parcels contain high values of natural resources and other
+conservation criteria?</p></li>
 </ol>
 <h2 id="overlay-analysis">Overlay Analysis</h2>
-<p>The overlay analysis follows the standard methodology outline by Esri that can be applied in suitability modeling and optimal site selection (<a href="https://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/understanding-overlay-analysis.htm">Source</a>). These key steps include defining the problem, breaking into-sub models, determining significant layers, reclassifying these layers to be comparable, weighting based on specific project goals, then finally combining the inputs, and analyzing the results (ibid.). An overlay analysis is a common technique to apply a common scale to diverse inputs to create an integrated analysis.</p>
+<p>The overlay analysis follows the standard methodology outline by Esri
+that can be applied in suitability modeling and optimal site selection
+(<a
+href="https://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/understanding-overlay-analysis.htm">Source</a>).
+These key steps include defining the problem, breaking into-sub models,
+determining significant layers, reclassifying these layers to be
+comparable, weighting based on specific project goals, then finally
+combining the inputs, and analyzing the results (ibid.). An overlay
+analysis is a common technique to apply a common scale to diverse inputs
+to create an integrated analysis.</p>
 <figure>
 <img src="images/gis_layers.png" alt="Depicts layers in a GIS" style="width:35%">
 <figcaption>
-This image depicts the basic idea of an overlay analysis - aggregating values of various data layers
+This image depicts the basic idea of an overlay analysis - aggregating
+values of various data layers
 </figcaption>
 </figure>
-<p>Table 1 summarizes the sub-models, data layers, initial data types, and weights initially used for this analysis. Using this approach, each parcel received a value between 0 and 12 representing prioritization level for conservation and targeting by the land trust. The sub-models were devised by referencing the Lower CT River and Coastal Region Land Trust Exchange’s (LTE) <a href="https://lcrclandtrustexchange.org/InformationDocuments/LTE_Strategic_PlanFINAL091814.pdf">Natural Resource Based Strategic Conservation Plan</a>, which is a similar regional model focusing on large-scale corridor connectivity, and supported by direct feedback from OLLT Board Members.</p>
+<p>Table 1 summarizes the sub-models, data layers, initial data types,
+and weights initially used for this analysis. Using this approach, each
+parcel received a value between 0 and 12 representing prioritization
+level for conservation and targeting by the land trust. The sub-models
+were devised by referencing the Lower CT River and Coastal Region Land
+Trust Exchange’s (LTE) <a
+href="https://lcrclandtrustexchange.org/InformationDocuments/LTE_Strategic_PlanFINAL091814.pdf">Natural
+Resource Based Strategic Conservation Plan</a>, which is a similar
+regional model focusing on large-scale corridor connectivity, and
+supported by direct feedback from OLLT Board Members.</p>
 <figure>
 <img src="images/Table1.PNG" alt="Depicts layers in a GIS" style="width:100%">
 </figure>
-<p>After discussion with the OLLT Acquisition Lead, <strong>geological areas</strong> were added as another layer of interest. The final input layers are displayed below:</p>
+<p>After discussion with the OLLT Acquisition Lead, <strong>geological
+areas</strong> were added as another layer of interest. The final input
+layers are displayed below:</p>
 <figure>
 <img src="images/input%20layers%202x5_03.png" alt="Data layers included in the overlay analysis" style="width:100%">
 </figure>
-<p><a href="images/input%20layers%202x5_03.png">Click here for the full-sized image</a></p>
-<p>For full details on how these data layers were processed and combined, see the Final Project Report linked at the bottom of this page.</p>
+<p><a href="images/input%20layers%202x5_03.png">Click here for the
+full-sized image</a></p>
+<p>For full details on how these data layers were processed and
+combined, see the Final Project Report linked at the bottom of this
+page.</p>
 <h2 id="results">Results</h2>
-<p>The raster layer representing the weighted matrix of natural resource criteria is seen in the map below.</p>
+<p>The raster layer representing the weighted matrix of natural resource
+criteria is seen in the map below.</p>
 <figure>
 <img src="images/Map%203.png" alt="Raster map of natural resources in Old Lyme, CT" style="width:100%;"/>
 <figcaption>
-The map depicts natural resource values as a result of the overlay analysis. Particular areas of high resource values include the Lieutenant River, Black Hall River, and Great Island.
+The map depicts natural resource values as a result of the overlay
+analysis. Particular areas of high resource values include the
+Lieutenant River, Black Hall River, and Great Island.
 </figcaption>
 </figure>
-<p>The largest concentration of natural resources is in coastal and riparian zones of the Connecticut River, as well as marshy wetlands surrounding the Lieutenant and Black Hall rivers. The large forest areas in the central and North-East parts of the town also have high values.</p>
+<p>The largest concentration of natural resources is in coastal and
+riparian zones of the Connecticut River, as well as marshy wetlands
+surrounding the Lieutenant and Black Hall rivers. The large forest areas
+in the central and North-East parts of the town also have high
+values.</p>
 <p>The following map shows the results of the parcel prioritization.</p>
 <figure>
 <img src="images/parcelconservationvalue.png" alt="Parcels with high values of conservation in Old Lyme, CT." style="width:100%;"/>
 <figcaption>
-Parcels in darker shades of green have higher average values of natural resources. Additionally, these conservation values take into account proximity to existing protected land and parcel size.
+Parcels in darker shades of green have higher average values of natural
+resources. Additionally, these conservation values take into account
+proximity to existing protected land and parcel size.
 </figcaption>
 </figure>
-<p>Fortunately, many of these parcels are existing property of the OLLT, Open Space Commission, or other agencies as shown in the map below.</p>
+<p>Fortunately, many of these parcels are existing property of the OLLT,
+Open Space Commission, or other agencies as shown in the map below.</p>
 <figure>
 <img src="images/Parcel%20Conservation%20Values.png" alt="Parcels with high values of conservation in Old Lyme, CT, with existing protected properties labeled." style="width:100%;"/>
 <figcaption>
-This map contains the same information as previous, now including existed protected property.
+This map contains the same information as previous, now including
+existed protected property.
 </figcaption>
 </figure>
-<p>Parcels in the areas listed above (riparian and coastal zones) remain with the highest conservation importance. However, some larger parcels and those close to existing Land Trust property have received a boosted focus. Notably, the large properties adjacent to the Upper Three Mile River preserve (large OLLT preserve in the North-East of the town) are identified as important targets. These properties are known priorities for the OLLT to complete the linkage of preserve property in that area.</p>
-<p>The table below lists the highest valued parcels for conservation.</p>
+<p>Parcels in the areas listed above (riparian and coastal zones) remain
+with the highest conservation importance. However, some larger parcels
+and those close to existing Land Trust property have received a boosted
+focus. Notably, the large properties adjacent to the Upper Three Mile
+River preserve (large OLLT preserve in the North-East of the town) are
+identified as important targets. These properties are known priorities
+for the OLLT to complete the linkage of preserve property in that
+area.</p>
+<p>The table below lists the highest valued parcels for
+conservation.</p>
 <figure>
 <img src="images/table2.PNG" alt="Table of parcel IDs with highest conservation values." style="width:100%">
 </figure>
-<p>Parcel IDs can be searched using the <a href="https://oldlymect.mapgeo.io/">Town of Old Lyme MapGeo site</a>.</p>
-<p>All of these properties are in coastal or riparian zones, with the highest concentration at the inlet of the Lieutenant River. It is quite notable that 75% of the top 20 properties are already owned and protected by the Town of Old Lyme, State of Connecticut, Old Lyme Land Trust, or Nature Conservancy, with an impressive 30% protected by the OLLT.</p>
+<p>Parcel IDs can be searched using the <a
+href="https://oldlymect.mapgeo.io/">Town of Old Lyme MapGeo
+site</a>.</p>
+<p>All of these properties are in coastal or riparian zones, with the
+highest concentration at the inlet of the Lieutenant River. It is quite
+notable that 75% of the top 20 properties are already owned and
+protected by the Town of Old Lyme, State of Connecticut, Old Lyme Land
+Trust, or Nature Conservancy, with an impressive 30% protected by the
+OLLT.</p>
 <p>Here are the final outputs that resulted from this project:</p>
 <ul>
-<li><p><a href="images/GIS6320_Clippinger_FinalProjectProposal.pdf">Initial Project Proposal</a></p></li>
-<li><p><a href="images/OLLT_Overlay_Analysis.pdf">Final Project Report</a></p></li>
-<li><p><a href="images/Old%20Lyme%20Land%20Trust%20Conservation%20Prioritization.pdf">Slide Deck for Board Members</a></p></li>
-<li><p><a href="images/Conservation%20Values.xlsx">Parcel Conservation Value Data</a></p></li>
+<li><p><a
+href="images/GIS6320_Clippinger_FinalProjectProposal.pdf">Initial
+Project Proposal</a></p></li>
+<li><p><a href="images/OLLT_Overlay_Analysis.pdf">Final Project
+Report</a></p></li>
+<li><p><a
+href="images/Old%20Lyme%20Land%20Trust%20Conservation%20Prioritization.pdf">Slide
+Deck for Board Members</a></p></li>
+<li><p><a href="images/Conservation%20Values.xlsx">Parcel Conservation
+Value Data</a></p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

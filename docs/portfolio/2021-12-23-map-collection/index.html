@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -2124,17 +2125,40 @@ li a:active {
 
 /* Everything below this should relate to the Portfolio page cards */
 
+d-article {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.project-page-wrapper {
+  width: 75%;
+}
+
+.project-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0.5em;
+}
+
+.project-card-wrapper {
+  width: 50%;
+  height: 100%
+}
+
 .card {
   color: #474747;
   background-color: #FFFFFF;
-  box-shadow: 4px 6px 8px 0 rgba(0,0,0,0.2);
+  border: 1px solid #e0e0e0;
   transition: 0.3s;
   border-radius: 10px; 
-  /*margin: 16px 16px;*/
   text-decoration: none;
   display: flex;
   flex-direction: row;
-  max-width: 75%;
+  max-width: 95%;
   margin: auto;
 }
 
@@ -2196,13 +2220,66 @@ li a:active {
   object-fit: cover;
   padding: 20px 20px;
   border-radius: 30px;
-  width: 40%;
-  max-height: 300px; /* not a permanent solution to this problem */
+  max-width: 300px !important;
+  aspect-ratio: 1 / 1;
 }
+
+@media(max-width: 1440px) {
+.project-row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+}
+
+.project-card-wrapper {
+  width: 100%;
+  height: 50%;
+  margin: 0.5em;
+}
+}
+
+@media(max-width: 630px) {
+.project-row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+
+.project-card-wrapper {
+  width: 100%;
+  height: 50%;
+}
+
+.card {
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.card-img-top {
+  flex-shrink: 0.5;
+}
+
+.h3 {
+  font-size: 20px;
+}
+
+.h4,
+.p {
+  font-size: 14px;
+}
+
+.d-title h1 {
+  font-size: 24px;
+}
+  
+}
+
 
 /* Update overall layout (body width) */
 
-@media(min-width: 1180px) {
+/*@media(min-width: 1180px) {
     .base-grid,
     distill-header,
     d-title,
@@ -2216,7 +2293,9 @@ li a:active {
     distill-footer {
       grid-template-columns: [screen-start] 0.5fr [page-start kicker-start] 30px [middle-start] 50px [text-start kicker-end] 100px 100px 100px 100px 100px 100px 100px 100px [text-end gutter-start] 30px [middle-end] 50px [page-end gutter-end] 0.5fr [screen-end];
       grid-column-gap: 20px;
-    }</style>
+    }
+*/
+</style>
 <style type="text/css">
 /* base style */
 
@@ -2372,7 +2451,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2419,7 +2498,8 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h1>Map Collection</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>A collection of maps created for Educational, Volunteer, and Professional purposes.</p></p>
+<p><p>A collection of maps created for Educational, Volunteer, and
+Professional purposes.</p></p>
 </div>
 
 
@@ -2459,7 +2539,11 @@ d-appendix d-footnote-list a.footnote-backlink {
 Background
 </h3>
 <p>
-As the final project for EDS240 (Data Visualization) in my Master of Environmental Data Science degree, we were tasked with creating a visualization that told a story. For my project, I chose to create a graphic that would capture the personal memories and details of a backpacking trip that someone close to me completed in June of 2020.
+As the final project for EDS240 (Data Visualization) in my Master of
+Environmental Data Science degree, we were tasked with creating a
+visualization that told a story. For my project, I chose to create a
+graphic that would capture the personal memories and details of a
+backpacking trip that someone close to me completed in June of 2020.
 </p>
 </div>
 <div class="break">
@@ -2491,9 +2575,19 @@ January - March 2022
 Data visualization of a backpacking trip along the Big Seki Loop.
 </figcaption>
 </figure>
-<p><a href="images/EDS240_Clippinger_Visual.png">Click here for the full-sized image</a></p>
-<p>The map was created in ArcGIS Pro using a variety of data sources, including an SRTM Digital Elevation Model and National Park Service trails, boundaries, and water bodies. The elevation line chart was created using a GPX file downloaded from <a href="https://caltopo.com/">CalTopo</a> that was then processed and visualized in R. Lastly, the vast majority of the graphic design work was completed in Figma - including the trip journal, chart axes, and many finishing touches to the map (labels, linear gradients, masks, and more). I am extremely happy with the finished product!</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p><a href="images/EDS240_Clippinger_Visual.png">Click here for the
+full-sized image</a></p>
+<p>The map was created in ArcGIS Pro using a variety of data sources,
+including an SRTM Digital Elevation Model and National Park Service
+trails, boundaries, and water bodies. The elevation line chart was
+created using a GPX file downloaded from <a
+href="https://caltopo.com/">CalTopo</a> that was then processed and
+visualized in R. Lastly, the vast majority of the graphic design work
+was completed in Figma - including the trip journal, chart axes, and
+many finishing touches to the map (labels, linear gradients, masks, and
+more). I am extremely happy with the finished product!</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

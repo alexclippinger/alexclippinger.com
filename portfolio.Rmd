@@ -12,7 +12,8 @@ library(htmltools)
 source("R/functions.R")
 ```
 
-```{r}
+<div class='project-row'>
+```{r layout='project-card-wrapper'}
 create_proj_card(
   img_src = "images/bren-leaf-art-small.jpg",
   url = "portfolio/2021-12-23-group-project/index.html",
@@ -23,9 +24,8 @@ Reproducible Machine Learning Approach to Ecohydrologic Model Outputs",
   text3 = "Capstone Project"
 )
 ```
-<br>
 
-```{r}
+```{r layout='project-card-wrapper'}
 create_proj_card(
   img_src = "images/trailmap.png",
   url = "portfolio/2021-12-23-map-collection/index.html",
@@ -35,9 +35,10 @@ create_proj_card(
   text3 = "Map Collection"
 )
 ```
-<br>
+</div>
 
-```{r}
+<div class='project-row'>
+```{r layout='project-card-wrapper'}
 create_proj_card(
   img_src = "images/crime_map.png",
   url = "portfolio/2021-11-02-sf-crime-and-hilliness/index.html",
@@ -47,9 +48,8 @@ create_proj_card(
   text3 = "Crime and Hilliness Regression Analysis"
 )
 ```
-<br>
 
-```{r}
+```{r layout='project-card-wrapper'}
 create_proj_card(
   img_src = "images/Map 3.png",
   url = "portfolio/2021-12-04-old-lyme-land-trust-gis-overlay-analysis/index.html",
@@ -59,9 +59,10 @@ create_proj_card(
   text3 = "Conservation Spatial Analysis"
 )
 ```
-<br>
+</div>
 
-```{r}
+<div class='project-row'>
+```{r layout='project-card-wrapper'}
 create_proj_card(
   img_src = "images/Ames_NDWI_Diff.png",
   url = "portfolio/2021-10-18-ames-open-space-flooding/index.html",
@@ -71,9 +72,8 @@ create_proj_card(
   text3 = "Visualizing Flooding with NDWI"
 )
 ```
-<br>
 
-```{r}
+```{r layout='project-card-wrapper'}
 create_proj_card(
   img_src = "images/osprey_landing.jpg",
   url = "portfolio/2021-09-20-old-lyme-ospreys-2020-season-review/index.html",
@@ -83,4 +83,4 @@ create_proj_card(
   text3 = "Osprey Data Analysis"
 )
 ```
-<br>
+</div>

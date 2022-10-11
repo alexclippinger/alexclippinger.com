@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -429,10 +430,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1264,6 +1261,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1278,6 +1281,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1377,6 +1405,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1399,7 +1429,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -1438,7 +1468,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="map-collection_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="map-collection_files/header-attrs-2.14/header-attrs.js"></script>
   <script src="map-collection_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="map-collection_files/popper-2.6.0/popper.min.js"></script>
   <link href="map-collection_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1472,7 +1502,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Map Collection</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>A collection of maps created for Educational, Volunteer, and Professional purposes.</p></p>
+<p><p>A collection of maps created for Educational, Volunteer, and
+Professional purposes.</p></p>
 </div>
 
 
@@ -1512,7 +1543,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 Background
 </h3>
 <p>
-As the final project for EDS240 (Data Visualization) in my Master of Environmental Data Science degree, we were tasked with creating a visualization that told a story. For my project, I chose to create a graphic that would capture the personal memories and details of a backpacking trip that someone close to me completed in June of 2020.
+As the final project for EDS240 (Data Visualization) in my Master of
+Environmental Data Science degree, we were tasked with creating a
+visualization that told a story. For my project, I chose to create a
+graphic that would capture the personal memories and details of a
+backpacking trip that someone close to me completed in June of 2020.
 </p>
 </div>
 <div class="break">
@@ -1544,9 +1579,19 @@ January - March 2022
 Data visualization of a backpacking trip along the Big Seki Loop.
 </figcaption>
 </figure>
-<p><a href="images/EDS240_Clippinger_Visual.png">Click here for the full-sized image</a></p>
-<p>The map was created in ArcGIS Pro using a variety of data sources, including an SRTM Digital Elevation Model and National Park Service trails, boundaries, and water bodies. The elevation line chart was created using a GPX file downloaded from <a href="https://caltopo.com/">CalTopo</a> that was then processed and visualized in R. Lastly, the vast majority of the graphic design work was completed in Figma - including the trip journal, chart axes, and many finishing touches to the map (labels, linear gradients, masks, and more). I am extremely happy with the finished product!</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p><a href="images/EDS240_Clippinger_Visual.png">Click here for the
+full-sized image</a></p>
+<p>The map was created in ArcGIS Pro using a variety of data sources,
+including an SRTM Digital Elevation Model and National Park Service
+trails, boundaries, and water bodies. The elevation line chart was
+created using a GPX file downloaded from <a
+href="https://caltopo.com/">CalTopo</a> that was then processed and
+visualized in R. Lastly, the vast majority of the graphic design work
+was completed in Figma - including the trip journal, chart axes, and
+many finishing touches to the map (labels, linear gradients, masks, and
+more). I am extremely happy with the finished product!</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -44,6 +44,8 @@ library(kableExtra)
 library(plotly)
 ```
 
+<div class='project-page-wrapper'>
+
 Source for data and Osprey Nation 2020 report: <https://www.ctaudubon.org/osprey-nation-home/>
 
 ## Osprey Nation
@@ -75,17 +77,19 @@ The table above shows the progression of the Osprey Nation project over time. No
 
 ## Ospreys in Connecticut
 
+```{html}
 <figure>
 
 <img src="./images/osprey_landing.jpg" alt="Ospreys landing on a nest" style="width:50%;"/>
 
 <figcaption>
-
+  
 Ospreys in Essex Land Trust.
 
 </figcaption>
 
 </figure>
+```
 
 According to the CT DEEP, the osprey population in Connecticut reached a record low of only 9 active nests in 1974. The population suffered from pressure due to coastal development and DDT contamination causing eggshell thinning. Since the banning of DDT and restrictions on other pesticides in the 1970s, their population in the state has steadily been on the rise.
 
@@ -414,3 +418,5 @@ Critical information such as osprey arrival dates and departure dates are diffic
 ## Reflections
 
 This was my first attempt at an independent blog post focusing on data visualization. The main difficulty was finding the time to work on this project while balancing work and graduate school! Nonetheless, I learned a lot about integrating text, plots, and maps to tell a story. In the future, I hope to improve my skills in all three of these areas. Also, I hope to make blog posts that are more interactive.
+
+</div>

@@ -50,6 +50,7 @@ citation: false
   }
 </style>
 
+<div class='project-page-wrapper'>
 
 <div class="box">
   <h3>Background</h3>
@@ -95,3 +96,5 @@ The goal of this project is to make it easier for researchers to quickly analyze
 
 <br/><br/>
 **This project is currently in progress. For more information prior to completion, please see the [Initial Project Proposal](files/Clippinger-Menzies_Ecohydrologic-Machine-Learning-Capstone-Proposal.pdf).**
+
+</div>

@@ -17,6 +17,10 @@ create_proj_card = function(img_src, url, button, text, text2, text3){
   )
 }
 
+create_row = function(card_left, card_right) {
+  tags$div(class = card_left)
+}
+
 create_button = function(url, button){
     tags$div(
       class = "my-button",

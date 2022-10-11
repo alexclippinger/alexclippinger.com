@@ -678,17 +678,40 @@
 
           /* Everything below this should relate to the Portfolio page cards */
 
+          d-article {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+
+
+          .project-page-wrapper {
+            width: 75%;
+          }
+
+          .project-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 100%;
+            margin: 0.5em;
+          }
+
+          .project-card-wrapper {
+            width: 50%;
+            height: 100%
+          }
+
           .card {
             color: #474747;
             background-color: #FFFFFF;
-            box-shadow: 4px 6px 8px 0 rgba(0,0,0,0.2);
+            border: 1px solid #e0e0e0;
             transition: 0.3s;
             border-radius: 10px; 
-            /*margin: 16px 16px;*/
             text-decoration: none;
             display: flex;
             flex-direction: row;
-            max-width: 75%;
+            max-width: 95%;
             margin: auto;
           }
 
@@ -750,13 +773,66 @@
             object-fit: cover;
             padding: 20px 20px;
             border-radius: 30px;
-            width: 40%;
-            max-height: 300px; /* not a permanent solution to this problem */
+            max-width: 300px !important;
+            aspect-ratio: 1 / 1;
           }
+
+          @media(max-width: 1440px) {
+          .project-row {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+
+          }
+
+          .project-card-wrapper {
+            width: 100%;
+            height: 50%;
+            margin: 0.5em;
+          }
+          }
+
+          @media(max-width: 630px) {
+          .project-row {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+          }
+
+
+          .project-card-wrapper {
+            width: 100%;
+            height: 50%;
+          }
+
+          .card {
+            flex-direction: column;
+            margin-bottom: 1em;
+          }
+
+          .card-img-top {
+            flex-shrink: 0.5;
+          }
+
+          .h3 {
+            font-size: 20px;
+          }
+
+          .h4,
+          .p {
+            font-size: 14px;
+          }
+
+          .d-title h1 {
+            font-size: 24px;
+          }
+            
+          }
+
 
           /* Update overall layout (body width) */
 
-          @media(min-width: 1180px) {
+          /*@media(min-width: 1180px) {
               .base-grid,
               distill-header,
               d-title,
@@ -770,7 +846,9 @@
               distill-footer {
                 grid-template-columns: [screen-start] 0.5fr [page-start kicker-start] 30px [middle-start] 50px [text-start kicker-end] 100px 100px 100px 100px 100px 100px 100px 100px [text-end gutter-start] 30px [middle-end] 50px [page-end gutter-end] 0.5fr [screen-end];
                 grid-column-gap: 20px;
-              }</style>
+              }
+          */
+          </style>
           <style type="text/css">
           /* base style */
 
@@ -1020,12 +1098,6 @@
               background:#9ecde8;
             }
             </style>
-            <div class="my-button">
-            <button>
-            <a href="portfolio.html">View My Projects</a>
-            </button>
-            </div>
-            <p><br> <br></p>
             <div id="about-me" class="section level3">
             <h3>About Me</h3>
             <p>I am a recent graduate of the <a
@@ -1034,14 +1106,19 @@
             href="https://alexclippinger.github.io/portfolio/2021-12-23-group-project/index.html">capstone</a>
             research involved the use of decision-tree-based algorithms
             to explore variable importance from ecohydrologic model
-            output. <br /> <br /></p>
+            output. <br> <br></p>
             </div>
             <div id="currently" class="section level3">
             <h3>Currently</h3>
-            <ul>
-            <li>Data Scientist @ <a
-            href="https://www.rdniehaus.com/">RDN, Inc.</a> <br /></li>
-            </ul>
+            <p>Data Scientist @ <a
+            href="https://www.rdniehaus.com/">RDN, Inc.</a> <br>
+            <br></p>
+            <div class="my-button">
+            <button>
+            <a href="portfolio.html">View My Projects</a>
+            </button>
+            </div>
+            <p><br> <br></p>
             </div>
           </div>
         </div>
@@ -1110,12 +1187,6 @@
                 background:#9ecde8;
               }
               </style>
-              <div class="my-button">
-              <button>
-              <a href="portfolio.html">View My Projects</a>
-              </button>
-              </div>
-              <p><br> <br></p>
               <div id="about-me" class="section level3">
               <h3>About Me</h3>
               <p>I am a recent graduate of the <a
@@ -1124,15 +1195,19 @@
               href="https://alexclippinger.github.io/portfolio/2021-12-23-group-project/index.html">capstone</a>
               research involved the use of decision-tree-based
               algorithms to explore variable importance from
-              ecohydrologic model output. <br /> <br /></p>
+              ecohydrologic model output. <br> <br></p>
               </div>
               <div id="currently" class="section level3">
               <h3>Currently</h3>
-              <ul>
-              <li>Data Scientist @ <a
-              href="https://www.rdniehaus.com/">RDN, Inc.</a>
-              <br /></li>
-              </ul>
+              <p>Data Scientist @ <a
+              href="https://www.rdniehaus.com/">RDN, Inc.</a> <br>
+              <br></p>
+              <div class="my-button">
+              <button>
+              <a href="portfolio.html">View My Projects</a>
+              </button>
+              </div>
+              <p><br> <br></p>
               </div>
             </div>
         </div>
