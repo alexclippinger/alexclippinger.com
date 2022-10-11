@@ -26,6 +26,19 @@ Reproducible Machine Learning Approach to Ecohydrologic Model Outputs.",
 ```
 
 ```{r layout='project-card-wrapper'}
+create_external_proj_card(
+  img_src = "images/market-area.png",
+  url = "https://github.com/alexclippinger/market-area-creator",
+  button = "View GitHub",
+  text = "Tool to interactively create, view, and download market areas (all destinations that can be reached in a specific amount of time or distance) using the HERE API.",
+  text2 = "R Shiny / APIs",
+  text3 = "Market Area Creator Tool"
+)
+```
+</div>
+
+<div class='project-row'>
+```{r layout='project-card-wrapper'}
 create_proj_card(
   img_src = "images/trailmap.png",
   url = "portfolio/2021-12-23-map-collection/index.html",
@@ -35,9 +48,7 @@ create_proj_card(
   text3 = "Big Seki Loop Poster"
 )
 ```
-</div>
 
-<div class='project-row'>
 ```{r layout='project-card-wrapper'}
 create_proj_card(
   img_src = "images/crime_map.png",
@@ -48,7 +59,9 @@ create_proj_card(
   text3 = "Regression Analysis of Crime and Topography in San Francisco"
 )
 ```
+</div>
 
+<div class='project-row'>
 ```{r layout='project-card-wrapper'}
 create_proj_card(
   img_src = "images/Map 3.png",
@@ -59,9 +72,7 @@ create_proj_card(
   text3 = "GIS Overlay Analysis for the Old Lyme Land Trust"
 )
 ```
-</div>
 
-<div class='project-row'>
 ```{r layout='project-card-wrapper'}
 create_external_proj_card(
   img_src = "images/Ames_NDWI_Diff.png",
@@ -72,7 +83,9 @@ create_external_proj_card(
   text3 = "Visualizing Flooding Using NDWI"
 )
 ```
+</div>
 
+<div class='project-row'>
 ```{r layout='project-card-wrapper'}
 create_proj_card(
   img_src = "images/osprey_landing.jpg",
@@ -82,5 +95,9 @@ create_proj_card(
   text2 = "Data Analysis / Data Visualization",
   text3 = "Analysis of 2020 Osprey Nation Data"
 )
+```
+
+```{r layout='project-card-wrapper'}
+
 ```
 </div>
