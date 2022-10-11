@@ -14,13 +14,13 @@ source("R/functions.R")
 
 <div class='project-row'>
 ```{r layout='project-card-wrapper'}
-create_proj_card(
+create_external_proj_card(
   img_src = "images/bren-leaf-art-small.jpg",
-  url = "portfolio/2021-12-23-group-project/index.html",
-  button = "View Project",
+  url = "https://github.com/RHESSysML/RHESSysOutputExplorer",
+  button = "View GitHub",
   text = "Understanding Climate Change’s Impact on the Forest Ecosystem: Developing a
-Reproducible Machine Learning Approach to Ecohydrologic Model Outputs",
-  text2 = "Bren School of Environmental Science & Management",
+Reproducible Machine Learning Approach to Ecohydrologic Model Outputs.",
+  text2 = "Machine Learning / Data Visualization",
   text3 = "Capstone Project"
 )
 ```
@@ -29,10 +29,10 @@ Reproducible Machine Learning Approach to Ecohydrologic Model Outputs",
 create_proj_card(
   img_src = "images/trailmap.png",
   url = "portfolio/2021-12-23-map-collection/index.html",
-  button = "View Project",
-  text = "A collection of maps created for Educational, Volunteer, and Professional purposes",
-  text2 = "Various Projects",
-  text3 = "Map Collection"
+  button = "View Blog",
+  text = "Poster visualizing a backpacking trip on the Big Seki Loop, Kings Canyon National Park.",
+  text2 = "Data Visualization / Cartography",
+  text3 = "Big Seki Loop Poster"
 )
 ```
 </div>
@@ -42,10 +42,10 @@ create_proj_card(
 create_proj_card(
   img_src = "images/crime_map.png",
   url = "portfolio/2021-11-02-sf-crime-and-hilliness/index.html",
-  button = "View Project",
-  text = "A regression analysis",
-  text2 = "EDS",
-  text3 = "Crime and Hilliness Regression Analysis"
+  button = "View Blog",
+  text = "Does topography have an effect on the likelihood of car break-ins? Using data from San Francisco, CA.",
+  text2 = "Linear Regression / Data Analysis",
+  text3 = "Regression Analysis of Crime and Topography in San Francisco"
 )
 ```
 
@@ -53,23 +53,23 @@ create_proj_card(
 create_proj_card(
   img_src = "images/Map 3.png",
   url = "portfolio/2021-12-04-old-lyme-land-trust-gis-overlay-analysis/index.html",
-  button = "View Project",
-  text = "Spatial analysis",
-  text2 = "OLLT Volunteer",
-  text3 = "Conservation Spatial Analysis"
+  button = "View Blog",
+  text = "Identifying properties with high natural resource values to assist with conservation acquisition targets.",
+  text2 = "Spatial Analysis / GIS",
+  text3 = "GIS Overlay Analysis for the Old Lyme Land Trust"
 )
 ```
 </div>
 
 <div class='project-row'>
 ```{r layout='project-card-wrapper'}
-create_proj_card(
+create_external_proj_card(
   img_src = "images/Ames_NDWI_Diff.png",
-  url = "portfolio/2021-10-18-ames-open-space-flooding/index.html",
-  button = "View Project",
-  text = "ArcGIS Story Map",
-  text2 = "OLLT Volunteer",
-  text3 = "Visualizing Flooding with NDWI"
+  url = "https://storymaps.arcgis.com/stories/3f4c9e0260e340ec8654e1a4a1417467",
+  button = "View Story Map",
+  text = "ArcGIS Story Map visualizing the extent of flooding as a result of beaver activity.",
+  text2 = "Spatial Analysis / Remote Sensing",
+  text3 = "Visualizing Flooding Using NDWI"
 )
 ```
 
@@ -77,10 +77,10 @@ create_proj_card(
 create_proj_card(
   img_src = "images/osprey_landing.jpg",
   url = "portfolio/2021-09-20-old-lyme-ospreys-2020-season-review/index.html",
-  button = "View Project",
-  text = "Data Analysis",
-  text2 = "Text2",
-  text3 = "Osprey Data Analysis"
+  button = "View Blog",
+  text = "Once facing extinction, the Connecticut Osprey population has made a substantial comeback. This blog analyzes the 2020 Osprey Nation Report by the Connecticut Audobon Society.",
+  text2 = "Data Analysis / Data Visualization",
+  text3 = "Analysis of 2020 Osprey Nation Data"
 )
 ```
 </div>
