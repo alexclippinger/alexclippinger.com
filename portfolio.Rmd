@@ -15,7 +15,7 @@ source("R/functions.R")
 <div class='project-row'>
 ```{r layout='project-card-wrapper'}
 create_external_proj_card(
-  img_src = "images/bren-leaf-art-small.jpg",
+  img_src = "images/bren.png",
   url = "https://github.com/RHESSysML/RHESSysOutputExplorer",
   button = "View GitHub",
   text = "Understanding Climate Change’s Impact on the Forest Ecosystem: Developing a
