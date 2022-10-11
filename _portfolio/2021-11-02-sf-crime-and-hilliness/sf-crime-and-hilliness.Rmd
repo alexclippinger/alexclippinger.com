@@ -18,6 +18,8 @@ categories:
   - GIS
 ---
 
+<div class='project-page-wrapper'>
+
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE,
                       message = FALSE, 
@@ -458,3 +460,5 @@ This analysis has room for improvement, including but not limited to:
 3. More thoroughly researching and selecting the proper transformation method.
 
 All code for this analysis can be found on [**GitHub**](https://github.com/alexclippinger/alexclippinger.github.io/blob/main/_posts/2021-11-02-sf-crime-and-hilliness/sf-crime-and-hilliness.Rmd).
+
+</div>

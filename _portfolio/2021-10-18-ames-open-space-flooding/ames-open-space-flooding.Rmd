@@ -18,6 +18,8 @@ categories:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+<div class='project-page-wrapper'>
+
 <figure>
 
 <img src="./images/Ames_NDWI_Diff.png" style="width:100%;"/>
@@ -36,4 +38,4 @@ At the time, I was in the middle of my [Graduate Certificate in GIS](https://cps
 
 [**Here is the link to the full Story Map**](https://storymaps.arcgis.com/stories/3f4c9e0260e340ec8654e1a4a1417467)
 
-
+</div>

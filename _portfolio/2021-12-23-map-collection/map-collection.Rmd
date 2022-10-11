@@ -13,6 +13,8 @@ output:
 citation: false
 ---
 
+<div class='project-page-wrapper'>
+
 <style>
   .box div {
     display: inline-block;
@@ -73,3 +75,4 @@ Data visualization of a backpacking trip along the Big Seki Loop.
 
 The map was created in ArcGIS Pro using a variety of data sources, including an SRTM Digital Elevation Model and National Park Service trails, boundaries, and water bodies. The elevation line chart was created using a GPX file downloaded from [CalTopo](https://caltopo.com/) that was then processed and visualized in R. Lastly, the vast majority of the graphic design work was completed in Figma - including the trip journal, chart axes, and many finishing touches to the map (labels, linear gradients, masks, and more). I am extremely happy with the finished product!
 
+</div>

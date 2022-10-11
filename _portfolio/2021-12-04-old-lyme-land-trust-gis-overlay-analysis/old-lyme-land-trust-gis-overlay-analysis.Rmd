@@ -16,6 +16,8 @@ categories:
   - GIS
 ---
 
+<div class='project-page-wrapper'>
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,
                       message = FALSE, 
@@ -130,3 +132,5 @@ Here are the final outputs that resulted from this project:
 - [Slide Deck for Board Members](images/Old Lyme Land Trust Conservation Prioritization.pdf)
 
 - [Parcel Conservation Value Data](images/Conservation Values.xlsx)
+
+</div>
