@@ -51,7 +51,7 @@ source("R/functions.R")
 
 ### About Me
 
-I am a recent graduate of the [Master of Environmental Data Science](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) program at UCSB. My [capstone](https://alexclippinger.github.io/portfolio/2021-12-23-group-project/index.html)  research involved the use of decision-tree-based algorithms to explore variable importance from ecohydrologic model output.
+I am a recent graduate of the [Master of Environmental Data Science](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) program at UCSB. My [capstone](https://bren.ucsb.edu/projects/reproducible-machine-learning-approach-interpreting-ecohydrologic-model-outputs) research involved the use of decision-tree-based algorithms to explore variable importance from ecohydrologic model output.
 <br>
 <br>
 
