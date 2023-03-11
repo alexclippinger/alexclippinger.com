@@ -18,13 +18,25 @@ create_external_proj_card(
   img_src = "images/bren.png",
   url = "https://github.com/RHESSysML/RHESSysOutputExplorer",
   button = "View GitHub",
-  text = "Understanding Climate Change’s Impact on the Forest Ecosystem: Developing a
-Reproducible Machine Learning Approach to Ecohydrologic Model Outputs.",
+  text = "Understanding Climate Change’s Impact on the Forest Ecosystem: Developing a Reproducible Machine Learning Approach to Ecohydrologic Model Outputs.",
   text2 = "Machine Learning / Data Visualization",
   text3 = "Capstone Project"
 )
 ```
 
+```{r layout='project-card-wrapper'}
+create_external_proj_card(
+  img_src = "images/time-series.png",
+  url = "https://alexclippinger.shinyapps.io/time_series_stationarity/",
+  button = "View Blog",
+  text = "Interactive blog post with embedded R Shiny applications to visually explain the concept of stationarity in time-series models.",
+  text2 = "Time-Series / R Shiny",
+  text3 = "Stationarity in Time-Series Models"
+)
+```
+</div>
+
+<div class='project-row'>
 ```{r layout='project-card-wrapper'}
 create_external_proj_card(
   img_src = "images/house.jpg",
@@ -35,9 +47,7 @@ create_external_proj_card(
   text3 = "Predicting Home Prices Using XGBoost"
 )
 ```
-</div>
 
-<div class='project-row'>
 ```{r layout='project-card-wrapper'}
 create_external_proj_card(
   img_src = "images/market-area.png",
@@ -48,7 +58,9 @@ create_external_proj_card(
   text3 = "Market Area Creator Tool"
 )
 ```
+</div>
 
+<div class='project-row'>
 ```{r layout='project-card-wrapper'}
 create_proj_card(
   img_src = "images/map-preview.png",
@@ -59,9 +71,7 @@ create_proj_card(
   text3 = "Big Seki Loop Poster"
 )
 ```
-</div>
 
-<div class='project-row'>
 ```{r layout='project-card-wrapper'}
 create_proj_card(
   img_src = "images/crime_map.png",
@@ -72,7 +82,9 @@ create_proj_card(
   text3 = "Regression Analysis of Crime and Topography in San Francisco"
 )
 ```
+</div>
 
+<div class='project-row'>
 ```{r layout='project-card-wrapper'}
 create_proj_card(
   img_src = "images/Map 3.png",
@@ -83,9 +95,7 @@ create_proj_card(
   text3 = "GIS Overlay Analysis for the Old Lyme Land Trust"
 )
 ```
-</div>
 
-<div class='project-row'>
 ```{r layout='project-card-wrapper'}
 create_external_proj_card(
   img_src = "images/Ames_NDWI_Diff.png",
@@ -96,7 +106,9 @@ create_external_proj_card(
   text3 = "Visualizing Flooding Using NDWI"
 )
 ```
+</div>
 
+<div class='project-row'>
 ```{r layout='project-card-wrapper'}
 create_proj_card(
   img_src = "images/ct-audobon.png",
@@ -108,3 +120,4 @@ create_proj_card(
 )
 ```
 </div>
+
