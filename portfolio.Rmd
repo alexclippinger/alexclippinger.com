@@ -26,6 +26,19 @@ create_external_proj_card(
 
 ```{r layout='project-card-wrapper'}
 create_external_proj_card(
+  img_src = "images/BLS.png",
+  url = "https://github.com/alexclippinger/cpi-sqlite-db",
+  button = "View GitHub",
+  text = "Simple SQLite database updated with GitHub Actions.",
+  text2 = "Python / SQL",
+  text3 = "CPI SQLite Database"
+)
+```
+</div>
+
+<div class='project-row'>
+```{r layout='project-card-wrapper'}
+create_external_proj_card(
   img_src = "images/time-series.png",
   url = "https://alexclippinger.shinyapps.io/time_series_stationarity/",
   button = "View Blog",
@@ -34,9 +47,7 @@ create_external_proj_card(
   text3 = "Stationarity in Time-Series Models"
 )
 ```
-</div>
 
-<div class='project-row'>
 ```{r layout='project-card-wrapper'}
 create_external_proj_card(
   img_src = "images/house.jpg",
@@ -47,7 +58,9 @@ create_external_proj_card(
   text3 = "Predicting Home Prices Using XGBoost"
 )
 ```
+</div>
 
+<div class='project-row'>
 ```{r layout='project-card-wrapper'}
 create_external_proj_card(
   img_src = "images/market-area.png",
@@ -58,9 +71,7 @@ create_external_proj_card(
   text3 = "Market Area Creator Tool"
 )
 ```
-</div>
 
-<div class='project-row'>
 ```{r layout='project-card-wrapper'}
 create_proj_card(
   img_src = "images/map-preview.png",
@@ -71,7 +82,9 @@ create_proj_card(
   text3 = "Big Seki Loop Poster"
 )
 ```
+</div>
 
+<div class='project-row'>
 ```{r layout='project-card-wrapper'}
 create_proj_card(
   img_src = "images/crime_map.png",
@@ -80,6 +93,17 @@ create_proj_card(
   text = "Does topography have an effect on the likelihood of car break-ins? Using data from San Francisco, CA.",
   text2 = "Linear Regression / Data Analysis",
   text3 = "Regression Analysis of Crime and Topography in San Francisco"
+)
+```
+
+```{r layout='project-card-wrapper'}
+create_proj_card(
+  img_src = "images/DK.jpg",
+  url = "portfolio/2023-04-02-benefitsdatatrust/index.html",
+  button = "View Blog",
+  text = "Volunteer work during DataKind's December DataDive event for Benefits Data Trust.",
+  text2 = "Linear Regression / R Shiny",
+  text3 = "DataKind DeepDive Volunteering"
 )
 ```
 </div>

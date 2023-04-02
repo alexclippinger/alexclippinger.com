@@ -52,6 +52,8 @@ source("R/functions.R")
 ### About Me
 
 I am a recent graduate of the [Master of Environmental Data Science](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) program at UCSB. My [capstone](https://bren.ucsb.edu/projects/reproducible-machine-learning-approach-interpreting-ecohydrologic-model-outputs) research involved the use of decision-tree-based algorithms to explore variable importance from ecohydrologic model output.
+
+As an experienced data scientist currently working in economic consulting, my specialties are econometric analysis, time-series forecasting, technical reports/research, and developing/maintaining data pipelines.
 <br>
 <br>
 

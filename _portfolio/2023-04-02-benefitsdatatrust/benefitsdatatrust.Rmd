@@ -1,0 +1,18 @@
+---
+title: "DataKind Volunteering"
+description: |
+  Volunteer work during DataKind's December DataDive event for Benefits Data Trust.
+author:
+  - name: Alex Clippinger
+    url: https://alexclippinger.github.io
+date: 2023-04-02
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+In December, I volunteered with [DataKind](https://www.datakind.org/) for a [DataDive](https://www.datakind.org/dec22datadive) event. During this 3-day session, I analyzed, modeled, and visualized data for [Benefits Data Trust](https://bdtrust.org/). Their mission is to identify gaps in SNAP enrollment (i.e., geographies with most potential for their team's outreach to impact enrollment). Below are the two deliverables that I completed during the volunteer event:
+
+1. [Shiny App](https://github.com/datakind/BDT_DataDive_Dec22/tree/main/snap_participation_shiny_app): This R Shiny application dynamically displays SNAP participation as a percent of state population for each state and year in the United States.
+
+2. [OLS Model](https://github.com/datakind/BDT_DataDive_Dec22/tree/main/notebooks/basic_ols): Baseline models to predict enrollment rates and analyze gaps in predicted enrollment.

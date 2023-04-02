@@ -1,5 +1,22 @@
 [
   {
+    "path": "portfolio/2023-04-02-benefitsdatatrust/",
+    "title": "DataKind Volunteering",
+    "description": "Volunteer work during DataKind's December DataDive event for Benefits Data Trust.",
+    "author": [
+      {
+        "name": "Alex Clippinger",
+        "url": "https://alexclippinger.github.io"
+      }
+    ],
+    "date": "2023-04-02",
+    "categories": [],
+    "contents": "\r\nIn December, I volunteered with DataKind for a DataDive event. During this 3-day session, I analyzed, modeled, and visualized data for Benefits Data Trust. Their mission is to identify gaps in SNAP enrollment (i.e., geographies with most potential for their team’s outreach to impact enrollment). Below are the two deliverables that I completed during the volunteer event:\r\nShiny App: This R Shiny application dynamically displays SNAP participation as a percent of state population for each state and year in the United States.\r\nOLS Model: Baseline models to predict enrollment rates and analyze gaps in predicted enrollment.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2023-04-02T15:59:17-07:00",
+    "input_file": {}
+  },
+  {
     "path": "portfolio/2021-12-23-group-project/",
     "title": "Capstone Project",
     "description": "Reproducible Machine Learning Approach for Interpreting Ecohydrologic Model Outputs.",
